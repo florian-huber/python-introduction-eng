@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Funktionen &#8212; Einführung Programmieren mit Python</title>
+    <title>6. Functions &#8212; Einführung Programmieren mit Python</title>
   
   
   
@@ -64,7 +64,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lesson_material_english/03_functions';</script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="7. Import aus Bibliotheken/Modulen" href="03_import_libraries_modules.html" />
+    <link rel="next" title="7. Importing from Libraries/Modules" href="03_import_libraries_modules.html" />
     <link rel="prev" title="5. Control Structures and Conditions" href="02_control_structures_conditions_loop.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
@@ -179,9 +179,9 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Abläufe, Funktionen und Module</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="02_control_structures_conditions_loop.html">5. Control Structures and Conditions</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Funktionen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_import_libraries_modules.html">7. Import aus Bibliotheken/Modulen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_special_functions.html">8. Special functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_import_libraries_modules.html">7. Importing from Libraries/Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_special_functions.html">8. Special Functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datentypen &amp; String Handling</span></p>
 <ul class="nav bd-sidenav">
@@ -396,7 +396,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Funktionen</h1>
+    <h1>Functions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,16 +406,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definieren-von-funktionen">6.1. Definieren von Funktionen</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-werte">6.1.1. Default Werte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional">6.1.2. Optional:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-irgendwas-kommt-immer-zuruck">6.1.3. Return - irgendwas kommt immer zurück</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#return-muss-nicht-am-ende-stehen">6.1.3.1. return muss nicht am Ende stehen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">6.1. Defining Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-values">6.1.1. Default Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameter-order-matters">6.1.2. Optional: Parameter Order Matters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-something-always-comes-back">6.1.3. <code class="docutils literal notranslate"><span class="pre">Return</span></code>: Something Always Comes Back</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#return-doesnt-have-to-be-at-the-end">6.1.3.1. <code class="docutils literal notranslate"><span class="pre">Return</span></code> Doesn’t Have to Be at the End</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#namensraume-name-space">6.1.4. Namensräume (name space)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ha-wann-wird-jetzt-was-verandert">6.1.5. Hä? Wann wird jetzt was verändert??</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vorschau">6.1.6. Vorschau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#namespaces">6.1.4. Namespaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-and-immutable-data-types">6.1.5. Mutable and Immutable Data Types</a></li>
 </ul>
 </li>
 </ul>
@@ -429,63 +428,58 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="funktionen">
-<h1><span class="section-number">6. </span>Funktionen<a class="headerlink" href="#funktionen" title="Link to this heading">#</a></h1>
-<p>Wir haben schon Funktionen benutzt: <code class="docutils literal notranslate"><span class="pre">print()</span></code>, <code class="docutils literal notranslate"><span class="pre">type()</span></code>, aber auch <code class="docutils literal notranslate"><span class="pre">int()</span></code> oder <code class="docutils literal notranslate"><span class="pre">str()</span></code>.</p>
-<p>Diese Funktionen sind bei Python schon „eingebaut“.</p>
-<p>Die meisten Funktionen die wir nutzen werden sind aber entweder:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="functions">
+<h1><span class="section-number">6. </span>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
+<p>We have already used functions like <code class="docutils literal notranslate"><span class="pre">print()</span></code>, <code class="docutils literal notranslate"><span class="pre">type()</span></code>, and even <code class="docutils literal notranslate"><span class="pre">int()</span></code> or <code class="docutils literal notranslate"><span class="pre">str()</span></code>.</p>
+<p>These functions are built into Python.</p>
+<p>Most of the functions we will use, however, will either be:</p>
 <ul class="simple">
-<li><p>selbst geschrieben (oder: definiert)</p></li>
-<li><p>importiert (geladen)</p></li>
+<li><p>written (or: defined) by us, or</p></li>
+<li><p>imported (loaded).</p></li>
 </ul>
-<p>Wir werden beide Fälle besprechen.</p>
-<p>Funktionen spielen beim Erstellen komplexere Programme eine entscheidende Rolle, den mit Funktionen lassen sich auch umfangreiche Abläufe sinnvoller und übersichtlicher strukturieren.</p>
-<p><img alt="Programmabläufe lassen sich über Funktionen strukturieren" src="../_images/fig_control_flow_functions.png" /></p>
-<section id="definieren-von-funktionen">
-<h2><span class="section-number">6.1. </span>Definieren von Funktionen<a class="headerlink" href="#definieren-von-funktionen" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gute_sache</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Einmal Aufgeschrieben...&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;... 1000x benutzt!&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Wieder 3 Zeilen Code gespart.&quot;</span><span class="p">)</span>
+<p>We will cover both cases.</p>
+<p>Functions play a crucial role in creating more complex programs. They allow us to structure extensive workflows in a more logical and readable manner.</p>
+<p><img alt="Functions help structure program workflows" src="../_images/fig_control_flow_functions.png" /></p>
+<section id="defining-functions">
+<h2><span class="section-number">6.1. </span>Defining Functions<a class="headerlink" href="#defining-functions" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">good_thing</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Written once...&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;... used 1,000 times!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saved three lines of code again.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Wenn wir diesen Code ausführen passiert aber erstmal nix!
-Funktionen werden erst beim expliziten Aufrufen ausgeführt:</p>
-<!-- pytest-codeblocks:cont -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">gute_sache</span><span class="p">()</span>
+<p>When we run this code, nothing happens initially!<br />
+Functions only execute when explicitly called:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">good_thing</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Diese Funktion gibt nichts zurück (nur print) und verlangt keine Argumente.</p>
-<p>Die allgemeine Struktur von Funktionen ist:</p>
-<!-- pytest-codeblocks:skip -->
+<p>This function does not return anything (only prints) and does not require arguments.</p>
+<p>The general structure of functions is as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">,</span> <span class="n">etc</span><span class="p">):</span>
     <span class="c1"># code</span>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<p>Besser sogar noch so, mit einem sogenannten Docstring der die grundlegende Dokumentation der Funktion darstellt. Hierin können die Funktion und die Parameter beschrieben werden. Zusätzlich kann aber auch ein Code Beispiel angegeben werden oder Referenzen genannte werden.</p>
-<!-- pytest-codeblocks:skip -->
+<p>It’s even better to include a <strong>docstring</strong>, which serves as the basic documentation for the function. This can describe the function and its parameters, as well as provide examples or references.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hier wird die Funktion beschrieben</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># code</span>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<p>Es gibt auch Funktionen ohne parameter (siehe oben <code class="docutils literal notranslate"><span class="pre">gute_sache()</span></code>).
-Ausserdem kann man <em>defaults</em> festlegen! Diese werden genutzt, falls kein neuer Wert für die entsprechenden Parameter eingegeben wird.</p>
-<!-- pytest-codeblocks:skip -->
+<p>Functions can also have no parameters (e.g., <code class="docutils literal notranslate"><span class="pre">good_thing()</span></code> above).<br />
+Additionally, you can set <strong>default values</strong> for parameters, which are used if no new values are provided when the function is called.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mf">3.1415</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Hier wird die Funktion beschrieben</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="o">...</span> <span class="n">code</span> <span class="o">...</span>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-<p>Hier ein anderes Beispiel einer einfachen Funktion mit 2 Parametern:</p>
+<p>Here’s another example of a simple function with two parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">x_vs_y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare the numbers x and y.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare the numbers x and y.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;They are equal!&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
@@ -494,21 +488,18 @@ Ausserdem kann man <em>defaults</em> festlegen! Diese werden genutzt, falls kein
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> is smaller than </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">x_vs_y</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>  <span class="c1"># =&gt; 10 is smaller than 70</span>
-
 <span class="n">x_vs_y</span><span class="p">(</span><span class="mf">0.000001</span><span class="p">,</span> <span class="mf">1e-5</span><span class="p">)</span>  <span class="c1"># =&gt; 1e-06 is smaller than 1e-05</span>
 </pre></div>
 </div>
-<p>Aber was nicht funktioniert ist:</p>
-<!-- pytest-codeblocks:skip -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_vs_y</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># =&gt; TypeError: x_vs_y() missing 1 required positional argument: &#39;y&#39;</span>
+<p>But the following will not work:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_vs_y</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># =&gt; TypeError: x_vs_y() missing 1 required positional argument: &#39;y&#39;</span>
 </pre></div>
 </div>
-<section id="default-werte">
-<h3><span class="section-number">6.1.1. </span>Default Werte<a class="headerlink" href="#default-werte" title="Link to this heading">#</a></h3>
-<p>Hier eine Beispielfunktion in der einer der beiden möglichen Parameter einen Default-Wert erhält:</p>
+<section id="default-values">
+<h3><span class="section-number">6.1.1. </span>Default Values<a class="headerlink" href="#default-values" title="Link to this heading">#</a></h3>
+<p>Here’s an example of a function where one of the two parameters has a default value:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total number of eggs in n_boxes boxes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total number of eggs in n_boxes boxes.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">n_boxes</span> <span class="o">*</span> <span class="n">eggs_per_box</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># =&gt; 30</span>
@@ -517,72 +508,62 @@ Ausserdem kann man <em>defaults</em> festlegen! Diese werden genutzt, falls kein
 <span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_boxes</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># =&gt; 50</span>
 </pre></div>
 </div>
-<p>ABER… Folgendes geht nicht, da die benannte Parameter nicht vor unbenannten an die Funktion übergeben werden dürfe.</p>
-<!-- pytest-codeblocks:skip -->
+<p>However, this is not allowed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># =&gt; SyntaxError: positional argument follows keyword argument</span>
 </pre></div>
 </div>
 </section>
-<section id="optional">
-<h3><span class="section-number">6.1.2. </span>Optional:<a class="headerlink" href="#optional" title="Link to this heading">#</a></h3>
-<p>Die Frage der Reihenfolge wird bei weiteren möglichen Parametern noch wichtiger. Versehentliche Vertauschungen können teilweise zwar zu funktionierendem Code führen, aber nicht zu den gewünschten
-Ergebnissen…</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span>
-                  <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
-                  <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total number of eggs in n_boxes boxes.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<section id="optional-parameter-order-matters">
+<h3><span class="section-number">6.1.2. </span>Optional: Parameter Order Matters<a class="headerlink" href="#optional-parameter-order-matters" title="Link to this heading">#</a></h3>
+<p>With more parameters, the order becomes even more critical. Accidental mix-ups may result in functional but incorrect code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total number of eggs in n_boxes boxes.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_boxes</span> <span class="o">*</span> <span class="p">(</span><span class="n">eggs_per_box</span> <span class="o">-</span> <span class="n">broken_eggs_per_box</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>  <span class="c1"># =&gt; 30</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># =&gt; 50</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>  <span class="c1"># =&gt; 50</span>
-
 <span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mf">0.25</span><span class="p">))</span>  <span class="c1"># =&gt; 25</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-                    <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mf">0.25</span><span class="p">))</span>  <span class="c1"># =&gt; 48</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
-                    <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>  <span class="c1"># =&gt; 48</span>
 </pre></div>
 </div>
-<p>Aber…</p>
-<!-- pytest-codeblocks:cont -->
+<p>But consider this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">))</span>  <span class="c1"># =&gt; 48</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">boxes_to_eggs</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># =&gt; -48 !!!</span>
 </pre></div>
 </div>
+<hr class="docutils" />
 <blockquote>
 <div><h3 class="rubric" id="mini-quiz">MINI Quiz</h3>
-<p>Eine Funktion kann Werte/Daten zurück geben an das Programm über…<br />
-a) print<br />
-b) return<br />
-c) out<br />
-d) assert</p>
-<p>Eine Funktion ohne „return“ statement gibt folgendes zurück…<br />
-a) Nichts<br />
-b) die Parameter<br />
-c) die Variablen<br />
-d) None</p>
+<p>A function returns values/data to the program using…<br />
+a) <code class="docutils literal notranslate"><span class="pre">print</span></code><br />
+b) <code class="docutils literal notranslate"><span class="pre">return</span></code><br />
+c) <code class="docutils literal notranslate"><span class="pre">out</span></code><br />
+d) <code class="docutils literal notranslate"><span class="pre">assert</span></code></p>
+<p>A function without a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement returns…<br />
+a) Nothing<br />
+b) The parameters<br />
+c) The variables<br />
+d) <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
 </div></blockquote>
 </section>
-<section id="return-irgendwas-kommt-immer-zuruck">
-<h3><span class="section-number">6.1.3. </span>Return - irgendwas kommt immer zurück<a class="headerlink" href="#return-irgendwas-kommt-immer-zuruck" title="Link to this heading">#</a></h3>
-<p>Wie wir oben schon gesehen haben enthalten viele Funktionen die wir in Python schreiben ein sogenanntes Return-Statement. Das macht zwei Dinge. Es beendet die Ausführung der Funktion und es gibt einen oder mehrere Werte zurück („Rückgabewerte“). Zum Beispiel <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">variable1,</span> <span class="pre">variable2</span></code> würde die Werte der lokalen Variablen <code class="docutils literal notranslate"><span class="pre">variable1</span></code> und <code class="docutils literal notranslate"><span class="pre">variable2</span></code> zurückgeben.</p>
-<p>Eine Funktion benötigt jedoch kein explizites return-Statement. Wir hatten oben auch Beispiele von Funktionen gesehen, die kein <code class="docutils literal notranslate"><span class="pre">return</span></code> enthalten, ein einfaches (sinnfreies) Beispiel wäre</p>
+<hr class="docutils" />
+<section id="return-something-always-comes-back">
+<h3><span class="section-number">6.1.3. </span><code class="docutils literal notranslate"><span class="pre">Return</span></code>: Something Always Comes Back<a class="headerlink" href="#return-something-always-comes-back" title="Link to this heading">#</a></h3>
+<p>As we’ve seen, many functions contain a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. This does two things: it terminates the function’s execution and returns one or more values (e.g., <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">variable1,</span> <span class="pre">variable2</span></code>).</p>
+<p>However, functions don’t require a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_print</span><span class="p">(</span><span class="n">input_str</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">input_str</span><span class="p">)</span>
 
 <span class="n">double_print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>  <span class="c1"># --&gt; Hello World!Hello World!</span>
 </pre></div>
 </div>
-<p>In Python kann es allerdings keine Funktion ohne Rückgabewert haben. Darum geben Funktionen die sonst nichts zurückgeben würden ein <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück. So auch die <code class="docutils literal notranslate"><span class="pre">print()</span></code> Funktion selber:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">what_comes_back</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">what_comes_back</span><span class="p">)</span>  <span class="c1"># --&gt; None</span>
+<p>In Python, every function returns a value. If no <code class="docutils literal notranslate"><span class="pre">return</span></code> is specified, it implicitly returns <code class="docutils literal notranslate"><span class="pre">None</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># --&gt; None</span>
 </pre></div>
 </div>
-<section id="return-muss-nicht-am-ende-stehen">
-<h4><span class="section-number">6.1.3.1. </span>return muss nicht am Ende stehen<a class="headerlink" href="#return-muss-nicht-am-ende-stehen" title="Link to this heading">#</a></h4>
-<p>Auch wenn wir dies häufig sehen, v.a. zu Beginn: das return-Statement muss keinesfalls am Ende einer Funktion stehen. Und es kann auch mehrere return-Statements geben. Zum Beispiel:</p>
+<section id="return-doesnt-have-to-be-at-the-end">
+<h4><span class="section-number">6.1.3.1. </span><code class="docutils literal notranslate"><span class="pre">Return</span></code> Doesn’t Have to Be at the End<a class="headerlink" href="#return-doesnt-have-to-be-at-the-end" title="Link to this heading">#</a></h4>
+<p>A function can have multiple <code class="docutils literal notranslate"><span class="pre">return</span></code> statements, and they don’t have to be at the end:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pick_smallest</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">b</span>
@@ -591,166 +572,71 @@ d) None</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;They look alike!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Diese Funktion endet mit dem ersten oder dem zweiten return-Statement. Oder keines von beidem trifft zu, dann wird print() aufgerufen und -wie wir gerade gelernt haben- ein <code class="docutils literal notranslate"><span class="pre">None</span></code> zurückgegeben.</p>
 </section>
 </section>
-<section id="namensraume-name-space">
-<h3><span class="section-number">6.1.4. </span>Namensräume (name space)<a class="headerlink" href="#namensraume-name-space" title="Link to this heading">#</a></h3>
-<p>Unter einem Namensraum versteht man einen Teil (oder Raum) innerhalb eines Programmes, in dem ein Name (z.B. Variablen und Funktionen) gültig ist.
-In Python gibt es v.a. drei Arten solcher Geltungsbereiche:</p>
+<hr class="docutils" />
+<section id="namespaces">
+<h3><span class="section-number">6.1.4. </span>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading">#</a></h3>
+<p>A namespace is an area within a program where a name (e.g., variables, functions) is valid. Python has three main types of namespaces:</p>
 <ul class="simple">
-<li><p>Lokaler Geltungsbereich (innerhalb einer Funktion oder Methode)</p></li>
-<li><p>Globaler Geltungsbereich (verfügbar für alle Teile eines Programmes, bzw. innerhalb eines Interpreters)</p></li>
-<li><p>Eingebauter Geltungsbereich (von Python definierte Namen sind immer gültig)</p></li>
+<li><p><strong>Local scope</strong>: Valid within a function or method.</p></li>
+<li><p><strong>Global scope</strong>: Valid throughout the program or interpreter session.</p></li>
+<li><p><strong>Built-in scope</strong>: Names defined by Python itself.</p></li>
 </ul>
-<p>Aber schauen wir das Ganze besser mal an einigen Beispielen an:</p>
+<p>Examples:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
 
 <span class="k">def</span> <span class="nf">do_stuff</span><span class="p">():</span>
-    <span class="c1"># a wird lokal nicht definiert!</span>
-    <span class="c1"># gerne testen: print(a)</span>
-    <span class="c1"># gerne testen: print(locals())</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    
+
 <span class="n">result</span> <span class="o">=</span> <span class="n">do_stuff</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>  <span class="c1"># =&gt; 5 7 12</span>
 </pre></div>
 </div>
-<p>Die von uns definierte Funktion <code class="docutils literal notranslate"><span class="pre">do_stuff()</span></code> kann also einfach auf die Variablen <code class="docutils literal notranslate"><span class="pre">a</span></code> und <code class="docutils literal notranslate"><span class="pre">b</span></code> zugreifen. Das liegt daran, dass dies in Python <strong>globale Variablen</strong> sind. Sie wurden im Programm außerhalb von Funktionen/Methoden zugewiesen und sind für alle Teile eines Programmes erreichbar.</p>
+<p>Local and global variables behave differently:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
 
 <span class="k">def</span> <span class="nf">do_stuff</span><span class="p">():</span>
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1000</span>
-    <span class="c1">#print(a)  # hiermit kann man a innerhalb der Funktion anschauen</span>
-    <span class="c1">#print(locals())  # hiermit werden die lokalen Variablen gezeigt</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-    
-<span class="n">result</span> <span class="o">=</span> <span class="n">do_stuff</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>  <span class="c1"># =&gt; 5 7 1007</span>
-</pre></div>
-</div>
-<p>Hier wurde eine Variable die ebenfalls den Namen <code class="docutils literal notranslate"><span class="pre">a</span></code> trägt innerhalb einer Funktion zugewiesen und genutzt. Variablen die innerhalb von Funktionen zugewiesen werden sind in Python <strong>lokale Variablen</strong>, d.h. sie sind nur innerhalb der jeweiligen Funktion verfügbar. Wie man im obigen Beispiel sieht, wird dadurch auch keineswegs die globale Variable <code class="docutils literal notranslate"><span class="pre">a</span></code> verändert.</p>
-<p><img alt="Name Spaces" src="../_images/fig_namespaces_1.png" /></p>
-<p>Genau das ist nämlich auch nicht erlaubt in Python. Globale Variablen können lokal zwar benutzt, aber in der Regel nicht verändert werden!</p>
-<!-- pytest-codeblocks:expect-error -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_stuff</span><span class="p">():</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">a</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">do_stuff</span><span class="p">()</span> <span class="c1"># ==&gt; UnboundLocalError: local variable &#39;a&#39; referenced before assignment</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">do_stuff</span><span class="p">())</span>  <span class="c1"># =&gt; 1000</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># =&gt; 5</span>
 </pre></div>
 </div>
-<p>Eine Ausnahme ist, wenn Variablen innerhalb einer Funktion explizit als <code class="docutils literal notranslate"><span class="pre">global</span></code> gesetzt werden:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_stuff</span><span class="p">():</span>
-    <span class="k">global</span> <span class="n">a</span>  <span class="c1"># defines a new global variable</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="k">return</span> <span class="n">a</span>
-
-<span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">do_stuff</span><span class="p">()</span>
-</pre></div>
-</div>
-<p><strong>WICHTIG:</strong>
-Das Arbeiten mit globalen Variablen ist in den allermeisten Fällen <strong>nicht zu empfehlen</strong>!
-Es wird nämlich sehr schnell unklar wann und wo eine bestimmte Variable überall verändert wird. Häufig führt dies zu ungewünschten Ergebnissen die dazu noch sehr schwer zu verstehen und zu beheben sein können.</p>
-<p><strong>Best Practice:</strong>
-Es ist darum sehr zu empfehlen einer Funktionen alle Parameter die diese benötigt explizit zu übergeben:</p>
+<p>Global variables are not recommended for modification within functions, as it can lead to unclear and buggy code. Instead, explicitly pass variables as function parameters:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_stuff</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">a</span>
 
-<span class="n">do_stuff</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">do_stuff</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># =&gt; 20</span>
 </pre></div>
 </div>
 </section>
-<section id="ha-wann-wird-jetzt-was-verandert">
-<h3><span class="section-number">6.1.5. </span>Hä? Wann wird jetzt was verändert??<a class="headerlink" href="#ha-wann-wird-jetzt-was-verandert" title="Link to this heading">#</a></h3>
-<p>Gerade haben wir gesehen, dass globale Variablen nicht lokal in einer Funktion geändert werden können. Das gilt aber nur für unveränderbare (inmmutable) Datentypen, so wie int, float, tuple.
-Bei veränderbaren (mutable) Datentypen sieht das anders aus. Zumindest wenn deren eigene Methoden genuzte werden (also Funktionen die mit <code class="docutils literal notranslate"><span class="pre">.xzy()</span></code> aufgerufen werden).
-In diesen Fällen wird die Methode direkt auf das Objekt selbst angewandt:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_other_stuff</span><span class="p">():</span>
-    <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span>
+<hr class="docutils" />
+<section id="mutable-and-immutable-data-types">
+<h3><span class="section-number">6.1.5. </span>Mutable and Immutable Data Types<a class="headerlink" href="#mutable-and-immutable-data-types" title="Link to this heading">#</a></h3>
+<p>Mutable objects (e.g., lists, dictionaries) can be modified within functions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_list</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
+    <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">do_other_stuff</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>  <span class="c1"># =&gt; [1, 2, 55] </span>
+<span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">modify_list</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>  <span class="c1"># =&gt; [1, 2, 3, 42]</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">my_list</span></code> wurde also durch <code class="docutils literal notranslate"><span class="pre">do_other_stuff()</span></code> verändert.</p>
-<p>Wohingegen Folgendes nicht geht:</p>
-<!-- pytest-codeblocks:expect-error -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_other_stuff</span><span class="p">():</span>
-    <span class="n">my_list</span> <span class="o">=</span> <span class="n">my_list</span> <span class="o">+</span> <span class="p">[</span><span class="mi">55</span><span class="p">]</span>
+<p>Immutable objects (e.g., integers, tuples) cannot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_value</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
 
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">do_other_stuff</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>  <span class="c1"># UnboundLocalError: local variable &#39;my_list&#39; referenced before assignment</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">modify_value</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># =&gt; 10</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_other_stuff</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
-    <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">55</span><span class="p">)</span>
-
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">do_other_stuff</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>  <span class="c1"># =&gt; [1, 2, 55]</span>
-
-</pre></div>
-</div>
-<p>Selbst wenn <code class="docutils literal notranslate"><span class="pre">my_list</span></code> als Parameter an die Funktion übergeben wird, läuft zwar der Code, aber wird doch nicht die globale Variable verändert:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_other_stuff</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
-    <span class="n">my_list</span> <span class="o">=</span> <span class="n">my_list</span> <span class="o">+</span> <span class="p">[</span><span class="mi">55</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;inner function: </span><span class="si">{</span><span class="n">my_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="n">do_other_stuff</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>  <span class="c1"># =&gt; inner function: [1, 2, 55]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>  <span class="c1"># =&gt; [1, 2]</span>
-</pre></div>
-</div>
-<p>Manchmal führt dieses Verhalten zu Schwierigkeiten. Z.B. wenn eine Funktion versehentlich den Anschein erweckt als würde sie einen neuen Wert ausgeben, aber dann leider doch auch den Eingabewert selbst verändert.</p>
-<p>Hier mal ein Beispiel. Wir wollen eine Funktion haben die alle Werte
-einer Liste verdoppelt.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_values</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)):</span>
-        <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="k">return</span> <span class="n">values</span>
-
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-<span class="n">my_list_x2</span> <span class="o">=</span> <span class="n">double_values</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">,</span> <span class="n">my_list_x2</span><span class="p">)</span>  <span class="c1"># =&gt; [10, 20, 30] [10, 20, 30]</span>
-</pre></div>
-</div>
-<p>Wenn in Python Code steht der die Form hat <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">my_function(a)</span></code>, dann erwarten wir (zurecht!) das <code class="docutils literal notranslate"><span class="pre">a</span></code> durch den Aufruf nicht verändert wird.</p>
-<p>In dem konkreten Fall kann das auf verschiedene Arten erreicht werden.
-Entweder eine neue Variable wird in der Funktion angelegt, oder es wird explizit eine echte Kopie erstellt.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_values</span><span class="p">(</span><span class="n">values_input</span><span class="p">):</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="n">values_input</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># eine Kopie wird erstellt</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)):</span>
-        <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="k">return</span> <span class="n">values</span>
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-<span class="n">my_list_x2</span> <span class="o">=</span> <span class="n">double_values</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">,</span> <span class="n">my_list_x2</span><span class="p">)</span>  <span class="c1"># =&gt; [5, 10, 15] [10, 20, 30]</span>
-</pre></div>
-</div>
-<p>oder:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_values</span><span class="p">(</span><span class="n">values_input</span><span class="p">):</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># eine völlig neue Liste wird angelegt</span>
-    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values_input</span><span class="p">:</span>
-        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">values</span>
-
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
-<span class="n">my_list_x2</span> <span class="o">=</span> <span class="n">double_values</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">my_list</span><span class="p">,</span> <span class="n">my_list_x2</span><span class="p">)</span>  <span class="c1"># =&gt; [5, 10, 15] [10, 20, 30]</span>
-</pre></div>
-</div>
-</section>
-<section id="vorschau">
-<h3><span class="section-number">6.1.6. </span>Vorschau<a class="headerlink" href="#vorschau" title="Link to this heading">#</a></h3>
-<p>Im nächsten Teil geht es dann um weitere Typen von Funktionen…</p>
+<hr class="docutils" />
+<p>In the next section, we’ll explore more advanced function types.</p>
 </section>
 </section>
 </section>
@@ -799,7 +685,7 @@ Entweder eine neue Variable wird in der Funktion angelegt, oder es wird explizit
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Import aus Bibliotheken/Modulen</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Importing from Libraries/Modules</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -820,16 +706,15 @@ Entweder eine neue Variable wird in der Funktion angelegt, oder es wird explizit
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#definieren-von-funktionen">6.1. Definieren von Funktionen</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-werte">6.1.1. Default Werte</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional">6.1.2. Optional:</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-irgendwas-kommt-immer-zuruck">6.1.3. Return - irgendwas kommt immer zurück</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#return-muss-nicht-am-ende-stehen">6.1.3.1. return muss nicht am Ende stehen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-functions">6.1. Defining Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default-values">6.1.1. Default Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-parameter-order-matters">6.1.2. Optional: Parameter Order Matters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#return-something-always-comes-back">6.1.3. <code class="docutils literal notranslate"><span class="pre">Return</span></code>: Something Always Comes Back</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#return-doesnt-have-to-be-at-the-end">6.1.3.1. <code class="docutils literal notranslate"><span class="pre">Return</span></code> Doesn’t Have to Be at the End</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#namensraume-name-space">6.1.4. Namensräume (name space)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ha-wann-wird-jetzt-was-verandert">6.1.5. Hä? Wann wird jetzt was verändert??</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vorschau">6.1.6. Vorschau</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#namespaces">6.1.4. Namespaces</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mutable-and-immutable-data-types">6.1.5. Mutable and Immutable Data Types</a></li>
 </ul>
 </li>
 </ul>

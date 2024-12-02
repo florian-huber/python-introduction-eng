@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Special functions &#8212; Einführung Programmieren mit Python</title>
+    <title>8. Special Functions &#8212; Einführung Programmieren mit Python</title>
   
   
   
@@ -65,7 +65,7 @@
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="9. Datentypen II" href="04_datatypes_2.html" />
-    <link rel="prev" title="7. Import aus Bibliotheken/Modulen" href="03_import_libraries_modules.html" />
+    <link rel="prev" title="7. Importing from Libraries/Modules" href="03_import_libraries_modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   <meta name="docsearch:version" content="" />
@@ -179,9 +179,9 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Abläufe, Funktionen und Module</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="02_control_structures_conditions_loop.html">5. Control Structures and Conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_functions.html">6. Funktionen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_import_libraries_modules.html">7. Import aus Bibliotheken/Modulen</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_functions.html">6. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_import_libraries_modules.html">7. Importing from Libraries/Modules</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Special Functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datentypen &amp; String Handling</span></p>
 <ul class="nav bd-sidenav">
@@ -396,7 +396,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Special functions</h1>
+    <h1>Special Functions</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,13 +406,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rekursive-funktionen-recursive-functions">8.1. Rekursive Funktionen (<em>recursive functions</em>)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokale-funktionen">8.2. Lokale Funktionen</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lokale-funktionen-wann-benutzen-und-wann-nicht">8.2.1. Lokale Funktionen: Wann benutzen und wann nicht?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funktionen-mit-variabler-parameter-anzahl">8.2.2. Funktionen mit variabler Parameter-Anzahl</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs-variable-anzahl-benannter-parameter">8.2.3. **kwargs -&gt; variable Anzahl benannter Parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">8.1. Recursive Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-functions">8.2. Local Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-local-functions">8.2.1. When to Use Local Functions</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-variable-numbers-of-parameters">8.3. Functions with Variable Numbers of Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">8.3.1. Operators <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-math-prod">8.3.2. Example with <code class="docutils literal notranslate"><span class="pre">math.prod()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs-variable-numbers-of-named-parameters">8.4. <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>: Variable Numbers of Named Parameters</a></li>
 </ul>
             </nav>
         </div>
@@ -425,18 +429,19 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="special-functions">
-<h1><span class="section-number">8. </span>Special functions<a class="headerlink" href="#special-functions" title="Link to this heading">#</a></h1>
-<p>Wir haben uns schon Funktionen in Python angeschaut. Zur Erinnerung:<br />
-Funktionen werden mit <code class="docutils literal notranslate"><span class="pre">def</span></code> definiert. Funktionen müssen aufgerufen werden um wirklich vom Interpreter ausgeführt zu werden. Es können theoretisch beliebig viele Parameter (oder Argumente) an eine Funktion übergeben werden. Über <code class="docutils literal notranslate"><span class="pre">return</span></code> gibt die Funktion Variablen zurück und ended. Falls kein explizietes <code class="docutils literal notranslate"><span class="pre">return</span></code> statement angegeben wird, gibt eine Funktion <code class="docutils literal notranslate"><span class="pre">None</span></code> zurück.</p>
-<p>Im Folgenden gehen wir kurz auf einige spezielle Funktionen-Typen ein.</p>
-<section id="rekursive-funktionen-recursive-functions">
-<h2><span class="section-number">8.1. </span>Rekursive Funktionen (<em>recursive functions</em>)<a class="headerlink" href="#rekursive-funktionen-recursive-functions" title="Link to this heading">#</a></h2>
-<p>Rekursive Funktionen sind Funktionen die sich selbst aufrufen.
-Ein typisches Beispiel dafür ist die Berechnung von Fakultäten (engl. <em>factorial</em>).
-Zur Erinnerung: Fakutät von <em>n</em> ist das Produkt aller ganzen Zahlen von 1 bis <em>n</em>.
-Zum Beispiel wäre die Fakultät von vier:<br />
-<code class="docutils literal notranslate"><span class="pre">4!</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">*</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">=</span> <span class="pre">24</span></code><br />
-Eine Python Funktion dazu könnte man so schreiben:</p>
+<h1><span class="section-number">8. </span>Special Functions<a class="headerlink" href="#special-functions" title="Link to this heading">#</a></h1>
+<p>We’ve already looked at functions in Python. As a reminder:<br />
+Functions are defined using <code class="docutils literal notranslate"><span class="pre">def</span></code>. Functions must be called to be executed by the interpreter. They can theoretically take any number of parameters (or arguments). Functions return variables using <code class="docutils literal notranslate"><span class="pre">return</span></code> and terminate execution at that point. If no explicit <code class="docutils literal notranslate"><span class="pre">return</span></code> statement is provided, a function returns <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>Below, we’ll briefly cover some special types of functions.</p>
+<hr class="docutils" />
+<section id="recursive-functions">
+<h2><span class="section-number">8.1. </span>Recursive Functions<a class="headerlink" href="#recursive-functions" title="Link to this heading">#</a></h2>
+<p>Recursive functions are functions that call themselves.<br />
+A classic example is calculating factorials.</p>
+<p>Recall: The factorial of <em>n</em> is the product of all whole numbers from 1 to <em>n</em>.<br />
+For example, the factorial of four is:<br />
+<code class="docutils literal notranslate"><span class="pre">4!</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">*</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">*</span> <span class="pre">4</span> <span class="pre">=</span> <span class="pre">24</span></code></p>
+<p>A Python function for this might look like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">factorial_recursive</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="c1"># Base case: 1! = 1</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -450,24 +455,22 @@ Eine Python Funktion dazu könnte man so schreiben:</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">factorial_recursive</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>  <span class="c1"># =&gt; 720</span>
 </pre></div>
 </div>
-<p>Im Allgemeinen ist der Einsatz von rekursiven Funktionen aber eher selten.
-Häufig haben rekursive Funktionen das Problem das sie schnell sehr langsam und uneffizient werden.</p>
-<p>Deutlich wichtiger (in meinen Augen…) sind dagegen lokale Funktionen.</p>
+<p>In general, recursive functions are rarely used.<br />
+They often become very slow and inefficient for complex tasks.</p>
 </section>
-<section id="lokale-funktionen">
-<h2><span class="section-number">8.2. </span>Lokale Funktionen<a class="headerlink" href="#lokale-funktionen" title="Link to this heading">#</a></h2>
-<p>Als Lokale Funktionen bezeichnet man Funktionen die innerhalb einer anderen
-Funktion definiert werden.</p>
-<!--pytest-codeblocks:skip-->
+<hr class="docutils" />
+<section id="local-functions">
+<h2><span class="section-number">8.2. </span>Local Functions<a class="headerlink" href="#local-functions" title="Link to this heading">#</a></h2>
+<p>Local functions are functions defined <strong>inside another function</strong>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
     <span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
-        <span class="k">pass</span> <span class="c1"># hier kommt der Code der inneren Funktion hin</span>
+        <span class="k">pass</span>  <span class="c1"># Code for the inner function goes here</span>
 
-    <span class="c1"># hier ist die eigentliche Funktion und die benutzt inner_function</span>
+    <span class="c1"># The main function uses inner_function</span>
     <span class="n">inner_function</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Ein erstes Beispiel einer solchen Funktion (<code class="docutils literal notranslate"><span class="pre">double_n_times()</span></code>) mit lokaler/innerer Funktion (<code class="docutils literal notranslate"><span class="pre">double_number()</span></code>):</p>
+<p>Here’s an example of such a function (<code class="docutils literal notranslate"><span class="pre">double_n_times()</span></code>) with a local/inner function (<code class="docutils literal notranslate"><span class="pre">double_number()</span></code>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_n_times</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">double_number</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">number</span> <span class="o">*</span> <span class="mi">2</span>
@@ -479,10 +482,9 @@ Funktion definiert werden.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">double_n_times</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># =&gt; 5120</span>
 </pre></div>
 </div>
-<p>Und hier ein Beispiel im Bereich String-Handling (Hinweis: <code class="docutils literal notranslate"><span class="pre">.lower()</span></code> ist eine String-Methode und ändert alle Buchstaben in einem String zu Kleinbuchstaben):</p>
+<p>And an example in the context of string handling (note: <code class="docutils literal notranslate"><span class="pre">.lower()</span></code> is a string method that converts all letters in a string to lowercase):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a greeting that depends on the given name string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a greeting that depends on the given name string.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">is_friend</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
         <span class="n">friends_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tom&quot;</span><span class="p">,</span> <span class="s2">&quot;anna&quot;</span><span class="p">,</span> <span class="s2">&quot;erik&quot;</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">friends_list</span>
@@ -494,60 +496,42 @@ Funktion definiert werden.</p>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Eine kleine Nebenbemerkung:<br />
-Beim Programmieren gibt es in der Regel nicht <strong>eine</strong> Lösung für ein Problem, sondern es können oft sehr unterschiedliche Programme für eine und dieselbe Aufgabe geschrieben werden.
-Im oberen Beispiel, könnte man die Zeile <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">name.lower()</span> <span class="pre">in</span> <span class="pre">friends_list1</span></code> auch problemlos austauschen gegen eine Konstruktion mit <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p>
 <blockquote>
 <div><h3 class="rubric" id="mini-quiz">Mini Quiz:</h3>
-<p>Was wird bei greeting(„Anna“) ausgegeben:
+<p>What is the output of <code class="docutils literal notranslate"><span class="pre">greeting(&quot;Anna&quot;)</span></code>?<br />
 a) Hello Anna.<br />
 b) False<br />
 c) Hi Anna!!</p>
 </div></blockquote>
-<!--pytest-codeblocks:cont-->
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">greeting</span><span class="p">(</span><span class="s2">&quot;Anna&quot;</span><span class="p">)</span>  <span class="c1"># =&gt; Hi Anna!!</span>
 <span class="n">greeting</span><span class="p">(</span><span class="s2">&quot;Sandra&quot;</span><span class="p">)</span>  <span class="c1"># =&gt; Hello Sandra.</span>
 </pre></div>
 </div>
-<p>Lokale Funktionen sind nicht direkt aufrufbar. Man verwendet sie daher v.a. für kleine Helferfunktionen (um unnötige Wiederholung zu vermeiden und/oder die Struktur der Hauptfunktion klarer zu machen).</p>
-<p>In dem oberen Beispiel spart man damit keinen Code.
-Aber es wird vielleicht etwas übersichtlicher.</p>
-<p>Bei den Funktionen hatten wir auch schonmal kurz das Thema <strong>Namespaces</strong>.
-Dort haben wir gesehen, das Variablen die innerhalb einer Funktion definiert werden (also „lokal“), von aussen nicht sichtbar/nutzbar sind. Das Gleiche gilt auch für lokale Funktionen, diese sind für den Rest eines Programmes nicht sichtbar.</p>
-<!--pytest-codeblocks:expect-error-->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">is_friend</span><span class="p">(</span><span class="s2">&quot;Tom&quot;</span><span class="p">)</span>  <span class="c1"># =&gt; NameError: name &#39;is_friend&#39; is not defined</span>
-</pre></div>
-</div>
-<p>Wenn die Helfer-Funktion auch in anderen Funktionen benutzt wird, macht es Sinn sie als Helferfunktion in ein eigene Datei zu stecken
-und zu importieren, z.B. mit <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">helper_functions</span> <span class="pre">import</span> <span class="pre">is_friend</span></code>.</p>
-<section id="lokale-funktionen-wann-benutzen-und-wann-nicht">
-<h3><span class="section-number">8.2.1. </span>Lokale Funktionen: Wann benutzen und wann nicht?<a class="headerlink" href="#lokale-funktionen-wann-benutzen-und-wann-nicht" title="Link to this heading">#</a></h3>
-<p>Lokale Funktionen machen Sinn als kleine Helfer-Funktionen, wenn sie</p>
+<hr class="docutils" />
+<section id="when-to-use-local-functions">
+<h3><span class="section-number">8.2.1. </span>When to Use Local Functions<a class="headerlink" href="#when-to-use-local-functions" title="Link to this heading">#</a></h3>
+<p>Local functions make sense as small helper functions if:</p>
 <ul class="simple">
-<li><p>nicht durch andere Funktionen benötigt werden</p></li>
-<li><p>mehrere Male in der äusseren Funktion aufgerufen werden und/oder</p></li>
-<li><p>die äussere Funktion lesbarer machen</p></li>
+<li><p>They are not needed by other functions.</p></li>
+<li><p>They are called multiple times within the outer function.</p></li>
+<li><p>They improve the readability of the outer function.</p></li>
 </ul>
-<p>Stellen wir uns vor die Funktion <code class="docutils literal notranslate"><span class="pre">is_friend</span></code> würde nun in zwei weiteren Funktionen eingesetzt. Dann müsste sie in beiden lokal definiert werden. Das ist aber umständlich und sehr fehleranfällig (z.B. wenn eine geändert wird, die andere aber versehentlich nicht). Darum würde man in diesem Fall lieber eine eigene Funktion definieren (oder importieren):</p>
+<p>For example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">is_friend</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return True if name is in friends_list</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return True if name is in friends_list.&quot;&quot;&quot;</span>
     <span class="n">friends_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;tom&quot;</span><span class="p">,</span> <span class="s2">&quot;anna&quot;</span><span class="p">,</span> <span class="s2">&quot;erik&quot;</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">friends_list</span>
 
 
 <span class="k">def</span> <span class="nf">greeting</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a greeting depending on the name string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a greeting depending on the name string.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">is_friend</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hi </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!!&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hello </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
-        
-        
+
 <span class="k">def</span> <span class="nf">goodbye</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a goodbye depending on the name string.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prints a goodbye depending on the name string.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">is_friend</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bye </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">!!&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -555,64 +539,63 @@ und zu importieren, z.B. mit <code class="docutils literal notranslate"><span cl
 </pre></div>
 </div>
 </section>
-<section id="funktionen-mit-variabler-parameter-anzahl">
-<h3><span class="section-number">8.2.2. </span>Funktionen mit variabler Parameter-Anzahl<a class="headerlink" href="#funktionen-mit-variabler-parameter-anzahl" title="Link to this heading">#</a></h3>
-<p>Alle bisherigen Funktionen die wir angeschaut haben, erwarten eine bestimmte Anzahl an Parametern. Eventuell gibt es einige mit default-Wert die ausgelassen werden können, aber es dürfen auf keinen Fall mehr als die definierten Parameter übergeben werden.</p>
-<!--pytest-codeblocks:expect-error-->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply_all</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">c</span><span class="p">)</span>
-
-<span class="n">multiply_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># =&gt; TypeError: multiply_all() takes 3 positional arguments but 4 were given</span>
-</pre></div>
-</div>
-<p>Wenn wir die Anzahl aber wie in diesem Fall bewusst offen lassen möchten können wir in Python <code class="docutils literal notranslate"><span class="pre">\*args</span></code> benutzen (kurz für <em>arguments</em>).</p>
+</section>
+<hr class="docutils" />
+<section id="functions-with-variable-numbers-of-parameters">
+<h2><span class="section-number">8.3. </span>Functions with Variable Numbers of Parameters<a class="headerlink" href="#functions-with-variable-numbers-of-parameters" title="Link to this heading">#</a></h2>
+<p>All the functions we’ve seen so far expect a fixed number of parameters. Sometimes, we may want to allow an <strong>open-ended</strong> number of arguments. Python provides <code class="docutils literal notranslate"><span class="pre">*args</span></code> (short for <em>arguments</em>) for this purpose:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multiply_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="n">product</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
         <span class="n">product</span> <span class="o">*=</span> <span class="n">num</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">product</span><span class="p">)</span>
 
-<span class="n">multiply_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">multiply_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># =&gt; 24</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Nur am Rande 1: hier nutzen wir <code class="docutils literal notranslate"><span class="pre">product</span> <span class="pre">*=</span> <span class="pre">num</span></code> was aber das gleiche ist wie <code class="docutils literal notranslate"><span class="pre">product</span> <span class="pre">=</span> <span class="pre">product</span> <span class="pre">*</span> <span class="pre">num</span></code>.<br />
-Es gibt in Python genauso auch <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code> und <code class="docutils literal notranslate"><span class="pre">/=</span></code>:</p></li>
-</ul>
+<section id="operators">
+<h3><span class="section-number">8.3.1. </span>Operators <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code><a class="headerlink" href="#operators" title="Link to this heading">#</a></h3>
+<p>Python allows shorthand operations like <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, and <code class="docutils literal notranslate"><span class="pre">/=</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">a</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># Gleiche wie a = a + 2 </span>
-<span class="n">a</span> <span class="o">-=</span> <span class="mi">2</span>  <span class="c1"># Gleiche wie a = a - 2</span>
-<span class="n">a</span> <span class="o">*=</span> <span class="mi">2</span>  <span class="c1"># Gleiche wie a = a * 2</span>
-<span class="n">a</span> <span class="o">/=</span> <span class="mi">2</span>  <span class="c1"># Gleiche wie a = a / 2</span>
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>Nur am Rande 2: Für solche Operationen gibt es in Python fast immer schon irgendwo eine Funktion die genutzt werden kann. Hier z.B. in der Bibliothek <code class="docutils literal notranslate"><span class="pre">math</span></code> die wir schon gesehen hatten.</p></li>
-</ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="k">def</span> <span class="nf">multiply_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
-
-<span class="n">multiply_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="mi">2</span>  <span class="c1"># Equivalent to a = a + 2</span>
+<span class="n">a</span> <span class="o">-=</span> <span class="mi">2</span>  <span class="c1"># Equivalent to a = a - 2</span>
+<span class="n">a</span> <span class="o">*=</span> <span class="mi">2</span>  <span class="c1"># Equivalent to a = a * 2</span>
+<span class="n">a</span> <span class="o">/=</span> <span class="mi">2</span>  <span class="c1"># Equivalent to a = a / 2</span>
 </pre></div>
 </div>
 </section>
-<section id="kwargs-variable-anzahl-benannter-parameter">
-<h3><span class="section-number">8.2.3. </span>**kwargs -&gt; variable Anzahl benannter Parameter<a class="headerlink" href="#kwargs-variable-anzahl-benannter-parameter" title="Link to this heading">#</a></h3>
-<p>Analog zu <code class="docutils literal notranslate"><span class="pre">\*args</span></code> können mit <code class="docutils literal notranslate"><span class="pre">\*\*kwargs</span></code> auch benannte Parameter in unbestimmter Anzahl an eine Funktion übergeben werden. Dies wird aber eher später von Bedeutung sein wenn wir mit komplexeren Funktionen jonglieren.
-Trotzdem schonmal ein Beispiel dazu:</p>
+<section id="example-with-math-prod">
+<h3><span class="section-number">8.3.2. </span>Example with <code class="docutils literal notranslate"><span class="pre">math.prod()</span></code><a class="headerlink" href="#example-with-math-prod" title="Link to this heading">#</a></h3>
+<p>Instead of manually calculating the product, Python’s <code class="docutils literal notranslate"><span class="pre">math</span></code> library offers a built-in function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">multiply_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+
+<span class="n">multiply_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c1"># =&gt; 24</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kwargs-variable-numbers-of-named-parameters">
+<h2><span class="section-number">8.4. </span><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>: Variable Numbers of Named Parameters<a class="headerlink" href="#kwargs-variable-numbers-of-named-parameters" title="Link to this heading">#</a></h2>
+<p>Analogous to <code class="docutils literal notranslate"><span class="pre">*args</span></code>, Python allows an arbitrary number of <strong>named parameters</strong> using <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> (short for <em>keyword arguments</em>). While this is more commonly used in advanced programming, here’s an example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">guess_the_animal</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Give some hints as keywords-value pairs for guessing an animal.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide hints as key-value pairs for guessing an animal.&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hi! Can you guess what animal I mean?&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="n">guess_the_animal</span><span class="p">(</span><span class="n">legs</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">&quot;5000 kg&quot;</span><span class="p">)</span> 
+<span class="c1"># Output:</span>
+<span class="c1"># Hi! Can you guess what animal I mean?</span>
+<span class="c1"># legs: 4</span>
+<span class="c1"># color: gray</span>
+<span class="c1"># weight: 5000 kg</span>
 </pre></div>
 </div>
-</section>
 </section>
 </section>
 
@@ -652,7 +635,7 @@ Trotzdem schonmal ein Beispiel dazu:</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Import aus Bibliotheken/Modulen</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Importing from Libraries/Modules</p>
       </div>
     </a>
     <a class="right-next"
@@ -681,13 +664,17 @@ Trotzdem schonmal ein Beispiel dazu:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rekursive-funktionen-recursive-functions">8.1. Rekursive Funktionen (<em>recursive functions</em>)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lokale-funktionen">8.2. Lokale Funktionen</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lokale-funktionen-wann-benutzen-und-wann-nicht">8.2.1. Lokale Funktionen: Wann benutzen und wann nicht?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funktionen-mit-variabler-parameter-anzahl">8.2.2. Funktionen mit variabler Parameter-Anzahl</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs-variable-anzahl-benannter-parameter">8.2.3. **kwargs -&gt; variable Anzahl benannter Parameter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recursive-functions">8.1. Recursive Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-functions">8.2. Local Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-local-functions">8.2.1. When to Use Local Functions</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions-with-variable-numbers-of-parameters">8.3. Functions with Variable Numbers of Parameters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">8.3.1. Operators <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-with-math-prod">8.3.2. Example with <code class="docutils literal notranslate"><span class="pre">math.prod()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kwargs-variable-numbers-of-named-parameters">8.4. <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code>: Variable Numbers of Named Parameters</a></li>
 </ul>
   </nav></div>
 

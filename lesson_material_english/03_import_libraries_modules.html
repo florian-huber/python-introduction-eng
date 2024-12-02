@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>7. Import aus Bibliotheken/Modulen &#8212; Einführung Programmieren mit Python</title>
+    <title>7. Importing from Libraries/Modules &#8212; Einführung Programmieren mit Python</title>
   
   
   
@@ -64,8 +64,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lesson_material_english/03_import_libraries_modules';</script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="8. Special functions" href="03_special_functions.html" />
-    <link rel="prev" title="6. Funktionen" href="03_functions.html" />
+    <link rel="next" title="8. Special Functions" href="03_special_functions.html" />
+    <link rel="prev" title="6. Functions" href="03_functions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   <meta name="docsearch:version" content="" />
@@ -179,9 +179,9 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Abläufe, Funktionen und Module</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="02_control_structures_conditions_loop.html">5. Control Structures and Conditions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_functions.html">6. Funktionen</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Import aus Bibliotheken/Modulen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_special_functions.html">8. Special functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_functions.html">6. Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">7. Importing from Libraries/Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_special_functions.html">8. Special Functions</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Datentypen &amp; String Handling</span></p>
 <ul class="nav bd-sidenav">
@@ -396,7 +396,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Import aus Bibliotheken/Modulen</h1>
+    <h1>Importing from Libraries/Modules</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,8 +406,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-universe">7.1. Python universe</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigene-lokale-funktionen-importieren">7.2. Eigene/lokale Funktionen importieren</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-universe">7.1. Python Universe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-custom-local-functions">7.2. Importing Custom/Local Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-quiz">7.2.1. &gt; Mini-Quiz:</a></li>
 </ul>
 </li>
@@ -423,35 +423,35 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="import-aus-bibliotheken-modulen">
-<h1><span class="section-number">7. </span>Import aus Bibliotheken/Modulen<a class="headerlink" href="#import-aus-bibliotheken-modulen" title="Link to this heading">#</a></h1>
-<p>Eine der grossen Stärken von Python ist das es sehr viele gute Bibliotheken (libraries) gibt. Diese werden als Bibliotheken oder auch als „Packages“ oder „Modules“ bezeichnet. Python Bibliotheken sind eigentlich nichts weiter als online verfügbarer Code. Typischerweise enthalten Bibliotheken nützliche Funktionen für bestimmte Zwecke und in der Regel sind Bibliotheken so aufgebaut, dass die darin enthaltenen Funktionen thematisch zusammen passen. Ein Beispiel für eine solche Bibliothek wäre <code class="docutils literal notranslate"><span class="pre">math</span></code>, wie der Name vielleicht schon andeutet eine Bibliothek für mathematische Funktionen.</p>
-<p>Sofern eine Bibliothek installiert ist (dazu in der übung mehr) importiert man diese so:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="importing-from-libraries-modules">
+<h1><span class="section-number">7. </span>Importing from Libraries/Modules<a class="headerlink" href="#importing-from-libraries-modules" title="Link to this heading">#</a></h1>
+<p>One of Python’s greatest strengths is its vast array of excellent libraries. These are often referred to as libraries, „packages,“ or „modules.“ Python libraries are essentially online-available code. Typically, libraries contain useful functions for specific purposes and are organized so that the included functions fit together thematically. An example of such a library is <code class="docutils literal notranslate"><span class="pre">math</span></code>, which, as the name suggests, is a library for mathematical functions.</p>
+<p>If a library is installed (we’ll cover this in a practical session), it can be imported like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi ist </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;pi is </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sinus von pi/2 ist </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sine of pi/2 is </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Alternativ können aber auch nur Teile einer Bibliothek importiert werden.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>  <span class="c1"># nur einen Teil importieren!</span>
+<p>Alternatively, only specific parts of a library can be imported:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>  <span class="c1"># Import only a part of the library</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>  <span class="c1"># =&gt; 3.141592653589793</span>
 </pre></div>
 </div>
-<p>Beim Importieren können wenn nötig auch die Namen geändert werden:</p>
+<p>When importing, you can also rename items if needed:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span> <span class="k">as</span> <span class="n">sine_function</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sine_function</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>  <span class="c1"># =&gt; 0.8414709848078965</span>
 </pre></div>
 </div>
 <section id="python-universe">
-<h2><span class="section-number">7.1. </span>Python universe<a class="headerlink" href="#python-universe" title="Link to this heading">#</a></h2>
-<p>Für Python gibt eine Unzahl von Bibliotheken. Einige davon werden wir im Laufe des Semesters einsetzen. Gerade haben wir schon kurz <code class="docutils literal notranslate"><span class="pre">math</span></code> gesehen, eine weitere häufig genutzte Bibliothek ist <code class="docutils literal notranslate"><span class="pre">random</span></code> zur Erzeugung von <strong>Zufallszahlen</strong>.</p>
+<h2><span class="section-number">7.1. </span>Python Universe<a class="headerlink" href="#python-universe" title="Link to this heading">#</a></h2>
+<p>Python has an abundance of libraries. We’ll use several of them during the semester. Just now, we briefly looked at <code class="docutils literal notranslate"><span class="pre">math</span></code>. Another commonly used library is <code class="docutils literal notranslate"><span class="pre">random</span></code>, which is used to generate <strong>random numbers</strong>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>oder:</p>
+<p>Or:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
@@ -459,23 +459,21 @@
 </pre></div>
 </div>
 </section>
-<section id="eigene-lokale-funktionen-importieren">
-<h2><span class="section-number">7.2. </span>Eigene/lokale Funktionen importieren<a class="headerlink" href="#eigene-lokale-funktionen-importieren" title="Link to this heading">#</a></h2>
-<p>Es ist ebenso möglich eigene Funktionen aus <code class="docutils literal notranslate"><span class="pre">.py</span></code> Dateien zu importieren.</p>
-<p>Wenn wir z.B. folgende Funktion schreiben:</p>
+<section id="importing-custom-local-functions">
+<h2><span class="section-number">7.2. </span>Importing Custom/Local Functions<a class="headerlink" href="#importing-custom-local-functions" title="Link to this heading">#</a></h2>
+<p>It’s also possible to import your own functions from <code class="docutils literal notranslate"><span class="pre">.py</span></code> files.</p>
+<p>For example, if we write the following function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 
 <span class="k">def</span> <span class="nf">dices</span><span class="p">(</span><span class="n">n_dices</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns n_dices random dice results (dice with 1 to 6).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns n_dices random dice results (dice with 1 to 6).&quot;&quot;&quot;</span>
     <span class="n">dice_results</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_dices</span><span class="p">):</span>
         <span class="n">dice_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">dice_results</span>
 </pre></div>
 </div>
-<p>und diese in einer Datei <code class="docutils literal notranslate"><span class="pre">dice_functions.py</span></code> speichern, dann können wir die Funktion importieren über (wenn wir uns im selben Ordner befinden!):</p>
-<!-- pytest-codeblocks:skip -->
+<p>…and save it in a file named <code class="docutils literal notranslate"><span class="pre">dice_functions.py</span></code>, we can import it (if we are in the same folder!) using:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dice_functions</span> <span class="kn">import</span> <span class="n">dices</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">dices</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -484,21 +482,22 @@
 <section id="mini-quiz">
 <h3><span class="section-number">7.2.1. </span>&gt; Mini-Quiz:<a class="headerlink" href="#mini-quiz" title="Link to this heading">#</a></h3>
 <blockquote>
-<div><p>Es ist auch möglich Bibliotheken unter einem gewünschten Namen zu importieren:<br />
-<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">mathezeugs</span></code><br />
-Was wäre dann der korrekte Weg um die Funktion sin zu nutzen?<br />
-a) math.sin()<br />
-b) mathezeugs.sin()<br />
-c) sin()</p>
+<div><p>It’s also possible to import libraries under a desired name:
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">math</span> <span class="pre">as</span> <span class="pre">mathstuff</span></code>
+What is the correct way to use the sine function?
+a) <code class="docutils literal notranslate"><span class="pre">math.sin()</span></code>
+b) <code class="docutils literal notranslate"><span class="pre">mathstuff.sin()</span></code>
+c) <code class="docutils literal notranslate"><span class="pre">sin()</span></code></p>
 </div></blockquote>
 </section>
 </section>
+<hr class="docutils" />
 <section id="id1">
 <h2><span class="section-number">7.3. </span>Python Universe<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Einer der großen Vorteile von Python ist, dass es zu fast allen Themen und Fragen eine Menge an frei verfügbaren Bibliotheken gibt. Bibliotheken für mathematische Funktionen, für das Arbeiten mit großen Datensätzen, das Nutzen von Databases, für Web-searches, für graphische Darstellungen, für das Arbeiten mit Bild, Video, oder Audio-Formaten, für User-Interfaces, für maschinelles Lernen, usw.</p>
-<p>Für Anfänger*Innen hat das allerdings auch den kleinen Nachteil, dass man schnell den Überblick verliert.</p>
-<p><a class="reference external" href="https://xkcd.com/1987">xkcd comic zu dem Thema</a>
-<img alt="xkcd comic" src="https://imgs.xkcd.com/comics/python_environment_2x.png" /></p>
+<p>One of Python’s major advantages is the vast number of freely available libraries covering almost every topic and need: mathematical functions, working with large datasets, database management, web searches, graphical visualizations, handling image, video, or audio formats, creating user interfaces, machine learning, and much more.</p>
+<p>For beginners, however, this can also be a slight disadvantage, as it’s easy to get overwhelmed.</p>
+<p><img alt="xkcd comic" src="https://imgs.xkcd.com/comics/python_environment_2x.png" />
+<a class="reference external" href="https://xkcd.com/1987">Source: xkcd comic</a></p>
 </section>
 </section>
 
@@ -538,7 +537,7 @@ c) sin()</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Funktionen</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Functions</p>
       </div>
     </a>
     <a class="right-next"
@@ -546,7 +545,7 @@ c) sin()</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title"><span class="section-number">8. </span>Special functions</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Special Functions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -567,8 +566,8 @@ c) sin()</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-universe">7.1. Python universe</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigene-lokale-funktionen-importieren">7.2. Eigene/lokale Funktionen importieren</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-universe">7.1. Python Universe</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-custom-local-functions">7.2. Importing Custom/Local Functions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mini-quiz">7.2.1. &gt; Mini-Quiz:</a></li>
 </ul>
 </li>
