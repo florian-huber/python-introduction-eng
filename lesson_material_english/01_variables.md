@@ -1,103 +1,97 @@
-# Variablen
+# Variables
 
-Variablen sind ein essenzieller Bestandteil jedes Programms. Sie ermöglichen es uns, Daten zu speichern und in Berechnungen zu verwenden. Eine häufige Metapher ist, sich Variablen wie Boxen vorzustellen, in die wir Werte ablegen können. In Python und anderen Programmiersprachen wird dabei jedoch präziser von **Zuweisungen** gesprochen: Einem Variablennamen wird ein Wert zugewiesen.
+Variables are an essential part of any program. They allow us to store data and use it in calculations. A common metaphor is to think of variables as boxes where we can store values. However, in Python and other programming languages, we more precisely refer to **assignments**: assigning a value to a variable name.
 
-## Variablen in Python
+## Variables in Python
 
-In Python wird eine Variable durch das Zuweisungszeichen `=` definiert. Der Ausdruck links vom `=` ist der Variablenname, der Ausdruck rechts ist der Wert, der dieser Variablen zugewiesen wird.
+In Python, a variable is defined using the assignment operator `=`. The expression on the left side of `=` is the variable name, and the expression on the right is the value assigned to the variable.
 
-Beispiel:
+Example:
 
-```python 
+```python
 a = 5
 print(a / 6)  # => 0.8333333333333334
 ```
 
-Sobald eine Variable definiert ist, "merkt" sich Python ihren Wert während der gesamten Programmsitzung. Die Variable `a` hat im obigen Beispiel den Wert `5`, bis ihr etwas anderes zugewiesen wird. Variablen können dann in Berechnungen oder anderen Operationen verwendet werden:
+Once a variable is defined, Python "remembers" its value for the entire program session. In the example above, the variable `a` has the value `5` until it is reassigned. Variables can then be used in calculations or other operations:
 
-<!--pytest-codeblocks:cont-->
-
-```python 
+```python
 b = 8
 print(a + b)  # => 13
 ```
 
-### Variablen können ihren Wert ändern
+### Variables Can Change Their Value
 
-Variablen sind in Python nicht fixiert. Ihr könnt ihnen jederzeit neue Werte zuweisen, sogar von einem anderen Datentyp. Das bedeutet, dass eine Variable, die zuvor eine ganze Zahl (`int`) war, plötzlich einen Gleitkommawert (`float`) oder sogar einen String speichern kann:
-<!--pytest-codeblocks:cont-->
+Variables in Python are not fixed. You can reassign new values to them at any time, even of a different data type. This means that a variable previously storing an integer (`int`) can later store a floating-point value (`float`) or even a string:
 
-```python 
+```python
 a = 100.5
 print(a + b)  # => 108.5
 ```
 
-Wie gerade erwähnt, kann der Datentyp nach belieben verändet werden, also ist auch das folgende problemlos möglich:
+As mentioned, data types can change freely, so the following is also perfectly valid:
+
 ```python
 a = 100
 print(2 * a)
 
-# Jetzt die Variable überschreiben (eigentlich: "neu zuweisen")
+# Now overwrite (technically: "reassign") the variable
 a = "100"
 print(2 * a)
-``` 
+```
 
 ![Assigning new datatype to variable](../images/python_assign_variables_change_datatype.png)
 
 ```{note}
-**Achtung**: Der flexible Umgang mit Variablen in Python ist nützlich, kann aber zu Fehlern führen, wenn man versehentlich den Typ einer Variablen ändert und später in einem Programm aber den ursprünglichen Datentyp erwartet.
+**Note**: Python's flexible handling of variables is useful but can lead to errors if you accidentally change a variable's type and later in your program expect it to have its original data type.
 ```
 
+### Meaningful Variable Names
 
+It is very helpful to give variables names that reflect the content or purpose of the stored data. A self-explanatory variable name makes the code easier to understand for others (and for yourself).
 
-### Sinnvolle Variablennamen
-
-Es ist sehr hilfreich Variablen Namen zu geben, die den Inhalt oder den Zweck der gespeicherten Daten widerspiegeln. Ein selbsterklärender Variablenname macht den Code für andere (und auch für euch selbst) leichter verständlich.
-
-```python 
+```python
 training_seconds = 18900
 sec_per_hour = 60 * 60
 training_hours = training_seconds / sec_per_hour
 print(training_hours)  # => 5.25
 ```
 
-Hier sind die Variablen klar benannt, und der Code ist direkt verständlich. Würde man stattdessen Variablen wie `a`, `b` und `c` verwenden, wäre der Code weniger leserlich und schwieriger zu verstehen.
+Here, the variable names are clear, making the code directly understandable. Using names like `a`, `b`, and `c` instead would make the code harder to read and understand.
 
-### Gefährliche Variablennamen
+### Risky Variable Names
 
-Python erlaubt es, Variablen fast jeden Namen zu geben. Dies gilt sogar für Namen, die den Namen von Python-Funktionen entsprechen, was jedoch vermieden werden sollte. Wenn ihr beispielsweise einer Variablen den Namen `print` gebt, überschreibt ihr die eingebaute Funktion `print()` und könnt sie nicht mehr verwenden:
+Python allows variables to have almost any name, even names that match Python's built-in functions. However, this should be avoided. For example, if you assign a variable the name `print`, you overwrite the built-in `print()` function and can no longer use it:
 
-```python 
+```python
 print = "my text"
 ```
 
-Python erlaubt dies und gibt keinen Fehler aus.  
-Keinen Fehler zu erhalten **heisst aber nicht, dass es eine gute Idee ist!**
-Was wird wohl jetzt passieren wenn wir `print("hello world!")` laufen lassen?  
+Python allows this and does not raise an error.  
+However, **just because you don’t get an error doesn’t mean it’s a good idea!**  
+What happens if we now run `print("hello world!")`?  
 
-Ok, das sollte also deutlich sein... Variablen besser keinen Namen geben
-der auch anderweitig als Funktion vorkommt. 
+The takeaway: Avoid giving variables names that conflict with built-in functions.
 
-### Reservierte Schlüsselwörter
+### Reserved Keywords
 
-Python hat eine Liste von **reservierten Schlüsselwörtern** (Keywords), die nicht als Variablennamen verwendet werden dürfen, da sie für die Syntax der Sprache benötigt werden. Beispiele für solche Keywords sind `if`, `else`, `while` oder `for`.
+Python has a list of **reserved keywords** that cannot be used as variable names because they are part of the language syntax. Examples include `if`, `else`, `while`, or `for`.
 
-Der Versuch, eine Variable mit einem solchen Namen zu erstellen, führt zu einem **SyntaxError**:
+Attempting to create a variable with such a name results in a **SyntaxError**:
 
-<!--pytest-codeblocks:expect-error-->
-
-```python 
+```python
 or = "outer region"  # => SyntaxError: invalid syntax
 ```
-Die vollständige Liste der reservierten Schlüsselwörter findet ihr [hier](https://www.w3schools.com/python/python_ref_keywords.asp).
+
+You can find the complete list of reserved keywords [here](https://www.w3schools.com/python/python_ref_keywords.asp).
 
 ---
 
-> ## Mini quiz:
+> ## Mini Quiz:
 >
-> Was gibt der folgende Code aus?
+> What does the following code output?
 
-```python 
+```python
 x = 40
 x = x + 2
 print(x)
@@ -106,46 +100,33 @@ print(x)
 > a) 40  
 > b) 42  
 > c) x + 2  
-> d) Error, da x = x + 2 mathematisch inkorrekt ist  
+> d) Error, as x = x + 2 is mathematically incorrect  
 
-> Welche der folgenden Variablennamen sind OK?  
+> Which of the following variable names are OK?  
 > a) `print = "my text"`  
 > b) `else = "my text"`  
 > c) `sehr_wichtig = "my text"`  
 > d) `übermäßig_wichtig = "my text"`  
-> e) `ImportantText = "my text"`  
+> e) `ImportantText = "my text"`
 
+## Rules for Variable Names
 
-## Regeln für Variablennamen
+Here are some simple but important rules for naming variables in Python:
 
-Es gibt einige einfache, aber wichtige Regeln für die Wahl von Variablennamen in Python:
-
-- **Verwendet Kleinbuchstaben** und Unterstriche `_` zur Trennung von Wörtern, um die Lesbarkeit zu erhöhen.
-- **Vermeidet reservierte Keywords** oder Funktionsnamen, um Konflikte zu verhindern.
-- **Sprecht Englisch**: Auch wenn Variablennamen in anderen Sprachen (z. B. Deutsch) zulässig sind, wird Englisch üblicherweise bevorzugt, um den Code auch für andere verständlich zu halten.
-- **Achtet auf Sonderzeichen**: Vermeidet nach Möglichkeit Umlaute (ä, ö, ü) oder andere Sonderzeichen in Variablennamen, da sie nicht überall unterstützt werden und zu Komplikationen führen können.
-
-
+- **Use lowercase letters** and underscores `_` to separate words to improve readability.
+- **Avoid reserved keywords** or function names to prevent conflicts.
+- **Use English**: While variable names in other languages (e.g., German) are allowed, English is commonly preferred to make the code more accessible to others.
+- **Be cautious with special characters**: Avoid using umlauts (ä, ö, ü) or other special characters in variable names, as they may not be supported everywhere and could cause complications.
 
 ## Debugging!
 
-Mit **debugging** meinen wir das Beseitigen von Fehlern im Programmcode (Fehler = "bugs").
-Wir werden später noch detaillierter auf das Thema eingehen, aber gleich zu Beginn ist es hilfreich ein wenig Erfahrung zu sammeln mit der Art und Weise wie Python (bzw. der Python-Interpreter) Fehler im Code anzeigt. Hierbei geht es nicht um Fehler, die ein erfolgreiches Ausführen des Codes unmöglich machen.
+**Debugging** refers to fixing errors (bugs) in the program code. We’ll explore debugging in more detail later, but even at the beginning, it’s helpful to get familiar with how Python (or the Python interpreter) reports errors in the code.
 
-### Übung zum Debugging:
+### Debugging Exercises:
 
-1. Was passiert bei einer print-Anweisung, wenn wir eine oder beide 
-Klammern weglassen?
-
-2. Was passiert wenn wir einen String ausgeben wollen und eine 
-oder beide Anführungszeichen weglassen?
-
-3. Was passiert wenn wir zwei Zahlen addieren wollen aber ++ oder +++ schreiben?
-
-4. Was passiert wenn wir ein + oder eine Null vor 
-eine Zahl schreiben, z.B. 05 - 2 oder +5 -2 ?
-
-5. Was passiert wenn wir ein Leerzeichen vor print("hello") schreiben?
-
-6. Mit Python beantworten ("Taschenrechnermodus"): Wie viele Sekunden 
-haben 42 Minuten und 42 Sekunden?
+1. What happens in a `print` statement if we leave out one or both parentheses?
+2. What happens if we try to print a string but leave out one or both quotation marks?
+3. What happens if we try to add two numbers but use `++` or `+++` instead of `+`?
+4. What happens if we write a `+` or a `0` before a number, e.g., `05 - 2` or `+5 - 2`?
+5. What happens if we add a space before `print("hello")`?
+6. Use Python as a calculator: How many seconds are in 42 minutes and 42 seconds?
