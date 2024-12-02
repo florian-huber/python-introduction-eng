@@ -1,21 +1,21 @@
 format: jb-book
 root: lesson_material_english/cover
 parts:
-  - caption: Einführung
+  - caption: Introduction
     numbered: true
     chapters:
     - file: lesson_material_english/00_introduction
     - file: lesson_material_english/01_first_steps
     - file: lesson_material_english/01_data_types
     - file: lesson_material_english/01_variables
-  - caption: Abläufe, Funktionen und Module
+  - caption: Functions and Modules
     numbered: true
     chapters:
     - file: lesson_material_english/02_control_structures_conditions_loop
     - file: lesson_material_english/03_functions
     - file: lesson_material_english/03_import_libraries_modules
     - file: lesson_material_english/03_special_functions
-  - caption: Datentypen & String Handling
+  - caption: Data Types & String Handling
     numbered: true
     chapters:
     - file: lesson_material_english/04_datatypes_2
@@ -26,17 +26,17 @@ parts:
     - file: lesson_material_english/05_error_handling
     - file: lesson_material_english/05_one_step_back-best_practices
     - file: lesson_material_english/05_open_files
-  - caption: Klassen und Objekte
+  - caption: Of Classes and Objects
     numbered: true
     chapters:
     - file: lesson_material_english/06_classes_objects
     - file: lesson_material_english/07_classes_objects_2
-  - caption: Arbeiten mit numerischen Daten - Numpy
+  - caption: Working with Numerical Data - Numpy
     numbered: true
     chapters:
     - file: lesson_material_english/08_numpy
     - file: lesson_material_english/09_numpy_2
-  - caption: Schritte Richtung Data Science
+  - caption: First Steps towards Data Science
     numbered: true
     chapters:
     - file: lesson_material_english/09_pandas
