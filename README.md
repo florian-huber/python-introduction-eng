@@ -1,8 +1,8 @@
-[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://florian-huber.github.io/python-introduction/)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/florian-huber/python-introduction/CI_tests.yml)
+[![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](https://florian-huber.github.io/python-introduction-eng/)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/florian-huber/python-introduction-eng/CI_tests.yml)
 
 <p align="center">
-    <img src="https://github.com/florian-huber/python-introduction/blob/main/images/cover_sketching.png" width="600" alt="Course cover">
+    <img src="https://github.com/florian-huber/python-introduction-eng/blob/main/images/cover_sketching.png" width="600" alt="Course cover">
 </p>
 
 # Einführung Programmieren mit Python (Data Science related bachelor at HSD)
