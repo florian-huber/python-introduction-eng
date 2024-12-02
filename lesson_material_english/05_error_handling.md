@@ -1,78 +1,75 @@
-# Error handling
-Bestimmt haben alle inzwischen schon einige Python Errors gesehen...
+# Error Handling
 
-z.B. 
+By now, everyone has likely encountered a Python error or two...
+
+For example:
 <!-- pytest-codeblocks:expect-error -->
 ```python
-print(dies)  # => NameError: name 'dies' is not defined
+print(this)  # => NameError: name 'this' is not defined
 ```
 
-oder
+or:
 <!-- pytest-codeblocks:expect-error -->
-
 ```python
 else = 5  # => SyntaxError: invalid syntax
 ```
 
-oder
+or:
 <!-- pytest-codeblocks:expect-error -->
 ```python
-open("no_file")  # => FileNotFoundError: [Errno 2] No such file or directory: 'no_file'
+open("nonexistent_file")  # => FileNotFoundError: [Errno 2] No such file or directory: 'nonexistent_file'
 ```
 
-oder
+or:
 <!-- pytest-codeblocks:expect-error -->
 ```python
 5 / 0  # => ZeroDivisionError: division by zero
 ```
 
-Einige davon sind Fehlermeldungen die eigentlich nie vorkommen sollten
-und wirklich auf Fehler im geschriebenen Code hinweisen, z.B.
-`else = 5` was in Python (zum Glück) nicht erlaubt ist!
-Fehler können allerdings auch als Teil laufender Programme auftreten 
-und nicht immer wollen wir das dadurch die Programmausführung stoppt.
+Some errors, such as `else = 5`, indicate genuine mistakes in the code that need to be corrected (and luckily Python prevents this). However, errors can also occur during program execution and aren't always a reason to stop the entire program.
 
 ```python
-def divider(zahl, geteilt_durch):
-    """Teilt zahl durch geteilt_durch.
+def divider(number, divide_by):
+    """Divides 'number' by 'divide_by'.
     
-    Bei Division durch 0 wird None ausgegeben.
+    Returns None for division by zero.
     """
-    if geteilt_durch == 0:
+    if divide_by == 0:
         return None
-    return zahl / geteilt_durch
+    return number / divide_by
 
 print(divider(5, 0))
 ```
 
-Das Problem dabei: Nicht immer sind Fehler so einfach vorhersehbar.
-Besser ist darum den Fehler "abzufangen". Das geht in Python mit `try: except`
+The issue: Not all errors are as easily anticipated. A better approach is to **catch** errors using Python's `try: except` mechanism:
 
 ```python
 try:
-    print(dies)
+    print(this)
 except:
-    print("Programm lief durch bis hier------")
+    print("The program continued running...")
 ```
-oder so:
+
+Or like this:
+
 ```python
 try:
-    print(dies)
+    print(this)
 except Exception as error:
     print(error)
-print("Programm lief durch bis hier------")
+print("The program continued running...")
 ```
 
-Zurück zum divider Programm:
+Back to the `divider` function:
 
 ```python
-def divider(zahl, geteilt_durch):
-    """Teilt zahl durch geteilt_durch.
+def divider(number, divide_by):
+    """Divides 'number' by 'divide_by'.
     
-    Bei Division durch 0 wird None ausgegeben.
+    Returns None for division by zero.
     """
     try:
-        return zahl / geteilt_durch
+        return number / divide_by
     except ZeroDivisionError:
         return None
 
@@ -80,59 +77,60 @@ print(divider(5, 0))
 ```
 
 > ### Mini Quiz:
-> Was macht diese funktion wenn sie aufgerufen wird über
+> What happens if the function is called with:
 > `print(divider("text", 2))`
 >  
 > a) None  
 > b) te  
-> c) TypeError
+> c) TypeError  
 
+---
 
-### Häufige Fehlertypen
+### Common Error Types
 
-+ IOError – wenn z.B. eine Datei nicht geöffnet werden kann.
-+ ImportError – wenn ein Python-Modul nicht gefunden oder geladen werden kann.
-+ ValueError – wenn eine Funktion ein Argument mit richtigem Typen aber falschem Inhalt erhält.
-+ TypeError - für Argumente mit nicht definiertem/zugelassenen Typen.
-+ KeyboardInterrupt – wenn der Nutzer übers Keyboard abbricht (Control-C)
++ **IOError** – For example, when a file cannot be opened.
++ **ImportError** – When a Python module cannot be found or loaded.
++ **ValueError** – When a function receives an argument of the correct type but with an invalid value.
++ **TypeError** – When a function receives an argument of an invalid type.
++ **KeyboardInterrupt** – When the user interrupts execution using the keyboard (e.g., `Ctrl+C`).
 
+---
 
-Manchmal wollen wir auch bewusst Fehlermeldungen produzieren
-Das geht zum einen mit `raise`
+Sometimes, we intentionally want to raise errors. This can be done using `raise`:
 
 <!-- pytest-codeblocks:expect-error -->
-
 ```python
 raise Exception("Something went wrong")
 ```
 
-<!-- pytest-codeblocks:expect-error -->
+Or:
 
+<!-- pytest-codeblocks:expect-error -->
 ```python
 x = "hello"
 
-if not type(x) is int:
-    raise TypeError("Only integers are allowed") 
+if not isinstance(x, int):
+    raise TypeError("Only integers are allowed")
 ```
 
+---
 
-## Assert
-Oft ist es in solchen Fällen einfacher mit einer anderen Python Funktion zu arbeiten: ´assert´
+## `assert`
+
+Often, it’s simpler to use the `assert` keyword to handle such cases:
 
 <!-- pytest-codeblocks:expect-error -->
-
 ```python
 selected_number = "hello"
-assert isinstance(selected_number, int), "Excepted integer"
+assert isinstance(selected_number, int), "Expected an integer"
 ```
 
-Beispiel:
+Example:
 
 ```python
 def hour_to_am_pm(hour):
-    """Convert 24-hours to 12-hour clock.
-    """
-    assert 0 <= hour <= 24, "hour must be between 0 and 24"
+    """Convert a 24-hour time to 12-hour clock format."""
+    assert 0 <= hour <= 24, "Hour must be between 0 and 24"
     
     if 1 <= hour <= 12:
         print(f"{hour} a.m.")
@@ -145,9 +143,9 @@ def hour_to_am_pm(hour):
 hour_to_am_pm(13)  # => 1 p.m.
 ```
 
+If the input doesn't meet the conditions, an assertion error is raised:
+
 <!-- pytest-codeblocks:expect-error -->
-
 ```python
-hour_to_am_pm(25)  # => AssertionError: hour must be between 0 and 24
+hour_to_am_pm(25)  # => AssertionError: Hour must be between 0 and 24
 ```
-
