@@ -1,50 +1,50 @@
-# Numerische Daten in Python mit NumPy 
+# Numerical Data in Python with NumPy
 
-`NumPy` ist die wohl wichtigste Python-Bibliothek wenn es um das Arbeiten mit (numerischen) Daten geht, nicht umsonst kommt der Name von **Num**erical **Py**thon. NumPy bringt nicht nur einen zentralen neuen Datentypen mit, das **Numpy-Array**, sondern auch eine Vielzahl von Funktionen und Methoden um z.B. mit Vektoren, Matrizen, und Tensoren zu arbeiten.
+`NumPy` is arguably the most important Python library for working with (numerical) data. The name itself comes from **Num**erical **Py**thon. NumPy introduces not only a central new data type, the **NumPy array**, but also a wide range of functions and methods for working with vectors, matrices, and tensors.
 
-In der Regel, vereinfacht NumPy dabei nicht nur den Programmieraufwand, sondern es ist auch stark auf Rechengeschwindigkeit optimiert (die Kernmethoden laufen über kompilierte C-Bibliotheken). 
+NumPy often simplifies coding tasks and is optimized for computational speed, as its core methods are implemented using compiled C libraries.
 
-Aber vielleicht beginnen wir besser mit einem Beispiel.
+Let’s start with an example.
 
-Stellen wir uns vor, wir haben Umfragedaten erhoben. Bei der Umfrage mussten alle Personen angeben wie sehr bestimmte Aussagen für sie zutreffen, von 1 (gar nicht) bis 5 (völlig). Wenn wir die Daten in Python importieren bekommen wir dann z.B. die Ergebnisse jeder Person in Form einer Liste. Nun sollen die Antworten zweier Personen verglichen werden. Zum Beispiel sollte dort jeweils die Differenz der Werte an gleicher Stelle berechnet werden. Mit den bisherigen Mitteln könnten wir das etwa so programmieren:
+Imagine we’ve collected survey data. Participants rated how much they agreed with various statements on a scale from 1 (not at all) to 5 (completely). The data is imported into Python as lists, and we want to compare the answers of two participants. Specifically, we calculate the difference in values at corresponding positions. Using Python lists, we might code it as follows:
 
 ```python
-umfrage_person1 = [2, 3, 5, 4, 5, 2, 1, 3, 4, 4, 3]
-umfrage_person2 = [4, 4, 2, 2, 4, 4, 3, 1, 5, 4, 2]
+survey_person1 = [2, 3, 5, 4, 5, 2, 1, 3, 4, 4, 3]
+survey_person2 = [4, 4, 2, 2, 4, 4, 3, 1, 5, 4, 2]
 
-umfrage_diffs = []
-for i in range(len(umfrage_person1)):
-    umfrage_diffs.append(umfrage_person1[i] - umfrage_person2[i])
+survey_diffs = []
+for i in range(len(survey_person1)):
+    survey_diffs.append(survey_person1[i] - survey_person2[i])
     
-print(umfrage_diffs)
+print(survey_diffs)
 
-# Jetzt will ich aber nur die Beträge --> abs()
-print([abs(x) for x in umfrage_diffs])
-```
+# Now calculate the absolute differences --> abs()
+print([abs(x) for x in survey_diffs])
+~~~
 
-Mit NumPy wäre das Ganze deutlich einfacher möglich:
+With NumPy, this task is much simpler:
 
 ```python
 import numpy as np
 
-umfrage_person1 = np.array([2, 3, 5, 4, 5, 2, 1, 3, 4, 4, 3])
-umfrage_person2 = np.array([4, 4, 2, 2, 4, 4, 3, 1, 5, 4, 2])
+survey_person1 = np.array([2, 3, 5, 4, 5, 2, 1, 3, 4, 4, 3])
+survey_person2 = np.array([4, 4, 2, 2, 4, 4, 3, 1, 5, 4, 2])
 
-print(umfrage_person1 - umfrage_person2)
-print(abs(umfrage_person1 - umfrage_person2))
+print(survey_person1 - survey_person2)
+print(abs(survey_person1 - survey_person2))
 ```
 
-Hier haben wir gleich den zentralen, neuen Datentypen benutzt: Numpy Arrays!
-
-<!-- pytest-codeblocks:cont -->
+Here, we immediately used NumPy’s central data type: NumPy arrays!
 
 ```python
-print(type(umfrage_person1))  # => <class 'numpy.ndarray'>
+print(type(survey_person1))  # => <class 'numpy.ndarray'>
 ```
 
+------
 
+## Creating NumPy Arrays
 
-Numpy Arrays können also einfach aus Python Listen erstellt werden.
+NumPy arrays can be easily created from Python lists:
 
 ```python
 import numpy as np
@@ -57,15 +57,22 @@ print(a)
 print(b)
 ```
 
-Numpy Arrays unterscheiden sich in vieler Hinsicht von den Listen:
+NumPy arrays differ from lists in several key ways:
 
-- Alle Elemente haben den selben Datentyp (z.B. alles float oder int). Darüber hinaus auch eine Vielzahl von weiteren numerischen Datentypen (https://numpy.org/doc/stable/user/basics.types.html)
-- Bei Tabellen/Matrizen/Tensoren müssen alle Einträge angegeben werden, d.h. es kann keine Tabelle angelegt werden in der die verschiedenen Zeilen unterschiedliche Anzahlen an Elementen enthalten. Bei einer verschachtelten Liste würde das gehen.
-- Bei Zahlen passt Python den Speicherbedarf dynamisch an. In Numpy Arrays wird allen Zahlen der gleiche Speicherplatz zur Verfügung gestellt also z.B. alle Einträge als `int64` (64 bit) auch wenn eventuell oft auch `int8` (8 bit) ausreichen würde.
+- All elements must have the same data type (e.g., all floats or integers). NumPy supports a wide range of numerical data types ([NumPy data types](https://numpy.org/doc/stable/user/basics.types.html)).
+- For tables/matrices/tensors, all rows must have the same number of elements (unlike nested lists in Python).
+- Python dynamically adjusts the memory allocation for numbers, while NumPy arrays allocate fixed memory for each number (e.g., all entries as `int64` or `float64`).
 
-### Informationen zum Numpy Array
+------
 
-Wie gerade erwähnt, gibt es viele Möglichkeiten numerische Werte in einem Numpy Array zu speichern. Um den entsprechenden Datentypen abzufragen nutzen wir `.dtype`. Darüber hinaus kann auch die Form (shape) abgefragt werden mit `.shape` und die Gesamtanzahl der Elemente mit  `.size`. Die Dimension des Arrays bekommen wir mit `.ndim`.
+## Getting Information About NumPy Arrays
+
+You can query the following properties of a NumPy array:
+
+- **Data type**: `.dtype`
+- **Shape** (rows, columns): `.shape`
+- **Total number of elements**: `.size`
+- **Number of dimensions**: `.ndim`
 
 ```python
 import numpy as np
@@ -79,119 +86,59 @@ print("Matrix dimensions:", b.ndim)
 print("Data type:", b.dtype)
 ```
 
+------
 
+## Slicing and Indexing
 
-### Slicing und Indexing
-
-Bei Listen (und anderen Datentypen) haben wir bereits mit dem sogenannten Slicing gearbeitet. Damit können z.B. bestimmte Teile einer Liste wiedergegeben werden. Das gleiche geht nun auch für Numpy Arrays (nur besser!). Erstmal ein direkter Vergleich:
+NumPy arrays support slicing and indexing, similar to Python lists, but with additional features:
 
 ```python
 import numpy as np
 
 matrix_list = [[1, 2, 3],
-         	   [4, 5, 6],
+               [4, 5, 6],
                [7, 8, 9]]
 
 print(matrix_list[1])
 print(matrix_list[1][2])
 
-matrix = np.array(
-    [[1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]])
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
 
 print(matrix[1])
 print(matrix[1][2])
 ```
 
-> Mini-Quiz: Welche Zahl bekommen wir für `matrix[1][2]`?
+> Mini-Quiz: What is the value of `matrix[1][2]`?
 
-Soweit, so gleich. Aber Numpy Arrays können auch mit einer Multi-Index-Schreibweise genutzt werden (was auch die gängige Praxis ist). 
-
-<!-- pytest-codeblocks:cont -->
+NumPy also supports **multi-indexing** for simpler syntax:
 
 ```python
 print(matrix[1, 2])
 
-# Und damit gehen auch andere slicing optionen:
+# Other slicing options:
 print("First row:", matrix[0, :])
 print("Last column:", matrix[:, -1])
-print("Lower right corner:", matrix[1:, 1:])
+print("Lower-right corner:", matrix[1:, 1:])
 ```
 
-Die Multi-Index-Schreibweise macht es bei mehrdimensionalen Objekten deutlich einfacher, bestimmte Teile davon zu adressieren. 
-
-Numpy Arrays bieten aber noch deutlich weitergehende Möglichkeiten um bestimmte Elemente aufzurufen etwa über Index-Listen oder Index-Arrays:
+NumPy arrays allow advanced indexing using lists, arrays, or Boolean masks:
 
 ```python
-import numpy as np
-
-matrix = np.array(
-    [[1, 2, 3],
-     [4, 5, 6],
-     [7, 8, 9]])
-
 indices = [2, 0, 2, 0]
 print(matrix[indices])
 
-# oder als Numpy Array
-indices = np.array([2, 0, 2, 0])
-print(matrix[indices])
-```
-
-Es gehen sogar auch Boolean als Index:
-
-<!-- pytest-codeblocks:cont -->
-
-```python
+# Boolean mask
 mask = [True, False, True]
 print(matrix[mask])
 ```
 
-Aber was bringt das jetzt, dass ich mit Boolean bestimmte Elemente adressieren kann?
+------
 
-Das Ganze macht v.a. dann Sinn wenn es mit Bedingungen/Abfragen verbunden wird! Werte in Numpy Arrays können nämlich einfach über Bedingungen abgefragt werden:
+## Mathematical Operations on Arrays
 
-```python
-import numpy as np
-
-matrix = np.array(
-    [[1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]])
-
-print(matrix >= 5)
-```
-
-Und dieses Array aus True/False Werten kann dann wiederum als Index benutzt werden:
-
-<!-- pytest-codeblocks:cont -->
-
-```python
-print(matrix[matrix >= 5])
-
-# Damit können Elemente auch angepasst werden:
-matrix[matrix >= 5] = 5
-print(matrix)
-```
-
-Es lassen sich auch kompliziertere logische Abfragen bauen indem wir `&` als element-wise `and` oder `|` als element-wise `or` benutzen:
-
-```python
-import numpy as np
-
-matrix = np.array(
-    [[1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]])
-
-print(matrix[(matrix >= 2) & (matrix < 7)])
-print(matrix[(matrix < 3) | (matrix > 7)])
-```
-
-### Operationen mit Numpy Arrays (rechnen...)
-
-In dem Eingangsbeispiel zum Kennenlernprojekt haben wir schon gesehen, dass sich mit Numpy Arrays ziemlich komfortabel rechnen lässt. Numpy Array "verstehen" nämlich verschiedene Rechenoperationen die häufig nützlich sind. So gehen z.B. die typischen Rechenoperationen (+, -, /, *) sowohl zwischen einem Array und einem einzelnen Wert, als auch zwischen zwei Arrays!
+NumPy arrays support element-wise operations:
 
 ```python
 import numpy as np
@@ -203,9 +150,7 @@ other_numbers = np.array([2, 5, 1, 1, 4, 3, 4, 3])
 print(numbers - other_numbers)
 ```
 
-Und genauso mit anderen Rechenarten, z.B:
-
-<!-- pytest-codeblocks:cont -->
+The same applies to other operations:
 
 ```python
 numbers = np.array([4, 5, 2, 3, 1, 5, 5, 2])
@@ -215,115 +160,72 @@ other_numbers = np.array([2, 5, 1, 1, 4, 3, 4, 3])
 print(numbers * other_numbers)
 ```
 
-### Weitere Operationen mit Arrays
+------
 
-NumPy bietet viele praktische Methoden um numerische/statistische Operationen anzuwenden. Diese können als Methode aufgerufen werden(`matrix.sum()`) oder als `np.sum(matrix)` (völlig gleich).
+## Useful NumPy Methods
+
+NumPy provides many methods for numerical and statistical operations. For example, `.sum()` calculates the sum of all elements:
 
 ```python
 import numpy as np
 
-matrix = np.array(
-    [[1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]])
+matrix = np.array([[1, 2, 3],
+                   [4, 5, 6],
+                   [7, 8, 9]])
 
 print(matrix.sum())
 print(np.sum(matrix))
 ```
 
-`.sum()` bildet hierbei die Summe aller Elemente vom `matrix`-Array. Darüber hinaus können aber auch andere Summen gebildet werden:
-
-<!-- pytest-codeblocks:cont -->
+You can calculate sums along specific axes:
 
 ```python
-print(matrix.sum())
-print(matrix.sum(axis=0))
-print(matrix.sum(axis=1))
+print(matrix.sum(axis=0))  # Sum of each column
+print(matrix.sum(axis=1))  # Sum of each row
 ```
 
-> Mini-Quiz: Was machen diese Summen-Methoden?
+------
 
-Auf die gleiche Art lassen sich auch die Methoden `.max()` und `.min()` nutzen um die maximal- bzw. minimal-Werte zu finden. 
+## Creating Arrays
 
-> Was für Ergebnisse erwarten wir hier?
+Other ways to create arrays include:
 
-```python
-import numpy as np
-
-matrix = np.array(
-    [[1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]])
-
-print(matrix.max())
-print(matrix.max(axis=0))
-print(matrix.max(axis=1))
-
-print(matrix.min())
-print(matrix.min(axis=0))
-print(matrix.min(axis=1))
-```
-
-
-
-### Arrays erstellen
-
-Bisher haben wir gesehen, wie man Numpy Arrays aus Listen erstellt. Es gibt aber noch andere Möglichkeiten um Numpy Arrays zu generieren:
-
-+ `np.zeros()` und `np.ones()`
-  Damit können beliebig geformte Arrays aus lauter Nullen (zeros) oder Einsen (ones) erstellt werden:
+- **Zeros and ones**:
 
   ```python
-  import numpy as np
-  
-  data = np.zeros((3, 4))  # hier: 2 Dimensionen, aber es können auch mehr werden!
+  data = np.zeros((3, 4))
   print(data)
-  print(data.shape)
   
   data = np.ones((3, 4))
   print(data)
-  print(data.shape)
   ```
 
-+ `np.random.random()`
-  Damit können beliebig geformte Arrays aus lauter Zufallszahlen erstellt werden:
-  <!-- pytest-codeblocks:cont -->
+- **Random values**:
 
   ```python
   data = np.random.random((3, 4))
   print(data)
-  print(data.max())
   ```
 
-  Zu dem Untermodul `.random` gehören noch viele weitere Zufallsgeneratoren die wir nutzen können. U.a. auch `randint` um zufällige Integer Werte in einem vorgegebenen Bereich auszugeben.
-  
-+ `np.arange()`
-  Das ist das Pendant zur `range()` Funktion in Python. Es benötigt einen Startwert, Endwert und eine Schrittgröße.
+- **Range of values** (`np.arange`):
 
   ```python
-  import numpy as np
-  
-  data = np.arange(-10, 10, 1)  # es gehen natürlich auch floats!
+  data = np.arange(-10, 10, 1)
   print(data)
   ```
 
-  
-
-+ `np.linspace()`
-  Ähnlich wie `np.arange()` , doch hier wird nicht eine Schrittgröße sondern die Anzahl der Schritte festgelegt!
+- **Linearly spaced values** (`np.linspace`):
 
   ```python
-  import numpy as np
-  
   data = np.linspace(-10, 10, num=10)
   print(data)
   ```
 
-### Numpy Arrays verändern
+------
 
-Wir haben oben schon gesehen, dass Numpy Arrays veränderbar sind. Wie bei Listen auch, können einzelne Werte verändert werden, aber auch ganze Teile (mit slicing):
+## Modifying Arrays
 
-<!-- pytest-codeblocks:cont -->
+NumPy arrays can be modified like lists:
 
 ```python
 data = np.array([1, 2, 3, 4, 5, 6, 7, 8])
@@ -332,11 +234,9 @@ data[:3] = -1
 print(data)
 ```
 
-Es können aber auch verschiedene Arrays zusammengefügt werden mit `np.concatenate()`:
+Arrays can also be concatenated using `np.concatenate`:
 
 ```python
-import numpy as np
-
 a = np.array([1, 2, 3, 4])
 b = np.array([5, 6, 7, 8])
 
@@ -344,9 +244,7 @@ arr = np.concatenate((a, b))
 print(arr)
 ```
 
-Bei mehr-dimensionalen Arrays muss noch angegeben werden in welche "Richtung"  (axis) die Arrays zusammengefügt werden sollen:
-
-<!-- pytest-codeblocks:cont -->
+For multidimensional arrays, specify the axis:
 
 ```python
 a = np.array([[1, 2],
@@ -361,23 +259,15 @@ arr = np.concatenate((a, b), axis=1)
 print(arr)
 ```
 
-Darüber hinaus kann auch die Form (shape) eines Arrays verändert werden mit `.reshape()` bzw mit `.flatten()`.
+Arrays can also be reshaped or flattened:
 
 ```python
-import numpy as np
-
 data = np.array([1, 2, 3, 4, 5, 6])
 
 data_reshaped = data.reshape(3, 2)
 print(data_reshaped)
 
-# und zurück
 data_flattened = data_reshaped.flatten()
 print(data_flattened)
 
-# reshape variante 2
-print(data.reshape(2, 3))
 ```
-
-
-
