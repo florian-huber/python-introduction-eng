@@ -1,4 +1,4 @@
-<img src="../images/cover_german.png" alt="cover image"/>
+<img src="../images/cover_sketching.png" alt="cover image"/>
 
 # Einführung Programmieren mit Python für Data Science
 
@@ -7,11 +7,11 @@
 Düsseldorf University of Applied Sciences (HSD)  
 & Centre for Digitalization and Digitality (ZDD)
 
-**v0.1** 2024-09-016
+**v0.1** 2024-12-02
 
-**Über mich:**
-Ich arbeite als Professor für Data Science an der [Hochschule Düsseldorf (HSD)](https://www.hs-duesseldorf.de/). Dort bringe ich Studierenden die Grundlagen von Data Science,  Programmieren mit Python, Machine Learning bei oder gebe ungefragten Rat zu Kaffee, Schokolade, und allen anderen Dingen die wirklich wichtig sind im Leben.
+**About me**
+I work as a Professor of Data Science at the [Hochschule Düsseldorf (HSD)](https://www.hs-duesseldorf.de/). There, I teach students the fundamentals of Data Science, programming with Python, and Machine Learning, or offer unsolicited advice on coffee, chocolate, and all the other things that truly matter in life.
 
-Ich bin auch zu finden auf Mastodon: [mastodon.online/@me_datapoint](https://mastodon.online/@me_datapoint) sowie [GitHub](https://github.com/florian-huber).
+You can also find me on Mastodon: [mastodon.online/@me_datapoint](https://mastodon.online/@me_datapoint) as well as on [GitHub](https://github.com/florian-huber).
 
 This book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
