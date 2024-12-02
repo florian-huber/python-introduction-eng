@@ -1,35 +1,34 @@
-# Programmieren für Data Science und Künstliche Intelligenz
+# Programming for Data Science and Artificial Intelligence
 
-Dieses Skript begleitet die Veranstaltung "Programmieren für Data Science und Künstliche Intelligenz" im Studiengang DAISY an der Hochschule Düsseldorf (HSD). Es wird fortlaufend aktualisiert und erweitert, um den sich ändernden Anforderungen und Entwicklungen in diesen dynamischen Bereichen gerecht zu werden.
+This script accompanies the course "Programming for Data Science and Artificial Intelligence" in the DAISY program at Hochschule Düsseldorf (HSD). It is continuously updated and expanded to meet the evolving demands and developments in these dynamic fields.
 
+## Why is Programming Important for Data Science and Artificial Intelligence?
 
-## Warum ist Programmieren wichtig für Data Science und Künstliche Intelligenz?
+Computers have the remarkable ability to perform millions of calculations per second and store vast amounts of data. This computational power is essential in the fields of Data Science and Artificial Intelligence (AI). Of course, numerous software solutions are already available to handle many of these tasks. However, specific problems often require individual solutions that existing programs cannot provide. This is why we need to create our own programs, i.e., we need to **program**.
 
-Computer besitzen die bemerkenswerte Fähigkeit, Millionen von Berechnungen pro Sekunde durchzuführen und riesige Mengen an Daten zu speichern. Diese Rechenleistung ist von zentraler Bedeutung für die Bereiche Data Science und Künstliche Intelligenz (KI). Natürlich stehen uns bereits zahlreiche Softwarelösungen zur Verfügung, die viele dieser Aufgaben bewältigen können. Doch sehr oft erfordern unsere spezifischen Problemstellungen individuelle Lösungen, die von bestehenden Programmen nicht abgedeckt werden können. Deshalb müssen wir unsere eigenen Programme erstellen, das heißt wir müssen **programmieren**.
+Although there are many definitions of programming, we can simplify it as follows: Programming means transforming tasks or calculations into a form that a computer can execute. In most cases, this involves writing **program code** that contains the instructions for the computer.
 
-Obwohl es viele Definitionen von Programmieren gibt, können wir es vereinfacht so formulieren: Programmieren bedeutet, Aufgaben oder Berechnungen in eine Form zu bringen, die ein Computer ausführen kann. In den meisten Fällen handelt es sich dabei um das Schreiben von **Programmcode**, der die Arbeitsanweisungen für den Computer enthält.
+What makes programming unique is its exact and precise nature of communication. While humans often rely on prior knowledge and context in conversation, computers do not. Human language, known as **natural language**, is often ambiguous. A well-known example is the sentence: "I saw the man with the telescope." This sentence has at least two interpretations: Either I saw a man holding a telescope, or I saw a man through a telescope. Humans often understand the correct meaning from the context – computers, however, do not.
 
-Das Besondere am Programmieren ist die exakte und präzise Art der Kommunikation. Während Menschen beim Sprechen oft auf Vorkenntnisse und Kontext zurückgreifen, ist dies bei Computern nicht der Fall. Menschliche Sprache, die sogenannte **natürliche Sprache**, ist häufig mehrdeutig. Ein bekanntes Beispiel ist der Satz: „Ich habe den Mann mit dem Fernrohr gesehen.“ Dieser Satz lässt mindestens zwei Deutungen zu: Entweder habe ich einen Mann gesehen, der ein Fernrohr in der Hand hält, oder ich habe durch ein Fernrohr einen Mann gesehen. Menschen verstehen den korrekten Zusammenhang oft aus dem Kontext – Computer hingegen nicht.
+To avoid such ambiguity, we use **formal languages**, particularly **programming languages**.
 
-Um diese Mehrdeutigkeit zu vermeiden, nutzen wir **formale Sprachen**, insbesondere **Programmiersprachen**. 
+In summary:
 
-Zusammengefasst bedeutet das:
+A **programming language** must be absolutely precise and unambiguous because the computer cannot recognize context or interpret meaning. It is used to define data structures and algorithms that a computer should execute.
 
-Eine **Programmiersprache** muss absolut präzise und eindeutig sein, da der Computer keinen Kontext erkennt oder Sinn interpretieren kann. Sie dient dazu, Datenstrukturen und Algorithmen zu formulieren, die von einem Computer ausgeführt werden sollen.
-
-Hier im Kurs werden wir das Programmieren mit **Python** lernen. Aber warum Python?
+In this course, we will learn programming with **Python**. But why Python?
 
 ## Python
 
-Python ist eine interpretierte Programmiersprache mit dynamischer Typisierung. Das bedeutet, dass der in Python geschriebene Code nicht kompiliert werden muss, bevor er ausgeführt wird. Stattdessen wird der Code direkt in einem sogenannten **Interpreter** interpretiert und ausgeführt. Dies ermöglicht eine schnelle und flexible Entwicklung, die besonders im Bereich Data Science und KI von Vorteil ist, wo häufig schnelle Anpassungen und Iterationen notwendig sind. Aus diesem Grund wird Python oft als **Skriptsprache** bezeichnet.
+Python is an interpreted programming language with dynamic typing. This means that code written in Python does not need to be compiled before it is executed. Instead, the code is directly interpreted and executed by an **interpreter**. This enables rapid and flexible development, which is particularly advantageous in the fields of Data Science and AI, where frequent adjustments and iterations are necessary. For this reason, Python is often referred to as a **scripting language**.
 
 ![Types of programming languages](../images/types_of_programming_languages.png)
 
-### Arten von Programmiersprachen
+### Types of Programming Languages
 
-Python hat sich in den letzten Jahren zur beliebtesten Programmiersprache in den Bereichen Data Science und Künstliche Intelligenz entwickelt. Dies bietet mehrere entscheidende Vorteile:
+Python has emerged as the most popular programming language in the fields of Data Science and Artificial Intelligence in recent years. This offers several key advantages:
 
-1. **Große Nutzerbasis**: Es gibt eine Vielzahl von Nutzer*innen, die Python für ähnliche Zwecke verwenden. Dadurch existieren viele Online-Foren, Tutorials und andere Ressourcen, die als Hilfestellung dienen.
-2. **Umfangreiche Bibliotheken**: Die große Community sorgt für eine ständige Weiterentwicklung der Sprache sowie für die Bereitstellung zahlreicher Bibliotheken, die für Aufgaben in Data Science und KI genutzt werden können.
-3. **Anpassungsfähigkeit**: Python wird regelmäßig aktualisiert, um sich neuen technologischen Entwicklungen und Hardware-Anforderungen anzupassen.
-4. **Lesbarkeit des Codes**: Python wird oft für seine vergleichsweise gute Lesbarkeit gelobt. Dies bedeutet nicht unbedingt, dass der Code für Anfänger*innen sofort verständlich ist, sondern vielmehr, dass er im Vergleich zu anderen Sprachen klarer und strukturierter ist. Gerade im Teamwork oder bei der Weiterentwicklung von Projekten ist diese Eigenschaft ein großer Vorteil.
+1. **Large User Base**: A vast number of users employ Python for similar purposes. As a result, there are many online forums, tutorials, and other resources available for assistance.
+2. **Extensive Libraries**: The large community continuously develops the language and provides numerous libraries that can be used for tasks in Data Science and AI.
+3. **Adaptability**: Python is regularly updated to accommodate new technological developments and hardware requirements.
+4. **Code Readability**: Python is often praised for its comparatively high readability. This does not necessarily mean that the code is immediately understandable for beginners but rather that it is clearer and more structured compared to other languages. This characteristic is particularly advantageous for teamwork or when further developing projects.
