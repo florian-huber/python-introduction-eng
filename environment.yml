@@ -1,0 +1,10 @@
+name: python_introduction
+dependencies:
+  - python=3.12
+  - numpy
+  - pandas
+  - matplotlib
+  - jupyter
+  - spyder>=5.*
+  - scikit-learn
+  - pytest
