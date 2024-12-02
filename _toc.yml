@@ -1,52 +1,52 @@
 format: jb-book
-root: lesson_material_german/cover
+root: lesson_material_english/cover
 parts:
   - caption: Einführung
     numbered: true
     chapters:
-    - file: lesson_material_german/00_introduction
-    - file: lesson_material_german/01_first_steps
-    - file: lesson_material_german/01_data_types
-    - file: lesson_material_german/01_variables
+    - file: lesson_material_english/00_introduction
+    - file: lesson_material_english/01_first_steps
+    - file: lesson_material_english/01_data_types
+    - file: lesson_material_english/01_variables
   - caption: Abläufe, Funktionen und Module
     numbered: true
     chapters:
-    - file: lesson_material_german/02_control_structures_conditions_loop
-    - file: lesson_material_german/03_functions
-    - file: lesson_material_german/03_import_libraries_modules
-    - file: lesson_material_german/03_special_functions
+    - file: lesson_material_english/02_control_structures_conditions_loop
+    - file: lesson_material_english/03_functions
+    - file: lesson_material_english/03_import_libraries_modules
+    - file: lesson_material_english/03_special_functions
   - caption: Datentypen & String Handling
     numbered: true
     chapters:
-    - file: lesson_material_german/04_datatypes_2
-    - file: lesson_material_german/04_string_handling
+    - file: lesson_material_english/04_datatypes_2
+    - file: lesson_material_english/04_string_handling
   - caption: Error Handling und Best Practices I
     numbered: true
     chapters:
-    - file: lesson_material_german/05_error_handling
-    - file: lesson_material_german/05_one_step_back-best_practices
-    - file: lesson_material_german/05_open_files
+    - file: lesson_material_english/05_error_handling
+    - file: lesson_material_english/05_one_step_back-best_practices
+    - file: lesson_material_english/05_open_files
   - caption: Klassen und Objekte
     numbered: true
     chapters:
-    - file: lesson_material_german/06_classes_objects
-    - file: lesson_material_german/07_classes_objects_2
+    - file: lesson_material_english/06_classes_objects
+    - file: lesson_material_english/07_classes_objects_2
   - caption: Arbeiten mit numerischen Daten - Numpy
     numbered: true
     chapters:
-    - file: lesson_material_german/08_numpy
-    - file: lesson_material_german/09_numpy_2
+    - file: lesson_material_english/08_numpy
+    - file: lesson_material_english/09_numpy_2
   - caption: Schritte Richtung Data Science
     numbered: true
     chapters:
-    - file: lesson_material_german/09_pandas
-    - file: lesson_material_german/10_pandas_2
-    - file: lesson_material_german/12_data_visualization
+    - file: lesson_material_english/09_pandas
+    - file: lesson_material_english/10_pandas_2
+    - file: lesson_material_english/12_data_visualization
   - caption: A few missing things
     numbered: true
     chapters:
-    - file: lesson_material_german/10_debugging
-    - file: lesson_material_german/14_generators 
+    - file: lesson_material_english/10_debugging
+    - file: lesson_material_english/14_generators 
   - caption: Source Code and Contributions
     chapters:
-    - file: lesson_material_german/github
+    - file: lesson_material_english/github
