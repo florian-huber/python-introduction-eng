@@ -1,6 +1,6 @@
 <img src="../images/cover_sketching.png" alt="cover image"/>
 
-# Einführung Programmieren mit Python für Data Science
+# Introduction to Python for Data Science
 
 **Florian Huber**
 
