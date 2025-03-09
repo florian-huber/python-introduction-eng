@@ -213,13 +213,13 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Numerical Data - Numpy</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="08_numpy.html">16. Numerical Data in Python with NumPy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_numpy_2.html">17. Numerische Daten in Python mit NumPy - Teil 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_numpy_2.html">17. Numerical Data in Python with NumPy - Part 2</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps towards Data Science</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="09_pandas.html">18. Pandas!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_pandas_2.html">19. Pandas - Teil 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_data_visualization.html">20. Datenvisualisierung mit Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_pandas_2.html">19. Pandas - Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_data_visualization.html">20. Data visualization with Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">A few missing things</span></p>
 <ul class="current nav bd-sidenav">
@@ -426,12 +426,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterators">22.1. Iterators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-bringt-das">22.1.1. Was bringt das?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-point">22.1.1. What’s the point?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generators">22.2. Generators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-city-name-generator">22.2.1. Beispiel: city name generator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unendliche-sequenzen">22.2.2. Unendliche Sequenzen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-city-name-generator">22.2.1. Example: city name generator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-sequences">22.2.2. Infinite sequences</a></li>
 </ul>
 </li>
 </ul>
@@ -447,22 +447,22 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="generators-iterators">
 <h1><span class="section-number">22. </span>Generators / Iterators<a class="headerlink" href="#generators-iterators" title="Link to this heading">#</a></h1>
-<p>Wir starten mit einer kurzen Quiz-Frage:</p>
+<p>Let’s start with a short quiz question:</p>
+<p>When a Pandas DataFrame has been created (e.g. by importing a.csv file with <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code>), where are the values of the DataFrame stored?</p>
 <blockquote>
-<div><p>Wenn ein Pandas DataFrame erstellt wurde (z.B. indem wir eine .csv-Datei importiert haben mit <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code>). Wo sind die Werte des DataFrames dann gespeichert?</p>
-<p>(a) Im Ordner in dem ich gerade arbeite.
-(b) In einem temporären Ordner auf der Festplatte.
-(c) Im Arbeitsspeicher.
-(d) Im Prozessor-Speicher (Cache).</p>
+<div><p>(a) In the folder I am currently working in.
+(b) In a temporary folder on the hard disk.
+(c) In the main memory.
+(d) In the processor memory (cache).</p>
 </div></blockquote>
-<p>Für alle die sich ein wenig mit dem Aufbau eines Rechners auskennen, sicher einfach zu beantworten. Und doch war es bisher beim Programmieren mit Python für uns kein Thema. Für weitere Schritte ist dies aber zunehmend wichtig. Die Daten werden nämlich, wie übrigens alle Variablen die wir im Python Interpreter anlegen, im Arbeitsspeicher hinterlegt. Das ist auch gut und richtig so und war bis hierhin kein Problem um das wir uns Gedanken machen mussten.</p>
-<p>Je mehr wir aber in richtig Big Data schauen, umso wichtiger wird dieses Thema werden. Denn der Arbeitsspeicher ist zwar schnell, aber vom Umfang her sehr begrenzt. D.h. es kann in vielen Fällen zu Problemen führen wenn wir zu viele Daten gleichzeitig im Arbeitsspeicher vorhalten wollen.</p>
-<p>Eine Möglichkeit damit besser umzugehen, sind sogenannte Generatoren (<em>generators</em>). Diese bieten die Möglichkeit immer nur so viele Daten zu laden (oder erzeugen) wie aktuell benötigt. Bevor wir zu den <em>generators</em> kommen, starten wir aber mit einer allgemeineren Variante, dem Iterator (<em>iterator</em>).</p>
+<p>For those who are a little familiar with the structure of a computer, this is easy to answer. And yet it was not an issue for us when programming with Python. However, this is becoming increasingly important for further steps. The data, like all variables that we create in the Python interpreter, is stored in the main memory. This is good and right and has not been a problem that we had to worry about so far.</p>
+<p>However, the more we look at really big data, the more important this topic will become. This is because the main memory is fast, but very limited in scope. This means that in many cases, it can lead to problems if we want to store too much data in the main memory at the same time.</p>
+<p>One way to deal with this better is to use generators. These offer the possibility to only load (or generate) as much data as is currently needed. But before we get to generators, let’s start with a more general variant, the iterator.</p>
 <section id="iterators">
 <h2><span class="section-number">22.1. </span>Iterators<a class="headerlink" href="#iterators" title="Link to this heading">#</a></h2>
-<p>Iteratoren (iterators) sind in Python Objekte, die durch eine Folge von Werten iterieren können. Sie ermöglichen es, über eine Reihe von Elementen in einer for-Schleife zu iterieren, ohne dass die genaue Anzahl der Elemente im Voraus bekannt sein muss. Ein Iterator-Objekt muss das Iterator-Protokoll implementieren, das die <strong>iter</strong>()- und <strong>next</strong>()-Methoden definiert.</p>
-<p>Die <strong>iter</strong>()-Methode gibt das Iterator-Objekt selbst zurück und wird automatisch aufgerufen, wenn eine for-Schleife gestartet wird. Die <strong>next</strong>()-Methode gibt das nächste Element der Folge zurück und wird automatisch aufgerufen, wenn die for-Schleife das nächste Element abfragt. Wenn kein weiteres Element vorhanden ist, wird eine StopIteration-Ausnahme ausgelöst.</p>
-<p>Ein Beispiel für die Verwendung von Iteratoren ist die Verwendung der built-in-Funktion <code class="docutils literal notranslate"><span class="pre">iter()</span></code> auf einer Liste oder einem Tupel:</p>
+<p>In Python, iterators are objects that can iterate through a sequence of values. They make it possible to iterate over a series of elements in a for loop without having to know the exact number of elements in advance. An iterator object must implement the iterator protocol, which defines the <strong>iter</strong>() and <strong>next</strong>() methods.</p>
+<p>The <strong>iter</strong>() method returns the iterator object itself and is called automatically when a for loop is started. The <strong>next</strong>() method returns the next element in the sequence and is called automatically when the for loop requests the next element. If there is no next element, a StopIteration exception is raised.</p>
+<p>An example of how to use iterators is to use the built-in <code class="docutils literal notranslate"><span class="pre">iter()</span></code> function on a list or tuple:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span> <span class="c1"># 1</span>
@@ -470,23 +470,23 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">))</span> <span class="c1"># 3</span>
 </pre></div>
 </div>
-<p>In diesem Beispiel wird die <code class="docutils literal notranslate"><span class="pre">iter()</span></code>-Funktion verwendet, um einen Iterator für die numbers-Liste zu erstellen. Der Iterator wird in der Variablen <code class="docutils literal notranslate"><span class="pre">iterator</span></code> gespeichert. Die <code class="docutils literal notranslate"><span class="pre">next()</span></code>-Funktion wird verwendet, um das nächste  Element im Iterator abzufragen, welches dann ausgegeben wird.</p>
-<section id="was-bringt-das">
-<h3><span class="section-number">22.1.1. </span>Was bringt das?<a class="headerlink" href="#was-bringt-das" title="Link to this heading">#</a></h3>
-<p>Auf den ersten Blick ist in diesem Beispiel vielleicht nicht unbedingt klar, was das Interator-Konzept hier bringt. Immerhin könnten wir dafür auch einfach direkt eine for-Schleife nehmen:</p>
+<p>In this example, the iter() function is used to create an iterator for the numbers list. The iterator is stored in the variable iterator. The next() function is used to query the next element in the iterator, which is then output.</p>
+<section id="what-s-the-point">
+<h3><span class="section-number">22.1.1. </span>What’s the point?<a class="headerlink" href="#what-s-the-point" title="Link to this heading">#</a></h3>
+<p>At first glance, it may not be immediately clear what the iterator concept brings to this example. After all, we could just as easily use a for loop for this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Ein Iterator ist tatsächlich nicht sinnvoll, wenn nur eine for-Schleife ersetzt werden soll. Er bietet aber die Möglichkeit, nur einzelne Elemente zu entnehmen und merkt sich zudem an welcher Stelle wir stehengeblieben sind. Der richtige Mehrwert von Iteratoren wir v.a. bei den sogenannten Generatoren sichtbar.</p>
+<p>An iterator is not really useful if you just want to replace a for loop. However, it offers the possibility of extracting individual elements and also remembers where we left off. The real added value of iterators becomes particularly apparent with so-called generators.</p>
 </section>
 </section>
 <section id="generators">
 <h2><span class="section-number">22.2. </span>Generators<a class="headerlink" href="#generators" title="Link to this heading">#</a></h2>
-<p>Generatoren (generators) sind spezielle Iteratoren, die in Python mit  Hilfe der yield-Anweisung erstellt werden. Sie ermöglichen es, einen  Iterator zu erstellen, ohne die gesamte Folge im Speicher zu speichern.  Stattdessen werden nur die Werte erzeugt, die zurzeit benötigt werden.  Dies macht Generatoren besonders nützlich für die Verarbeitung von  großen Datenmengen oder für die Verarbeitung von unendlichen Folgen.</p>
-<p>In Python lassen sich Generatoren einfach erstellen und zwar fast genau wie wir bisher auch Funktionen definiert haben, mit der wichtigen Ausnahme dass wir <code class="docutils literal notranslate"><span class="pre">yield</span></code> statt <code class="docutils literal notranslate"><span class="pre">return</span></code> verwenden.
-Der Ausdruck <code class="docutils literal notranslate"><span class="pre">yield</span></code> gibt, genau wie return, Werte zurück wenn er im Code erreicht wird. Anders als <code class="docutils literal notranslate"><span class="pre">return</span></code> endet ein Funktionsaufruf allerdings nicht beim <code class="docutils literal notranslate"><span class="pre">yield</span></code> sondern läuft mit dem folgenden Aufruf danach weiter (also z.B. über ein <code class="docutils literal notranslate"><span class="pre">next()</span></code>). Hier ein kurzes Beispiel:</p>
+<p>Generators (generators) are special iterators that are created in Python using the yield statement. They make it possible to create an iterator without having to store the entire sequence in memory. Instead, only the values that are currently needed are created. This makes generators particularly useful for processing large amounts of data or for processing infinite sequences.</p>
+<p>In Python, generators are easy to create and are defined almost exactly like we have been defining functions, with the important exception that we use <code class="docutils literal notranslate"><span class="pre">yield</span></code> instead of <code class="docutils literal notranslate"><span class="pre">return</span></code>.
+The expression <code class="docutils literal notranslate"><span class="pre">yield</span></code>, just like return, returns values when it is reached in the code. Unlike <code class="docutils literal notranslate"><span class="pre">return</span></code>, however, a function call does not end at the <code class="docutils literal notranslate"><span class="pre">yield</span></code> but continues with the following call after it (e.g. via a <code class="docutils literal notranslate"><span class="pre">next()</span></code>). Here is a short example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A simple generator function</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">my_generator</span><span class="p">():</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
@@ -501,33 +501,33 @@ Der Ausdruck <code class="docutils literal notranslate"><span class="pre">yield<
     <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is printed at last&#39;</span><span class="p">)</span>
     <span class="k">yield</span> <span class="n">n</span>
-    
+
 <span class="n">a</span> <span class="o">=</span> <span class="n">my_generator</span><span class="p">()</span>
 <span class="nb">next</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
 </div>
-<section id="beispiel-city-name-generator">
-<h3><span class="section-number">22.2.1. </span>Beispiel: city name generator<a class="headerlink" href="#beispiel-city-name-generator" title="Link to this heading">#</a></h3>
-<p>Stellen wir uns vor, wir wollen sehr viele Stadtnahmen generieren (z.B. für ein Spiel). Dann können wir das auf bisherigem Wege machen über:</p>
+<section id="example-city-name-generator">
+<h3><span class="section-number">22.2.1. </span>Example: city name generator<a class="headerlink" href="#example-city-name-generator" title="Link to this heading">#</a></h3>
+<p>Let’s imagine we want to generate a large number of city names (e.g. for a game). We can do this in the usual way with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">city_name_generator</span><span class="p">():</span>
-    <span class="n">beginnings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ober&quot;</span><span class="p">,</span> <span class="s2">&quot;Unter&quot;</span><span class="p">,</span> <span class="s2">&quot;Alt&quot;</span><span class="p">,</span> <span class="s2">&quot;Neu&quot;</span><span class="p">,</span> <span class="s2">&quot;Klein&quot;</span><span class="p">,</span> <span class="s2">&quot;Königs&quot;</span><span class="p">,</span> <span class="s2">&quot;Gold&quot;</span><span class="p">]</span>
-    <span class="n">middle</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;strom&quot;</span><span class="p">,</span> <span class="s2">&quot;see&quot;</span><span class="p">,</span> <span class="s2">&quot;wald&quot;</span><span class="p">,</span> <span class="s2">&quot;wies&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
-    <span class="n">endings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hausen&quot;</span><span class="p">,</span> <span class="s2">&quot;heim&quot;</span><span class="p">,</span> <span class="s2">&quot;ingen&quot;</span><span class="p">,</span> <span class="s2">&quot;dorf&quot;</span><span class="p">,</span> <span class="s2">&quot;stadt&quot;</span><span class="p">,</span> <span class="s2">&quot;bach&quot;</span><span class="p">]</span>
+    <span class="n">beginnings</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">Upper</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Lower</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Old</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">New</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Small</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">King</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Gold</span><span class="err">”</span><span class="p">]</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">river</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">lake</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">forest</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">meadow</span><span class="err">”</span><span class="p">],</span>
+    <span class="n">endings</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">house</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">home</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">engine</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">village</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">town</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">brook</span><span class="err">”</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">beginnings</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">endings</span><span class="p">)</span>
-    
+
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">city_name_generator</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Das gibt mir aber immer nur zufällige Kombinationen aus, also möglicherweise auch viele Dopplungen.</p>
-<p>Wie können wir daraus einen echten Python-Generator machen?
-Eine Möglichkeit wäre wie folgt:</p>
+<p>But this only gives me random combinations, so there may be a lot of duplicates.</p>
+<p>How can we turn this into a real Python generator?
+One possibility would be as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">city_name_generator</span><span class="p">():</span>
-    <span class="n">beginnings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ober&quot;</span><span class="p">,</span> <span class="s2">&quot;Unter&quot;</span><span class="p">,</span> <span class="s2">&quot;Alt&quot;</span><span class="p">,</span> <span class="s2">&quot;Neu&quot;</span><span class="p">,</span> <span class="s2">&quot;Klein&quot;</span><span class="p">,</span> <span class="s2">&quot;Königs&quot;</span><span class="p">,</span> <span class="s2">&quot;Gold&quot;</span><span class="p">]</span>
-    <span class="n">middle</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;strom&quot;</span><span class="p">,</span> <span class="s2">&quot;see&quot;</span><span class="p">,</span> <span class="s2">&quot;wald&quot;</span><span class="p">,</span> <span class="s2">&quot;wies&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]</span>
-    <span class="n">endings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hausen&quot;</span><span class="p">,</span> <span class="s2">&quot;heim&quot;</span><span class="p">,</span> <span class="s2">&quot;ingen&quot;</span><span class="p">,</span> <span class="s2">&quot;dorf&quot;</span><span class="p">,</span> <span class="s2">&quot;stadt&quot;</span><span class="p">,</span> <span class="s2">&quot;bach&quot;</span><span class="p">]</span>
+    <span class="n">beginnings</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">Ober</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Unter</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Alt</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Neu</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Klein</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Königs</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Gold</span><span class="err">”</span><span class="p">]</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="p">[</span><span class="err">“”</span><span class="p">,</span> <span class="err">“</span><span class="n">stream</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">lake</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">forest</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">meadow</span><span class="err">”</span><span class="p">,</span> <span class="err">“”</span><span class="p">,</span> <span class="err">“”</span><span class="p">]</span>
+    <span class="n">endings</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">house</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">home</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">engine</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">village</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">town</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">brook</span><span class="err">”</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">beginnings</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">middle</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">endings</span><span class="p">:</span>
@@ -535,20 +535,19 @@ Eine Möglichkeit wäre wie folgt:</p>
 
 <span class="n">city</span> <span class="o">=</span> <span class="n">city_name_generator</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">city</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">city</span><span class="p">))</span> 
 </pre></div>
 </div>
-<p>Hier werden die Stadtnamen immer nur generiert, wenn wir den Generator mit <code class="docutils literal notranslate"><span class="pre">next()</span></code> aufrufen. Und solange bis alle möglichen Kombinationen aufgebraucht sind werden immer neue Namen generiert, ohne Dopplungen!</p>
-<p>Was ist aber jetzt, wenn wir alle Stadtnamen auf einmal haben wollen? Das geht mit einer entsprechend langen for-Schleife. Aber auch indem wir mit <code class="docutils literal notranslate"><span class="pre">list()</span></code> erzwingen, dass alle Elemente in eine Liste umgewandelt werden:</p>
+<p>But also by using <code class="docutils literal notranslate"><span class="pre">list()</span></code> to convert all elements into a list:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a new instance of the generator to start with beginning</span>
 <span class="n">city</span> <span class="o">=</span> <span class="n">city_name_generator</span><span class="p">()</span>
 <span class="n">all_cities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="unendliche-sequenzen">
-<h3><span class="section-number">22.2.2. </span>Unendliche Sequenzen<a class="headerlink" href="#unendliche-sequenzen" title="Link to this heading">#</a></h3>
-<p>Ein weiterer Anwendungsfall für Generatoren sind unendliche Sequenzen. Hier ein einfaches Beispiel:</p>
+<section id="infinite-sequences">
+<h3><span class="section-number">22.2.2. </span>Infinite sequences<a class="headerlink" href="#infinite-sequences" title="Link to this heading">#</a></h3>
+<p>Another use case for generators is infinite sequences. Here is a simple example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">all_seventh</span><span class="p">():</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -559,7 +558,7 @@ Eine Möglichkeit wäre wie folgt:</p>
 <span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">seventh</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Der Generator geht mit jedem <code class="docutils literal notranslate"><span class="pre">next()</span></code> die Siebenerreihe durch, so lange wir wollen. Es werden dabei aber immer nur die abgefragten Elemente berechnet so dass der Generator hier sehr effizient ist.</p>
+<p>With each <code class="docutils literal notranslate"><span class="pre">next()</span></code>, the generator goes through the series of sevens for as long as we want. However, only the requested elements are calculated, making the generator very efficient here.</p>
 </section>
 </section>
 </section>
@@ -629,12 +628,12 @@ Eine Möglichkeit wäre wie folgt:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iterators">22.1. Iterators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-bringt-das">22.1.1. Was bringt das?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-the-point">22.1.1. What’s the point?</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generators">22.2. Generators</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beispiel-city-name-generator">22.2.1. Beispiel: city name generator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unendliche-sequenzen">22.2.2. Unendliche Sequenzen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-city-name-generator">22.2.1. Example: city name generator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#infinite-sequences">22.2.2. Infinite sequences</a></li>
 </ul>
 </li>
 </ul>

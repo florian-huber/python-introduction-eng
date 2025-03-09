@@ -1,16 +1,16 @@
-# Numerische Daten in Python mit NumPy - Teil 2
+# Numerical Data in Python with NumPy - Part 2
 
-Wir haben uns jetzt einige Basics mit Numpy angeschaut. Dabei ging es v.a. um das **Erstellen von Numpy Arrays** und das **Slicing** um die gewünschten Einträge aus den Arrays zu erhalten. Dabei kamen auch schon ein paar der großen Vorteile von Numpy zur Sprache, z.B. können mit Numpy Arrays wirklich sehr große (numerische) Datenarrays bearbeitet werden und zwar auch Arrays mit vielen Dimensionen (siehe `.ndim`). Ebenso können mit Numpy sehr effizient große Mengen an Zufallszahlen erstellt werden und zwar aus sehr vielen verschiedenen Verteilungen (`numpy.random`).
+We have now looked at some basics with Numpy. The main focus was on **creating Numpy arrays** and **slicing** to get the desired entries from the arrays. In doing so, some of the great advantages of Numpy have already been mentioned, e.g. Numpy arrays can be used to process very large (numeric) data arrays, including arrays with many dimensions (see `.ndim`). Numpy can also be used to efficiently create large amounts of random numbers from a wide range of distributions (`numpy.random`).
 
-Hier werden wir auf einige weitern sehr wichtigen und hilfreichen Funktionalitäten von Numpy eingehen, u.a. da **Sortieren** von Arrays, das finden bestimmter Werte und die hohe Performance als einer der Kernvorteile von Numpy.
+Here we will discuss some other very important and helpful functionalities of Numpy, including array sorting, finding specific values and high performance as one of Numpy's core advantages.
 
-Aber zuerst kurz zu einer guten Möglichkeit, größere Arrays anzuschauen (noch nicht groß wie in *"big data"* , aber schon größer als `print()`).
+But first, a good way to look at larger arrays (not yet as large as in *“big data”* , but already larger than `print()`).
 
-### Arrays anschauen
+### Viewing arrays
 
-In der Praxis arbeiten wir oft mit großen, teilweise mehrdimensionalen Numpy Arrays. Das macht den Umgang am Anfang etwas gewöhnungsbedürftig, auch da unsere bisherigen Methoden um die Daten anzusehen (z.B. mit  `print()`)  hier schnell an Grenzen stoßen. 
+In practice, we often work with large, sometimes multi-dimensional Numpy arrays. This takes some getting used to at the beginning, also because our previous methods of viewing data (e.g. with `print()`) quickly reach their limits here. 
 
-**Spyder** hat als Editor hier einen Vorteil: Über den *Variable Explorer* lassen sich Numpy Arrays sehr gut betrachten! Ein Beispiel um den Explorer damit auszuprobieren:
+As an editor, **Spyder** has an advantage here: the *Variable Explorer* is a great way to view Numpy arrays! Here is an example to try out the Explorer:
 
 ```python
 import numpy as np
@@ -18,29 +18,29 @@ import numpy as np
 arr1 = 20 * np.random.random((10, 20, 20))
 ```
 
-Im *Variable Explorer* können wir auch immer nur 2D-Arrays anzeigen lassen, aber es kann ausgewählt werden entlang welcher Axe(n) ein Schnitt angezeigt wird ( `Axis`) und mit `Index:` kann die jeweilige Ebene ausgewählt werden.
+In the Variable Explorer, we can only display 2D arrays, but we can select along which axis(es) a section is displayed (`Axis`) and with `Index:` we can select the respective plane.
 
 ![Spyder Variable Explorer of 3D numpy array](../images/spyder_variable_explorer_numpy_array.png)
 
-Tipp: Im Variable Explorer mit den unten angezeigten Feldern "Axis" und "Index" spielen. Damit kann z.B dieses 3-dimensionale Array von verschiedenen Seiten (axis) her betrachtet werden.
+Tip: Play around with the “Axis” and “Index” fields at the bottom of the Variable Explorer. This allows you to view this 3-dimensional array from different sides (axis).
 
-Natürlich ist auch dieser Zugang begrenzt. Für sehr große Arrays, also Arrays mit sehr vielen Elementen (Stichwort: "big data") und/oder Arrays mit vielen Dimensionen, wird es irgendwann auch über den Variable Explorer in Spyder schwierig.
+Of course, this approach is also limited. For very large arrays, i.e. arrays with a very large number of elements (keyword: “big data”) and/or arrays with many dimensions, it will eventually become difficult even using the Variable Explorer in Spyder.
 
-### Sortieren!
+### Sort!
 
-Schon bei den Listen hatten wir die Möglichkeit mit der `.sort()` Methode die Elemente zu sortieren. Keine große Überraschung also, dass auch Numpy Arrays eine Sortiermethode mitbringen. In Wirklichkeit gibt es in NumPy sogar viele verschiedene!
+We already had the option of sorting the elements with the `.sort()` method in lists. So it's no surprise that Numpy arrays also have a sorting method. In fact, there are many different sorting methods in NumPy!
 
-Als erstes können wir Arrays genau wie Listen sortieren und zwar mit `.sort()`:
+First of all, we can sort arrays just like lists using `.sort()`:
 
 ```python
 import numpy as np
 
 arr = np.random.random(100)
-arr.sort()  # sort from small to large
+arr.sort() # sort from small to large
 print(arr)
 ```
 
-Auch 2D (oder noch höher-dimensionale Arrays) können damit sortiert werden, dabei wird die Sortierung allerdings immer nur entlang *einer* Achse durchgeführt:
+You can also sort 2D (or even higher-dimensional) arrays with it, but the sorting is always only done along *one* axis:
 
 ```python
 import numpy as np
@@ -55,63 +55,63 @@ arr.sort(axis=0)
 
 #### Argsort
 
-Eine weitere sehr wichtige Sortier-Methode ist `argsort()`. Damit berechnet Numpy die Indices die alle Elemente nach Größe sortieren würden.
+Another very important sorting method is `argsort()`. With this, Numpy calculates the indices that would sort all elements by size.
 
 ```python
 arr = np.array([6, 7, 8, 9, 3, 2, 3, 1, 0, 5])
 
 order = np.argsort(arr)
-print(f"Die Top3 Einträge sind Nummer: {order[::-1][:3]}")
+print(f“The top 3 entries are number: {order[::-1][:3]}”)
 ```
 
-Der Nutzen von `argsort()` wird bald deutlicher, wenn wir nämlich mit größeren, komplexeren Daten arbeiten. Dort wollen wir nämlich nicht immer eine gesamte Tabelle sortieren um dann die höchsten Elemente zu sehen, sondern wir möchten häufig nur wissen: Wo stehen die 10 höchsten/niedrigsten Werte in der Tabelle. 
+The usefulness of `argsort()` will soon become clearer when we work with larger, more complex data. There, we don't always want to sort an entire table to see the highest elements, but often we just want to know: Where are the 10 highest/lowest values in the table. 
 
-Wenn wir es mit mehrdimensionalen Arrays zu tun haben, beziehen sich `sort()` und auch `argsort()` immer nur auf eine Achse/eine Dimension. Um welche Richtung es geht kann bei beiden Funktionen mit `axis` angegeben werden, z.B. so:
+When we are dealing with multi-dimensional arrays, sort() and argsort() always refer to only one axis/dimension. The direction can be specified with the axis parameter for both functions, for example like this:
 
 ```python
 arr = np.arange(0, 100).reshape(20, 5)
 sorted_idx = np.argsort(arr, axis=0)
 ```
 
-Was ist aber, wenn wir alle Werte in einem 2D-Array entsprechend der Größe in nur einer "Spalte" sortieren wollen. Argsort bietet im Prinzip die Möglichkeit dazu:
+But what if we want to sort all values in a 2D array according to size in just one “column”? Argsort basically offers the possibility to do this:
 
 ```python
 arr = np.random.random((20, 20))
 
-# Indizes der ersten "Reihe" sortieren
+# Sort indices of the first “row”
 sorted_idx = np.argsort(arr, axis=1)
 
-# Um damit eine tatsächliche Sortierung vorzunehmen
+# To actually perform the sorting
 arr_sorted = np.take_along_axis(arr, sorted_idx, axis=1)
 ```
 
-Was aber, wenn wir nach mehreren Spalten/Zeilen gleichzeitig sortieren wollen? Dafür können wir `lexsort()` benutzen.
+But what if we want to sort by multiple columns/rows at the same time? We can use `lexsort()` for that.
 
 #### Lexsort
 
-`lexsort()` erlaubt es und in einem Array entlang mehrerer Werte zu sortieren.  Und auch, wenn wir Numpy bis hierhin nur für numerische Werte genutzt haben. Das Ganze geht auch mit anderen Datentypen wie z.B. strings:
+`lexsort()` allows us to sort an array along multiple values. And even though we've only used Numpy for numerical values so far, it works with other data types as well, such as strings:
 
 ```python
-surnames = ('Hertz',    'Galilei', 'Hertz')
+surnames = ('Hertz', 'Galilei', 'Hertz')
 first_names = ('Heinrich', 'Galileo', 'Gustav')
 idx = np.lexsort((first_names, surnames))
 print(idx)
 ```
 
-Aber häufiger noch sind nach wie vor die numerischen Beispiele. 
+But the numerical examples are still more common. 
 
 ```python
 arr = np.array([[3, 2, 1, 2], 
-                [5, 4, 3, 3]])
+[5, 4, 3, 3]])
 
 print(np.lexsort(arr))
 ```
 
-**Achtung:** Bei `lexsort()` können wir leider nicht ganz so einfach mit `axis` arbeiten.  Wenn wir hier die Richtung der Sortierung ändern wollen ist es besser das Array zu verändern, z.B. es zu drehen mit `np.rot90()`.
+**Attention:** Unfortunately, we can't work with `axis` quite as easily with `lexsort()`. If we want to change the sorting direction here, it is better to change the array, e.g. to rotate it with `np.rot90()`.
 
-Alternativ können auch alle nötige
+Alternatively, all the necessary
 
-n 1D-Arrays als Tuple übergeben werden:
+1D arrays can be passed as a tuple:
 
 ```python
 import numpy as np
@@ -124,9 +124,9 @@ print(arr1[sorted_idx[:10]])
 print(arr2[sorted_idx[:10]])
 ```
 
-### Einträge auswählen/finden
+### Selecting/finding entries
 
-Wir haben bereits eine Möglichkeit gesehen, Werte in einem Numpy Array auszuwählen und zwar über eine Maske, also z.B.
+We have already seen one way to select values in a numpy array, namely using a mask, e.g.
 
 ```python
 arr = np.random.randint(0, 100, size=(10, 10))
@@ -141,35 +141,35 @@ print(arr)
 
 #### numpy.where
 
-Oft möchten wir aber die genauen Indizes (also die Positionen im Array) erhalten für Werte die unseren Suchkriterien entsprechen. Das geht mit `numpy.where`, hier ein Beispiel:
+Often, however, we want to get the exact indices (i.e. the positions in the array) for values that match our search criteria. This is possible with `numpy.where`, here is an example:
 
 ```python
 arr = np.random.randint(0, 100, size=(10, 10))
 
 selected_idx = np.where(arr < 5)
-print(selected_idx)  # -> gibt die Positionen im Array aus die Werte <5 enthalten.
+print(selected_idx) # -> outputs the positions in the array that contain values <5.
 ```
 
 
 
-### Arrays kombinieren
+### Combining arrays
 
-In Numpy gibt es die Möglichkeit Arrays zu verbinden, sofern deren Abmessungen es zulassen. 
+In Numpy, it is possible to combine arrays, provided that their dimensions allow it. 
 
-Zum einen kann dies über `vstack`, `hstack`, `dstack` gemacht werden.
+On the one hand, this can be done using `vstack`, `hstack`, or `dstack`.
 
-Eine andere Option ist über `concatenate`. 
+Another option is to use `concatenate`. 
 
 
 
-### Berechnungen mit Numpy
+### Calculations with Numpy
 
-Numpy Arrays sind in Python das Standard-Format um mit großen (numerischen) Datenmengen zu arbeiten. Bisher haben wir gesehen, was es alles für Grundfunktionen/methoden mit Numpy Arrays gibt. Jetzt aber noch ein paar Beispiele die illustrieren sollen, wie und warum diese Arrays so gerne in der Praxis eingesetzt werden.
+Numpy arrays are the standard format in Python for working with large (numeric) data sets. So far, we have seen what basic functions/methods are available with Numpy arrays. But now a few examples to illustrate how and why these arrays are so useful in practice.
 
-Wir werden dafür eine weitere Bibliothek nutzen: `matplotlib`, das ist in Python die am häufigsten genutzte Bibliothek um Daten zu plotten.
+We will use another library for this: matplotlib, which is the most frequently used library in Python for plotting data.
 
-**(1) Werte-Berechnungen mit mathematischen Funktionen.**
-Numpy bringt einige mathematische Funktionen mit, z.B. `np.sin()`(Sinus), `np.cos()` (Cosinus), `np.exp()`(Exponentialfunktion) oder `np.log()`(Logarithmus). Sehr, sehr viele weiter Optionen finden sich z.B. in der Bibliothek SciPy (https://scipy.org/).
+**(1) Calculating values with mathematical functions.**
+Numpy includes some mathematical functions, e.g. `np.sin()` (sine), `np.cos()` (cosine), `np.exp()` (exponential function) or `np.log()` (logarithm). A great many more options can be found in the SciPy library (https://scipy.org/), for example.
 
 ```python
 import numpy as np
@@ -177,13 +177,13 @@ from matplotlib import pyplot as plt
 
 x = np.linspace(-10, 10, 500)
 y = np.sin(x)
-plt.plot(x, y, "darkblue")
+plt.plot(x, y, “darkblue”)
 ```
 
-Hier werden 500 Datenpunkte erzeugt mit x-Werten die gleichmäßig zwischen -10 und 10 verteilt sind. Von allen wird der Sinus berechnet und anschließend graphisch dargestellt.
+Here, 500 data points are generated with x-values evenly distributed between -10 and 10. The sine is calculated for each and then displayed graphically.
 
-**(2) Operationen auf vielen Datenpunkten gleichzeitig + Zufallszahlen.**
-Numpy bietet enorme Möglichkeiten für die Nutzung von Zufallszahlen. Wir hatten vorher auch schon die Bibliothek `random` kennengelernt, doch damit ließ sich immer nur eine Zufallszahl nach der anderen erzeugen. Mit Numpy können (für unsere Zwecke) beliebig große Arrays aus Zufallszahlen erzeugt werden. Darüber hinaus bietet Numpy sehr verschiedene Arten von Zufallsverteilungen! 
+**(2) Operations on many data points simultaneously + random numbers.**
+Numpy offers enormous possibilities for the use of random numbers. We had already learned about the `random` library before, but it could only generate one random number at a time. With Numpy, arrays of random numbers of any size can be created (for our purposes). In addition, Numpy offers many different types of random distributions! 
 
 ```python
 import numpy as np
@@ -194,7 +194,7 @@ sizes = 100 * np.random.random(100)
 plt.scatter(xy[0, :], xy[1, :], s=sizes)
 ```
 
-Eine andere Verteilung bekommt man mit `np.random.randn()`(Normalverteilung!):
+Another distribution is obtained with `np.random.randn()` (normal distribution!):
 
 ```python
 import numpy as np
@@ -204,20 +204,17 @@ xy = np.random.randn(2, 1000)
 plt.scatter(xy[0, :], xy[1, :], alpha=0.3)
 ```
 
-**(3) Statistik und Simulationen**
-NumPy erlaubt es große Mengen an Zufallszahlen zu generieren und damit zu arbeiten. Das hat in der Praxis viele verschiedene Verwendungen, wie z.B. für die Modellierung von stochastischen Prozessen oder für Computer-Simulationen.
+**(3) Statistics and Simulations**
+NumPy allows you to generate and work with large amounts of random numbers. This has many different practical uses, such as for modeling stochastic processes or for computer simulations.
 
 ```python
 import numpy as np
 
 random_numbers = np.random.random((1000, 1000))
-print(f"Mean: {random_numbers.mean()}")
-print(f"Numbers > 0.5: {np.sum(random_numbers > 0.5)}")
-print(f"Numbers < 0.5: {np.sum(random_numbers < 0.5)}")
+print(f“Mean: {random_numbers.mean()}”)
+print(f“Numbers > 0.5: {np.sum(random_numbers > 0.5)}”)
+print(f“Numbers < 0.5: {np.sum(random_numbers < 0.5)}”)
 ```
-
-**(4) Speed!**
-Numpy ist zum Teil in Sprachen wie C implementiert und für viele Rechenoperationen deutlich schneller als das "normale" Python. Ein Beispiel:
 
 <!-- pytest-codeblocks:cont -->
 
@@ -226,19 +223,18 @@ import random
 import time
 import numpy as np
 
-print("Pure Python ......................")
+print(“Pure Python......................”)
 generated_numbers = int(1e7)
 tstart = time.time()
 numbers = []
 for _ in range(generated_numbers):
     numbers.append(random.random())
-print(sum(numbers))
-print(f"Calculation took {time.time() - tstart}s")
+    print(sum(numbers))
+    print(f“Calculation took {time.time() - tstart}s”)
 
-print("\nNumPy ......................")
+print(“\nNumPy......................”)
 tstart = time.time()
 numbers = np.random.random(generated_numbers)
 print(np.sum(numbers))
-print(f"Calculation took {time.time() - tstart}s")
+print(f“Calculation took {time.time() - tstart}s”)
 ```
-

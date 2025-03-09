@@ -61,8 +61,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'lesson_material_english/09_pandas';</script>
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
-    <link rel="next" title="19. Pandas - Teil 2" href="10_pandas_2.html" />
-    <link rel="prev" title="17. Numerische Daten in Python mit NumPy - Teil 2" href="09_numpy_2.html" />
+    <link rel="next" title="19. Pandas - Part 2" href="10_pandas_2.html" />
+    <link rel="prev" title="17. Numerical Data in Python with NumPy - Part 2" href="09_numpy_2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
   </head>
@@ -213,13 +213,13 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Numerical Data - Numpy</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="08_numpy.html">16. Numerical Data in Python with NumPy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09_numpy_2.html">17. Numerische Daten in Python mit NumPy - Teil 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_numpy_2.html">17. Numerical Data in Python with NumPy - Part 2</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">First Steps towards Data Science</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">18. Pandas!</a></li>
-<li class="toctree-l1"><a class="reference internal" href="10_pandas_2.html">19. Pandas - Teil 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="12_data_visualization.html">20. Datenvisualisierung mit Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10_pandas_2.html">19. Pandas - Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12_data_visualization.html">20. Data visualization with Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">A few missing things</span></p>
 <ul class="nav bd-sidenav">
@@ -425,17 +425,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-und-indexing">18.1. Slicing und Indexing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elemente-hinzufugen-entfernen">18.1.1. Elemente hinzufügen/entfernen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-and-indexing">18.1. Slicing and Indexing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-removing-elements">18.1.1. Adding/Removing Elements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-go-data-science">18.1.2. Now: go Data Science</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-importieren">18.1.3. Daten importieren</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#neues-kleineres-dataframe-erzeugen">18.1.3.1. Neues, kleineres DataFrame erzeugen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-data">18.1.3. Importing data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-get-the-values-now">18.1.4. How do I get the values now?</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wie-bekomme-ich-nun-die-werte">18.1.4. Wie bekomme ich nun die Werte</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sortieren">18.2. Sortieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting">18.2. Sorting</a></li>
 </ul>
             </nav>
         </div>
@@ -447,191 +444,179 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <p><strong>Jupyter Notebook</strong></p>
-<p>Bisher haben wir unseren Python Code entweder in einer Konsole geschrieben (eigentlich nur test-weise), oder eben hauptsächlich in einer Entwicklungsumgebung wie Spyder. Letzteres ist und bleibt auch der bevorzugte weg um umfangreicheren Code zu entwickeln.</p>
-<p>Allerdings gibt es noch eine alternative Umgebung in der sehr gut mit Python gearbeitet werden kann und die sich besonders für Data Science Aufgaben, bzw. erste Erkundungen von Datensets eignet: <strong>Jupyter Notebook</strong>. Die ganzen folgenden Code-Beispiele werden darum auch in solchen Notebooks dargestellt.</p>
-<p>Jupyter Notebook ist Teil der Anaconda-Installation und erzeugt Notebook-Dateien die mit <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> enden. Jupyter Notebook kann über das Startmenü (unter Anaconda) gestartet werden, oder über den Befehl <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> aus dem Terminal.</p>
-<p>In der Vorlesung wird die Verwendung von Jupyter notebooks vorgeführt und wir werden uns in der nächsten Übung auch damit beschäftigen. Ansonsten gibt es im Internet viel Material zur Benutzung der notebooks, z.B. hier: https://realpython.com/jupyter-notebook-introduction/.</p>
+  <p><strong>Jupyter Notebooks</strong></p>
+<p>So far, we have either written our Python code in a console (actually only for testing purposes), or mainly in a development environment like Spyder. The latter is and remains the preferred way to develop more extensive code.</p>
+<p>However, there is another environment that is very good for working with Python and is particularly suitable for data science tasks and initial explorations of data sets: <strong>Jupyter Notebook</strong>. All the following code examples are therefore also shown in such notebooks.</p>
+<p>Jupyter Notebook is part of the Anaconda installation and generates notebook files that end with <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>. Jupyter Notebook can be started via the start menu (under Anaconda) or by entering the command <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">notebook</span></code> in the terminal.</p>
+<p>The use of Jupyter notebooks will be demonstrated in the lecture and we will also cover it in the next tutorial. Otherwise, there is a lot of material on how to use notebooks on the internet, for example here: https://realpython.com/jupyter-notebook-introduction/.</p>
 <section class="tex2jax_ignore mathjax_ignore" id="pandas">
 <h1><span class="section-number">18. </span>Pandas!<a class="headerlink" href="#pandas" title="Link to this heading">#</a></h1>
-<p>Numpy ist <strong>das</strong> Python-Tool wenn es um den Umgang mit großen Zahlenmengen geht. Aber für viele Data Science-artige Aufgaben fehlen bestimmte Dinge. Und genau darum gibt es <strong>Pandas</strong> (das intern u.a. Numpy Arrays benutzt):</p>
+<p>Numpy is <strong>the</strong> Python tool when it comes to handling large amounts of data. But for many data science-type tasks, certain things are missing. And that’s exactly why there are <strong>Pandas</strong> (which internally uses Numpy arrays, among other things):</p>
 <ul class="simple">
-<li><p>Heterogene Datentypen innerhalb einer Tabelle</p></li>
+<li><p>Heterogeneous data types within a table</p></li>
 <li><p>Labels</p></li>
-<li><p>Mehr Möglichkeiten zum Umgang mit fehlenden Werten</p></li>
-<li><p>Mehr Datentypen</p></li>
+<li><p>More options for handling missing values</p></li>
+<li><p>More data types</p></li>
 </ul>
-<p>Pandas (der Name steht für <strong>Pan</strong>el <strong>Da</strong>ta) wird üblicherweise wie folgt importiert:</p>
+<p>Pandas (the name stands for <strong>Pan</strong>el <strong>Da</strong>ta) is usually imported as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
-<p>In Numpy haben wir uns v.a. mit den Numpy Arrays beschäftigt, der zentrale Datentyp in Numpy.</p>
-<p>In Pandas gibt es zwei Datentypen mit denen wir arbeiten werden: <strong>DataFrame</strong> und <strong>Series</strong>. Wir starten mit ersterem.</p>
+<p>In Numpy, we mainly dealt with Numpy arrays, the central data type in Numpy.</p>
+<p>In Pandas, there are two data types that we will work with: <strong>DataFrame</strong> and <strong>Series</strong>. We start with the former.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Essen&quot;</span><span class="p">,</span> <span class="s2">&quot;Bochum&quot;</span><span class="p">,</span> <span class="s2">&quot;Dortmund&quot;</span><span class="p">],</span>
-           <span class="s2">&quot;inhabitants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">591032</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="mi">587696</span><span class="p">],</span>
-           <span class="s2">&quot;xyz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)}</span>
+<span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="err">“</span><span class="n">city</span><span class="err">”</span><span class="p">:</span> <span class="p">[</span><span class="err">“</span><span class="n">Essen</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Bochum</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Dortmund</span><span class="err">”</span><span class="p">],</span>
+<span class="err">“</span><span class="n">inhabitants</span><span class="s2">&quot;: [591032, 364454, 587696],</span>
+<span class="err">“</span><span class="n">xyz</span><span class="err">“</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)}</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">my_dict</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">my_dict</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="err">”</span><span class="n">a</span><span class="err">”</span><span class="p">,</span> <span class="err">‘</span><span class="n">b</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="n">c</span><span class="err">’</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Hier haben wir ein DataFrame mit Hilfe eines Dictionaries erstellt. Dabei werden dann die <em>keys</em> zu den Spaltennamen und die Zeilen bekommen über <code class="docutils literal notranslate"><span class="pre">index</span></code> die gewünschten Namen zugewiesen. Alternativ kann <code class="docutils literal notranslate"><span class="pre">index</span></code> auch weggelassen werden, dann nummeriert Pandas de Zeilen einfach mit 0, 1, 2…</p>
-<p>Aber wie schauen wir uns das ganze jetzt eigentlich an?</p>
-<p>In diesem Fall hier haben wir ja noch eine relativ kleine Tabelle und können sie uns einfach mit <code class="docutils literal notranslate"><span class="pre">print(df)</span></code> anschauen. Im Jupyter notebook geht es noch einfacher und wir geben einfach nur <code class="docutils literal notranslate"><span class="pre">df</span></code> ein.</p>
-<p>Pandas DataFrames können auch auf viele andere Arten erstellt werden, z.B. aus Listen:</p>
+<p>Here we have created a DataFrame using a dictionary. The keys are then assigned to the column names and the rows are assigned the desired names via <code class="docutils literal notranslate"><span class="pre">index</span></code>. Alternatively, <code class="docutils literal notranslate"><span class="pre">index</span></code> can also be omitted, in which case Pandas simply numbers the rows with 0, 1, 2…</p>
+<p>But how do we actually look at the whole thing now?</p>
+<p>In this case, we still have a relatively small table and can simply look at it with <code class="docutils literal notranslate"><span class="pre">print(df)</span></code>. In Jupyter notebook it is even easier and we just enter <code class="docutils literal notranslate"><span class="pre">df</span></code>.</p>
+<p>Pandas DataFrames can also be created in many other ways, e.g. from lists:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">my_list</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;Essen&quot;</span><span class="p">,</span> <span class="mi">591032</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]],</span>
-           <span class="p">[</span><span class="s2">&quot;Bochum&quot;</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]],</span>
-           <span class="p">[</span><span class="s2">&quot;Dortmund&quot;</span><span class="p">,</span> <span class="mi">587696</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span>
+<span class="n">my_list</span> <span class="o">=</span> <span class="p">[[</span><span class="err">“</span><span class="n">Essen</span><span class="err">”</span><span class="p">,</span> <span class="mi">591032</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]],</span>
+<span class="p">[</span><span class="err">“</span><span class="n">Bochum</span><span class="err">”</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]],</span>
+<span class="p">[</span><span class="err">“</span><span class="n">Dortmund</span><span class="err">”</span><span class="p">,</span> <span class="mi">587696</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]]]</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">my_list</span><span class="p">,</span>
-                  <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;inhabitants&quot;</span><span class="p">,</span> <span class="s2">&quot;xyz&quot;</span><span class="p">],</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="err">“</span><span class="n">city</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">inhabitants</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">xyz</span><span class="err">”</span><span class="p">],</span>
+<span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">b</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">c</span><span class="err">”</span><span class="p">])</span>
 </pre></div>
 </div>
-<section id="slicing-und-indexing">
-<h2><span class="section-number">18.1. </span>Slicing und Indexing<a class="headerlink" href="#slicing-und-indexing" title="Link to this heading">#</a></h2>
-<p>Slicing und Indexing, also das gezielte „zerschneiden“ (slicing) und Adressieren (indexing) von Tabellen um nur bestimmte Daten wiederzugeben ist eines der Zentralen Elemente bei der Arbeit mit größeren Datenmengen. Bei Numpy haben wir schon gesehen, wie mächtig, aber auch wie schwierig das sein kann. In Pandas gibt es sogar oft noch mehr Optionen und es kann schnell etwas unübersichtlich werden. Allerdings: Gute Slicing/Indexing-Skills in Pandas werden ziemlich schnell zu echten Superkräften wenn es um Data Science geht ;)</p>
-<p>OK, aber aller Anfang…</p>
-<p>Wir haben gerade gesehen, dass ein Dictionary in ein DataFrame umgesetzt werden kann. Und die Inhalte können auch auf eine Ähnliche Art abgerufen werden, nämlich über die Spaltennamen (entweder einzeln oder als Liste):</p>
+<section id="slicing-and-indexing">
+<h2><span class="section-number">18.1. </span>Slicing and Indexing<a class="headerlink" href="#slicing-and-indexing" title="Link to this heading">#</a></h2>
+<p>Slicing and indexing, i.e. the targeted “cutting” (slicing) and addressing (indexing) of tables to display only certain data, is one of the central elements when working with large amounts of data. With Numpy, we have already seen how powerful, but also how difficult this can be. In Pandas, there are often even more options and it can quickly become confusing. However, good slicing/indexing skills in Pandas quickly become real superpowers when it comes to data science ;)</p>
+<p>OK, but every beginning…</p>
+<p>We have just seen that a dictionary can be converted into a DataFrame. And the contents can also be accessed in a similar way, namely via the column names (either individually or as a list):</p>
 <!-- pytest-codeblocks:cont -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;inhabitants&quot;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="err">“</span><span class="n">inhabitants</span><span class="err">”</span><span class="p">]</span>
 
-<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;inhabitants&quot;</span><span class="p">]</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">city</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">inhabitants</span><span class="err">”</span><span class="p">]</span>
 <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Um bestimmte Zeilen auszuwählen ist es möglich <code class="docutils literal notranslate"><span class="pre">.loc</span></code> zu nutzen, also <code class="docutils literal notranslate"><span class="pre">.loc[&quot;a&quot;]</span></code> für eine Zeile oder eine Liste oder Range für mehrere Zeilen</p>
+<p>To select certain rows, you can use <code class="docutils literal notranslate"><span class="pre">.loc</span></code>, i.e. <code class="docutils literal notranslate"><span class="pre">.loc[“a”]</span></code> for a single row or a list or range for multiple rows</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Essen&quot;</span><span class="p">,</span> <span class="s2">&quot;Bochum&quot;</span><span class="p">,</span> <span class="s2">&quot;Dortmund&quot;</span><span class="p">],</span>
-                   <span class="s2">&quot;inhabitants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">591032</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="mi">587696</span><span class="p">],</span>
-                   <span class="s2">&quot;xyz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
-                  
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="err">“</span><span class="n">city</span><span class="err">”</span><span class="p">:</span> <span class="p">[</span><span class="err">“</span><span class="n">Essen</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Bochum</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Dortmund</span><span class="err">”</span><span class="p">],</span>
+<span class="err">“</span><span class="n">inhabitants</span><span class="err">“</span><span class="p">:</span> <span class="p">[</span><span class="mi">591032</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="mi">587696</span><span class="p">],</span>
+<span class="err">“</span><span class="n">xyz</span><span class="err">”</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
+<span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">b</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">c</span><span class="err">”</span><span class="p">])</span>
 
-<span class="c1"># oder über liste</span>
-<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">]</span>
+
+<span class="c1"># or via list</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">c</span><span class="err">”</span><span class="p">]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">rows</span><span class="p">]</span>
 
-<span class="c1"># oder über range mit :</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">:</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+<span class="c1"># or via range with :</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">:</span><span class="err">“</span><span class="n">b</span><span class="err">”</span><span class="p">]</span>
 
-<span class="c1"># Das kann auch mit Spalten kombiniert werden</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;inhabitants&quot;</span><span class="p">]]</span>
+<span class="c1"># This can also be combined with columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">,</span> <span class="p">[</span><span class="err">“</span><span class="n">city</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">inhabitants</span><span class="err">”</span><span class="p">]]</span>
 </pre></div>
 </div>
-<p>Alternativ gibt es noch einen Weg über die Indices und zwar mit <code class="docutils literal notranslate"><span class="pre">.iloc</span></code> und das sieht dann plötzlich wieder aus wie bei Numpy:</p>
+<p>Alternatively, there is still a way via the indices, namely with <code class="docutils literal notranslate"><span class="pre">.iloc</span></code>, and that suddenly looks like Numpy again:</p>
 <!-- pytest-codeblocks:cont -->
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
 
-<span class="c1"># oder auch Zeilen und Spalten</span>
+<span class="c1"># or rows and columns</span>
 <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
 </pre></div>
 </div>
-<p>Zusammenfassung:</p>
+<p>Summary:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> um Spalten zu wählen</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.loc[row_labels,</span> <span class="pre">column_labels]</span></code>  um über die Labels (Zeilen und Spaltennamen) Elemente auszuwählen</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.iloc[row_positions,</span> <span class="pre">column_positions]</span></code>  um über die Indices Elemente auszuwählen</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> to select columns</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.loc[row_labels,</span> <span class="pre">column_labels]</span></code> to select elements by their labels (row and column names)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.iloc[row_positions,</span> <span class="pre">column_positions]</span></code> to select elements by their indices</p></li>
 </ul>
-<section id="elemente-hinzufugen-entfernen">
-<h3><span class="section-number">18.1.1. </span>Elemente hinzufügen/entfernen<a class="headerlink" href="#elemente-hinzufugen-entfernen" title="Link to this heading">#</a></h3>
-<p>Einem DataFrame können weitere Spalten genau wie bei Dictionaries hinzugefügt werden:</p>
+<section id="adding-removing-elements">
+<h3><span class="section-number">18.1.1. </span>Adding/Removing Elements<a class="headerlink" href="#adding-removing-elements" title="Link to this heading">#</a></h3>
+<p>Additional columns can be added to a DataFrame in exactly the same way as for dictionaries:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;city&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Essen&quot;</span><span class="p">,</span> <span class="s2">&quot;Bochum&quot;</span><span class="p">,</span> <span class="s2">&quot;Dortmund&quot;</span><span class="p">],</span>
-                   <span class="s2">&quot;inhabitants&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">591032</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="mi">587696</span><span class="p">],</span>
-                   <span class="s2">&quot;xyz&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
-                  <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="err">“</span><span class="n">city</span><span class="err">”</span><span class="p">:</span> <span class="p">[</span><span class="err">“</span><span class="n">Essen</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Bochum</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">Dortmund</span><span class="err">”</span><span class="p">],</span>
+<span class="err">“</span><span class="n">inhabitants</span><span class="err">“</span><span class="p">:</span> <span class="p">[</span><span class="mi">591032</span><span class="p">,</span> <span class="mi">364454</span><span class="p">,</span> <span class="mi">587696</span><span class="p">],</span>
+<span class="err">“</span><span class="n">xyz</span><span class="err">”</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">3</span><span class="p">)},</span>
+<span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="err">“</span><span class="n">a</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">b</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">c</span><span class="err">”</span><span class="p">])</span>
 
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">116</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">86</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="err">“</span><span class="n">height</span><span class="err">”</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">116</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">86</span><span class="p">]</span>
 <span class="n">df</span>
 </pre></div>
 </div>
-<p>Der umgekehrte Schritt wäre, eine Spalte komplett zu entfernen, das geht mit <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">df[&quot;xyz&quot;]</span></code>.</p>
+<p>The reverse step would be to completely remove a column, which can be done with <code class="docutils literal notranslate"><span class="pre">del</span> <span class="pre">df[“xyz”]</span></code>.</p>
 </section>
 <section id="now-go-data-science">
 <h3><span class="section-number">18.1.2. </span>Now: go Data Science<a class="headerlink" href="#now-go-data-science" title="Link to this heading">#</a></h3>
-<p><em>Den folgenden Teil kann man wahrscheinlich besser über das entsprechende Jupyter Notebook nachvollziehen (bzw. auch gleich damit arbeiten!).</em></p>
-<p>Bisher haben wir uns nur einfache Beispiele angeschaut um die Methoden von Pandas ein wenig kennenzulernen. Interessant wird das Ganze aber eigentlich erst wenn wir anfangen mit größeren Datensets zu spielen. Wann ein Datenset als „groß“ gilt ist natürlich relativ, hier meine ich damit v.a. Daten die zumindest so groß sind, dass wir sie nicht mit einem kurzem Blick auf eine Tabelle vollständig verstehen können.</p>
-<p>Für diesen Zweck fangen wir hier an mit dem „Pokemon Dataset“ zu arbeiten das man auf „Kaggle“ herunterladen kann: https://www.kaggle.com/rounakbanik/pokemon</p>
+<p><em>The following part is probably easier to understand using the corresponding Jupyter Notebook (or to work with it right away!).</em></p>
+<p>So far, we have only looked at simple examples to get to know the methods of Pandas a little. But the whole thing only gets interesting when we start playing with larger data sets. Of course, what constitutes a “large” data set is relative, but here I mean data that is at least so large that we cannot understand it completely with a quick glance at a table.</p>
+<p>For this purpose, we will start working with the “Pokemon Dataset” that can be downloaded from “Kaggle”: https://www.kaggle.com/rounakbanik/pokemon</p>
 </section>
-<section id="daten-importieren">
-<h3><span class="section-number">18.1.3. </span>Daten importieren<a class="headerlink" href="#daten-importieren" title="Link to this heading">#</a></h3>
-<p>Das Laden von Daten aus Textdateien geht in der Regel recht einfach mit Pandas, da Pandas entsprechende Funktionen dafür bereitstellt. U.a. zum importieren von CSV oder Excel-Dateien.</p>
+<section id="importing-data">
+<h3><span class="section-number">18.1.3. </span>Importing data<a class="headerlink" href="#importing-data" title="Link to this heading">#</a></h3>
+<p>Loading data from text files is usually quite easy with Pandas, as Pandas provides corresponding functions for this. Among other things, to import CSV or Excel files.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
-<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">&quot;exercises&quot;</span><span class="p">,</span> <span class="s1">&#39;pokemon.csv&#39;</span><span class="p">)</span>  <span class="c1"># je nach eigenem Pfad anpassen!</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="err">“</span><span class="n">exercises</span><span class="err">”</span><span class="p">,</span> <span class="s1">&#39;pokemon.csv&#39;</span><span class="p">)</span> <span class="c1"># adjust according to your own path!</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-<span class="c1"># hier geht auch: data = pd.read_csv(filename) da delimiter=&quot;,&quot; der &quot;default&quot;-Parameter ist</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="err">“</span><span class="p">,</span><span class="err">”</span><span class="p">)</span>
+<span class="c1"># also possible here: data = pd.read_csv(filename) because delimiter=“,” is the “default” parameter</span>
 
-<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># oder: data.tail()</span>
-</pre></div>
-</div>
-<p>Die Tabelle ist hier erstmal zu groß, darum können wir uns erst die Spaltennamen anschauen:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">columns</span>
-</pre></div>
-</div>
-<section id="neues-kleineres-dataframe-erzeugen">
-<h4><span class="section-number">18.1.3.1. </span>Neues, kleineres DataFrame erzeugen<a class="headerlink" href="#neues-kleineres-dataframe-erzeugen" title="Link to this heading">#</a></h4>
-<p>Das sind ziemlich viele Spalten! Wir nehmen darum erstmal nur ein paar davon für die nächsten Schritte</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;type1&#39;</span><span class="p">,</span> <span class="s1">&#39;type2&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span> <span class="s1">&#39;abilities&#39;</span><span class="p">,</span><span class="s1">&#39;attack&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;defense&#39;</span><span class="p">,</span> <span class="s1">&#39;height_m&#39;</span><span class="p">,</span> <span class="s1">&#39;hp&#39;</span><span class="p">,</span> <span class="s1">&#39;weight_kg&#39;</span><span class="p">,</span>
-       <span class="s1">&#39;generation&#39;</span><span class="p">,</span> <span class="s1">&#39;is_legendary&#39;</span><span class="p">]</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># or: data.tail()</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;type1&#39;</span><span class="p">,</span> <span class="s1">&#39;type2&#39;</span><span class="p">,</span> <span class="s1">&#39;speed&#39;</span><span class="p">,</span> <span class="s1">&#39;abilities&#39;</span><span class="p">,</span><span class="s1">&#39;attack&#39;</span><span class="p">,</span>
+<span class="s1">&#39;defense&#39;</span><span class="p">,</span> <span class="s1">&#39;height_m&#39;</span><span class="p">,</span> <span class="s1">&#39;hp&#39;</span><span class="p">,</span> <span class="s1">&#39;weight_kg&#39;</span><span class="p">,</span>
+<span class="s1">&#39;generation&#39;</span><span class="p">,</span> <span class="s1">&#39;is_legendary&#39;</span><span class="p">]</span>
 <span class="n">data_selected</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
 <span class="n">data_selected</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Einen ersten Eindruck der Daten (zumindest der numerischen Einträge), können wir uns verschaffen über:</p>
+<p>We can get a first impression of the data (at least the numerical entries) with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Danach kommen wir zum eigentlichen Kern der Pandas Analyse. Durch das Kombinieren von Slicing/Indexing und weiteren Pandas-Methoden können verschiedene Aspekte der Daten schnell und gut erkundet werden.</p>
-<p>Z.B um zu schauen welche Typen von Pokemon es gibt</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="p">[</span><span class="s2">&quot;type1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<p>After that, we come to the actual core of the Pandas analysis. By combining slicing/indexing and other Pandas methods, various aspects of the data can be explored quickly and effectively.</p>
+<p>For example, to see what types of Pokemon there are</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="p">[</span><span class="err">“</span><span class="n">type1</span><span class="err">”</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Und wie viele es von jedem Typ gibt:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="p">[</span><span class="s2">&quot;type1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<p>And how many of each type there are:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="p">[</span><span class="err">“</span><span class="n">type1</span><span class="err">”</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
-</section>
-<section id="wie-bekomme-ich-nun-die-werte">
-<h3><span class="section-number">18.1.4. </span>Wie bekomme ich nun die Werte<a class="headerlink" href="#wie-bekomme-ich-nun-die-werte" title="Link to this heading">#</a></h3>
-<p>Pandas gibt in den meisten Fällen entweder ein <strong>DataFrame</strong> (Tabelle) zurück, oder eine <strong>Series</strong> (eine einzelne Spalte mit Zeilennamen). In manchen Fällen wollen wir aber nur die eigentlichen Werte aus der Spalte (oder aus der Tabelle) haben. Dafür gibt es in Pandas die Möglichkeit ein Numpy Array auszugeben mit <code class="docutils literal notranslate"><span class="pre">.values</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">data_selected</span><span class="p">[</span><span class="s2">&quot;type1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+<section id="how-do-i-get-the-values-now">
+<h3><span class="section-number">18.1.4. </span>How do I get the values now?<a class="headerlink" href="#how-do-i-get-the-values-now" title="Link to this heading">#</a></h3>
+<p>Pandas usually returns either a <strong>DataFrame</strong> (table) or a <strong>Series</strong> (a single column with row names). In some cases, however, we only want the actual values from the column (or from the table). For this, Pandas offers the option of outputting a Numpy array with <code class="docutils literal notranslate"><span class="pre">.values</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">values</span> <span class="o">=</span> <span class="n">data_selected</span><span class="p">[</span><span class="err">“</span><span class="n">type1</span><span class="err">”</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[114 105  78  72  53  52  45  39  32  32  29  28  27  27  24  23  18   3]
-&lt;class &#39;numpy.ndarray&#39;&gt;
-</pre></div>
-</div>
+<p>[114 105 78 72 53 52 45 39 32 32 29 28 27 27 24 23 18 3]
+&lt;class ‚numpy.ndarray‘&gt;</p>
 </section>
 </section>
-<section id="sortieren">
-<h2><span class="section-number">18.2. </span>Sortieren<a class="headerlink" href="#sortieren" title="Link to this heading">#</a></h2>
-<p>Anders als by Numpy und Listen gibt es bei Pandas keine Methode <code class="docutils literal notranslate"><span class="pre">.sort()</span></code>, sondern zwei verschiedene Methoden:</p>
+<section id="sorting">
+<h2><span class="section-number">18.2. </span>Sorting<a class="headerlink" href="#sorting" title="Link to this heading">#</a></h2>
+<p>Unlike numpy and lists, there is no pandas.sort() method, but two different methods:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.sort_index()</span></code> - Sortiert nach dem Index</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.sort_values()</span></code> - Sortiert nach Spaltenwerten</p></li>
+<li><p>pandas.sort_index() - sorts by index</p></li>
+<li><p>pandas.sort_values() - sorts by column values</p></li>
 </ul>
-<p>Anders als bei Listen gibt es kein Parameter „reverse“ sondern dafür <code class="docutils literal notranslate"><span class="pre">ascending</span></code>, das zur Umkehrung der Sortierung auf <code class="docutils literal notranslate"><span class="pre">False</span></code> gesetzte werden kann.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;speed&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">])</span>
+<p>Unlike lists, there is no “reverse” parameter, but there is “ascending”, which can be set to False to reverse the sort.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_selected</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="err">“</span><span class="n">speed</span><span class="err">”</span><span class="p">,</span> <span class="err">“</span><span class="n">name</span><span class="err">”</span><span class="p">])</span>
 
-<span class="c1"># or: data_selected.sort_values([&quot;speed&quot;, &quot;name&quot;], ascending=False)</span>
+<span class="c1"># or: data_selected.sort_values([“speed”, “name”], ascending=False)</span>
 </pre></div>
 </div>
 </section>
@@ -673,7 +658,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title"><span class="section-number">17. </span>Numerische Daten in Python mit NumPy - Teil 2</p>
+        <p class="prev-next-title"><span class="section-number">17. </span>Numerical Data in Python with NumPy - Part 2</p>
       </div>
     </a>
     <a class="right-next"
@@ -681,7 +666,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">weiter</p>
-        <p class="prev-next-title"><span class="section-number">19. </span>Pandas - Teil 2</p>
+        <p class="prev-next-title"><span class="section-number">19. </span>Pandas - Part 2</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -701,17 +686,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-und-indexing">18.1. Slicing und Indexing</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#elemente-hinzufugen-entfernen">18.1.1. Elemente hinzufügen/entfernen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slicing-and-indexing">18.1. Slicing and Indexing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-removing-elements">18.1.1. Adding/Removing Elements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-go-data-science">18.1.2. Now: go Data Science</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#daten-importieren">18.1.3. Daten importieren</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#neues-kleineres-dataframe-erzeugen">18.1.3.1. Neues, kleineres DataFrame erzeugen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#importing-data">18.1.3. Importing data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-i-get-the-values-now">18.1.4. How do I get the values now?</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wie-bekomme-ich-nun-die-werte">18.1.4. Wie bekomme ich nun die Werte</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sortieren">18.2. Sortieren</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting">18.2. Sorting</a></li>
 </ul>
   </nav></div>
 

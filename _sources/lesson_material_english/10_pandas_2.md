@@ -1,10 +1,10 @@
-# Pandas - Teil 2
+# Pandas - Part 2
 
-Im ersten Teil haben wir gesehen, wie wir eine `.csv`-Datei einlesen und grundlegende Eigenschaften erkunden. Hier werden wir jetzt noch einige Schritte weitergehen im Umgang mit (komplexen) Datensets.
+In the first part, we saw how to read a.csv file and explore basic properties. Here, we will take it a few steps further in dealing with (complex) data sets.
 
 ## Data cleaning
 
-Unter data cleaning versteht man das Umstellen und Bearbeiten von Daten mit dem Ziel, diese für die folgende Analyse besser nutzbar zu machen. Einen Schritt in diese Richtung haben wir letztes Mal bereits unternommen, indem wir die Anzahl der Spalten auf die wichtigsten reduziert haben.
+Data cleaning involves rearranging and processing data with the aim of making it more useful for subsequent analysis. We already took a step in this direction last time by reducing the number of columns to the most important ones.
 
 ```python
 import pandas as pd
@@ -12,23 +12,25 @@ import numpy as np
 import os
 
 root = os.getcwd()
-filename = os.path.join(root, "my_data_folder", 'pokemon.csv')
+filename = os.path.join(root, “my_data_folder”, 'pokemon.csv')
 
-data = pd.read_csv(filename, delimiter=",")
+data = pd.read_csv(filename, delimiter=“,”)
 
-cols = ['name', 'type1', 'type2', 'speed', 'abilities','attack',
-       'defense', 'height_m', 'hp', 'weight_kg',
-       'generation', 'is_legendary']
+cols = [
+    'name', 'type1', 'type2', 'speed', 'abilities','attack',
+    'defense', 'height_m', 'hp', 'weight_kg',
+    'generation', 'is_legendary'
+]
 data_selected = data[cols]
 ```
 
-Mit `data_selected.info()` können wir sehen, das einige Spalten nicht die benötigten 801 Einträge enthalten.
+With `data_selected.info()` we can see that some columns do not contain the required 801 entries.
 
-Wenn wir uns die Tabelle anschauen (z.B. mit `data_selected.head()`) , sehen wir, dass einige Einträge `NaN` heißen. Dies steht für Not-a-Number und ist das Numpy Format für fehlende/unbekannte Einträge. 
+If we look at the table (e.g. with `data_selected.head()`), we see that some entries are called `NaN`. This stands for Not-a-Number and is the Numpy format for missing/unknown entries. 
 
-Pandas bietet eine Reihe von Möglichkeiten mit solchen fehlenden Werten  umzugehen. NaN's gibt es auch in Numpy, nur haben wir sie uns dort nicht explizit  angeschaut. In Numpy kann solch ein Eintrag erstellt werden als `np.nan`.
+Pandas offers a range of options for dealing with such missing values. NaNs also exist in Numpy, but we have not explicitly looked at them there. In Numpy, such an entry can be created as `np.nan`.
 
-In Pandas können diese über `.isnull()` oder `isna()` abgefragt werden, wobei das `.any()` angibt das der Wert True ausgegeben werden soll wenn mindestens ein Element ein NaN ist. Beide Methoden machen hier das Gleiche auch wenn "isnull" vielleicht verwirrend ist, denn es gibt nicht wieder ob ein Wert Null ist, sondern nur ob ein Wert nicht vorhanden ist (NaN --> True).
+In Pandas, these can be queried using `.isnull()` or `isna()`, where `.any()` indicates that the value should be True if at least one element is a NaN. Both methods do the same here, although “isnull” is perhaps confusing because it does not indicate whether a value is zero, but only whether a value is not present (NaN --> True).
 
 ```python
 print(data_selected.isna().any())
@@ -36,62 +38,53 @@ print(data_selected.isna().any())
 print(data_selected.isnull().any())
 ```
 
-Wir können nun alle Spalten anzeigen in denen einzelne Werte fehlen:
+We can now display all columns in which individual values are missing:
 
 ```python
 data_selected[data.columns[data.isna().any()]]
 ```
 
-### Und jetzt? Was tun mit NaNs?
+### And now? What to do with NaNs?
 
-Je nachdem was wir mit den Daten vorhaben, gibt es verschiedene Strategien mit den fehlenden Einträgen umzugehen. In vielen Fällen können wir sie einfach ignorieren. Wenn wir Mittelwerte (`.mean()`) oder Ähnliches berechnen, werde diese Werte automatisch nicht mitgezählt.
+Depending on what we want to do with our data, there are different strategies for dealing with missing values. In many cases, we can simply ignore them. If we calculate mean values (`.mean()`) or similar, these values are automatically not counted.
 
-In anderen Fällen wollen wir die Werte vielleicht ersetzten, z.B. durch "0". Aber Vorsicht! Danach werden diese Werte nämlich doch mitgezählt wenn Summen oder Mittelwerte berechnet werden.
+In other cases, we may want to replace the values, e.g. with “0”. But be careful! After that, these values will be counted when calculating sums or averages.
 
-#### NaN ersetzen
+#### Replacing NaN
 
-Das Ersetzen geht bei Pandas mit `.fillna()`:
+In Pandas, you can replace values with `.fillna()`:
 
 ```python
 data_selected.fillna(0).head()
 ```
 
-Wir können aber auch Strings oder andere Formate benutzen:
+But we can also use strings or other formats:
 
-```python
-data_selected.fillna("unknown").head()
-```
+python
+data_selected.fillna(“unknown”).head()
 
-Das kann sinnvoll sein, wenn wir die "unknown" explizit mitzählen möchten:
-
-```python
-data_selected.fillna("unknown")["type2"].value_counts()
-```
-
-### NaN entfernen
-
-Falls NaN nicht einfach ersetzt werden können und für die weiteren Schritte nicht vorkommen sollen, dann müssen entweder die entsprechenden Spalten oder Zeilen aus der Tabelle entfernt werden. Das geht in Pandas mit `.dropna()`.
+If NaN cannot simply be replaced and should not occur in the further steps, then either the corresponding columns or rows must be removed from the table. This can be done in Pandas with `.dropna()`.
 
 ```python
 data_selected.dropna().head()
 ```
 
-Oder für die Entfernung aller Spalten mit NaNs:
+Or to remove all columns with NaNs:
 
 ```python
 data_selected.dropna(axis=1).head()
 ```
 
-### Wichtig:
+### Important:
 
-In Python gibt es zwei Möglichkeiten für Methoden die "ihr" Objekt verändern wollen:
+In Python, there are two options for methods that want to modify “their” object:
 
-1) Objekt bleibt unverändert und veränderte Kopie wird über `return` ausgegeben.
-2) Objekt selbst wird verändert.
+1) The object remains unchanged and a modified copy is output via `return`.
+2) The object itself is modified.
 
-Bei Pandas findet in der Regel (1) statt, siehe auch https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#indexing-view-versus-copy.
+In the case of Pandas, (1) usually takes place, see also https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#indexing-view-versus-copy.
 
-Das bedeutet, wenn wir ein verändertes DataFrame erhalten wollen müssen wir dies mit `=` erstellen:
+This means that if we want to receive a modified DataFrame, we have to create it with `=`:
 
 ```python
 data_na_removed = data_selected.dropna()
@@ -100,110 +93,109 @@ data_na_removed.head()
 
 ## Digging a bit deeper...
 
-Gehen wir mit der Analyse der Daten einen Schritt weiter. Was wenn wir mehr über einzelne Gruppen wissen möchten?
+Let's take the analysis of the data a step further. What if we want to know more about individual groups?
 
-Über Masken können wir ganz gezielt einzelne Fragen adressieren:
+We can use masks to address specific questions:
 
 ```python
-mask = data_selected["type1"] == "bug"
+mask = data_selected[“type1”] == “bug”
 data_selected[mask].head()
 ```
 
-Über solche Masken können wir auch Eigenschaften über einzelne Gruppen abfragen:
+We can also use such masks to query properties about individual groups:
 
 ```python
-data_selected[mask]["weight_kg"].mean()
+data_selected[mask][“weight_kg”].mean()
 ```
 
-Das geht im Prinzip ganz gut und macht was es soll. Doch Pandas hat dafür (natürlich) auch eine Funktion die das noch einfacher macht: `groupby()`.
+In principle, this works quite well and does what it is supposed to do. But (of course) Pandas also has a function for this that makes it even easier: groupby().
 
 ## Groupby
 
-Pandas `grouby` (siehe [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)).
+Pandas `groupby` (see [Pandas documentation](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)).
 
-Mit grouby können bei Pandas alle Einträge mit bestimmten Kategorien zusammengefasst werden. Damit lassen sich leicht und schnell viele Eigenschaften vergleichen.
-
-```python
-data_selected.groupby("type1").mean()
-```
-
-Hier sind die Einträge nach dem "type1" alphabetisch sortiert. Um die Sortierung zu ändern fügen wir einfach ein `sort_values()`hinzu um nach der gewünschten Spalte zu sortieren:
+With grouby, all entries with certain categories can be summarized in Pandas. This makes it easy to quickly compare many properties.
 
 ```python
-data_selected.groupby("type1").mean().sort_values("speed")
+data_selected.groupby(“type1”).mean()
 ```
 
-Groupby kann auch genutzt werden um die Anzahl der Elemente in den jeweiligen Gruppen zu zählen:
+Here the entries are sorted alphabetically by “type1”. To change the sorting, we simply add a `sort_values()` to sort by the desired column:
 
 ```python
-data_selected.groupby("type1").count()
+data_selected.groupby(“type1”).mean().sort_values(“speed”)
 ```
 
-Es ist sogar möglich, mehrere groupby Aktionen zu kombinieren und damit Gruppen und Untergruppen zu erstellen:
+Groupby can also be used to count the number of elements in the respective groups:
 
 ```python
-data_selected.groupby(["type1", "is_legendary"]).mean()
+data_selected.groupby(“type1”).count()
 ```
 
-Damit können wir einsehen, welche mittleren Werte ein Pokemon von einem bestimmtem Typ hat, je nachdem ob er "legendary" ist oder nicht.
+It is even possible to combine multiple groupby actions to create groups and subgroups:
+
+python
+data_selected.groupby([“type1”, “is_legendary”]).mean()
+
+This allows us to see what the average values are for a pokemon of a certain type, depending on whether it is “legendary” or not.
 
 
 
 ## Plotting
 
-Noch einige kurze Plotting-Beispiele zum Schluss.
+Finally, a few short plotting examples.
 
-Da wir eben `groupby` benutzt haben, können wir dies auch verwenden um einen Plot zu erzeugen. "stacked=True" bedeutet hierbei übrigens, dass die verschiedenen Balken aneinander gehängt werden sollen.
+Since we just used `groupby`, we can also use this to create a plot. Incidentally, “stacked=True” means that the different bars should be attached to each other.
 
 ```python
-cols = ["attack", "defense", "hp", "speed", "weight_kg"]
-data_selected.groupby("type1").mean()[cols].plot.barh(stacked=True)
+cols = [“attack”, “defense”, “hp”, “speed”, “weight_kg”]
+data_selected.groupby(“type1”).mean()[cols].plot.barh(stacked=True)
 ```
 
-Es gibt schönere Plots, aber zumindest sehen wir so sehr schnell, dass vor allem der Eintrag "weight_kg" sehr stark von der jeweiligen type1-Gruppe abhängt! Also gleich noch einen Plot dafür hinterher:
+There are nicer plots, but at least we can quickly see that the “weight_kg” entry in particular depends very much on the respective type1 group! So let's have another plot for it:
 
 ```python
-data_selected.groupby("type1").mean()["weight_kg"].plot.barh()
+data_selected.groupby(“type1”).mean()[“weight_kg”].plot.barh()
 ```
 
 #### Intermezzo: data visualization
 
-Warum ist der Plot hier oben ziemlich mies?
+Why is the plot up here pretty bad?
 
---> Die Reihenfolge macht es **sehr** unübersichtlich! Stellen Sie sich vor ich frage, welcher Typ auf der Position 3, 4, oder 5 steht...
+--> The order makes it **very** confusing! Imagine I ask which type is at position 3, 4, or 5...
 
---> Die Axenbeschriftung bei der x-Axe fehlt.
+The axis label for the x-axis is missing.
 
-Allgemein: Pandas plottet mit Hilfe von [`matplotlib`](https://matplotlib.org/). Für Aufwendigere Grafiken und Anpassungen werden die Plots darum auch  mit matplotlib programmiert. Aber Pandas gibt eben einen schnellen  Zugang um verschiedene Plots zu erkunden.
+In general: Pandas plots with the help of [`matplotlib`](https://matplotlib.org/). For more elaborate graphics and customizations, the plots are therefore also programmed with matplotlib. But Pandas just gives you quick access to explore different plots.
 
-Einfache Anpassungen lassen sich auch durchaus gut mit Pandas machen, bzw. können auch matplotlib Befehle mit Pandas kombiniert werden.
+Simple adjustments can also be made quite well with Pandas, or matplotlib commands can be combined with Pandas.
 
-Darum hier ein weiterer Versuch:
+Therefore, here is another attempt:
 
 ```python
-ax = data_selected.groupby("type1").mean()["weight_kg"].sort_values().plot.barh()
-ax.set_xlabel("weight [kg]")
+ax = data_selected.groupby(“type1”).mean()[“weight_kg”].sort_values().plot.barh()
+ax.set_xlabel(“weight [kg]”)
 ```
 
-Bei Pandas werden solche Aufrufe schnell sehr lang und kompliziert, da  immer mehr und mehr Funktionen/Methoden hintereinander gehangen werden  können. Um es etwas übersichtlicher zu machen kann auch mit  Zwischenschritten gearbeitet werden!
+With Pandas, such calls quickly become very long and complicated because more and more functions/methods can be added one after the other. To make it a little clearer, you can also work with intermediate steps!
 
 ```python
-data_groupby_type = data_selected.groupby("type1")
-data_mean_weight = data_groupby_type.mean()["weight_kg"]
+data_groupby_type = data_selected.groupby(“type1”)
+data_mean_weight = data_groupby_type.mean()[“weight_kg”]
 ax = data_mean_weight.sort_values().plot.barh()
-ax.set_xlabel("weight [kg]")
+ax.set_xlabel(“weight [kg]”)
 ```
 
 
 
-### Einige wenige weitere Beispiele im Jupyter Notebook der Vorlesung
+### A few more examples in the Jupyter Notebook of the lecture
 
-Der gesamte Code und einige weitere Plot Beispiele finden Sie im Jupyter Notebook `vorlesung_10_intro_pandas_2.ipynb` auf Moodle.
+... moving stuff to jupyter notebooks (soon)
 
 
 
-## Pandas ist riesig!
+## Pandas is huge!
 
-Zum Schluss noch der Hinweis, das wir in 2-3, ja auch nicht in 4-5 Vorlesung den Umfang von Pandas abdecken können. Es geht also v.a. darum, dass Sie sich mit dem Umgang mit Pandas und DataFrames vertraut machen und die einfachen Operationen damit ausführen können (z.B. slicing, Sortieren). Für alles weitere können Sie jederzeit in Foren oder auf der Pandas Dokumentation nachschauen, ob es für ihre spezielle Frage nicht schon eine passende Pandas-Methode gibt:
+Finally, we would like to point out that we will not be able to cover the full range of Pandas in 2-3, or even 4-5 lectures. So the main thing is that you familiarize yourself with how to use Pandas and DataFrames and how to perform simple operations with them (e.g. slicing, sorting). For everything else, you can always check forums or the Pandas documentation to see if there is already a suitable Pandas method for your specific question:
 
 https://pandas.pydata.org/pandas-docs/stable/reference/frame.html
