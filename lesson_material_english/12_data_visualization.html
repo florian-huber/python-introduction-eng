@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=91fba89f"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="19. Pandas - Teil 2" href="10_pandas_2.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="../_static/cover_logo_mini.png" class="logo__image only-light" alt="Introduction to Programming with Python - Home"/>
-    <img src="../_static/cover_logo_mini.png" class="logo__image only-dark pst-js-only" alt="Introduction to Programming with Python - Home"/>
+    <script>document.write(`<img src="../_static/cover_logo_mini.png" class="logo__image only-dark" alt="Introduction to Programming with Python - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Suche</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -192,12 +203,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="05_error_handling.html">11. Error Handling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_one_step_back-best_practices.html">12. Clean Code and Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_open_files.html">13. Dateien lesen und schreiben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_open_files.html">13. Reading and Writing Files</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Of Classes and Objects</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="06_classes_objects.html">14. Objektorientierte Programmierung - Einführung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_classes_objects_2.html">15. Objektorientierte Programmierung in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_classes_objects.html">14. Object-Oriented Programming - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_classes_objects_2.html">15. Object-oriented programming in Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Numerical Data - Numpy</span></p>
 <ul class="nav bd-sidenav">
@@ -422,16 +433,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -566,7 +585,7 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="s2">&quot;ro--&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -574,7 +593,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/21329b0f2cb2824913e2e544886d61ed5edbad2e9597d68b72d9195a4e5ca3a8.png" src="../_images/21329b0f2cb2824913e2e544886d61ed5edbad2e9597d68b72d9195a4e5ca3a8.png" />
+<img alt="../_images/af761b87bf56da8451010d920d6dbaf1a82bf3dd54e1e0ba50a50a5dcc0242ef.png" src="../_images/af761b87bf56da8451010d920d6dbaf1a82bf3dd54e1e0ba50a50a5dcc0242ef.png" />
 </div>
 </div>
 </section>
@@ -586,7 +605,7 @@
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
 
@@ -596,7 +615,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0d441890aaac6286e19363a1be97d50fd081dfc44414e1ea171a5f02e439dea9.png" src="../_images/0d441890aaac6286e19363a1be97d50fd081dfc44414e1ea171a5f02e439dea9.png" />
+<img alt="../_images/2863f6ec3ea4282fec56afce04e0481a80cada5b7912339ca63ddd96eaf098a8.png" src="../_images/2863f6ec3ea4282fec56afce04e0481a80cada5b7912339ca63ddd96eaf098a8.png" />
 </div>
 </div>
 </section>
@@ -620,7 +639,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d496ff2bf541b75192fb28386128e6eab3abca7dd3ec971ec98cfd647240d052.png" src="../_images/d496ff2bf541b75192fb28386128e6eab3abca7dd3ec971ec98cfd647240d052.png" />
+<img alt="../_images/af0565f3d5fd925baf8ab0cb4998951c88d675a309a37e755bd0b1e10e6baf52.png" src="../_images/af0565f3d5fd925baf8ab0cb4998951c88d675a309a37e755bd0b1e10e6baf52.png" />
 </div>
 </div>
 </section>
@@ -636,7 +655,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cbc15fe1c938889aeb5cdab5bf07a869a4ea87be13840589dc956791fd283a17.png" src="../_images/cbc15fe1c938889aeb5cdab5bf07a869a4ea87be13840589dc956791fd283a17.png" />
+<img alt="../_images/ef7f2daa85c6a7b4115f7203acc8761d03f9ec670e6c44696ceb8d8421c873a6.png" src="../_images/ef7f2daa85c6a7b4115f7203acc8761d03f9ec670e6c44696ceb8d8421c873a6.png" />
 </div>
 </div>
 </section>
@@ -652,7 +671,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0a40157b90c4dc1f453909b95b7e90ef3975ca32cc254181505c42a0312057f2.png" src="../_images/0a40157b90c4dc1f453909b95b7e90ef3975ca32cc254181505c42a0312057f2.png" />
+<img alt="../_images/8841afb28cfaf96cc6e1d732567ef1f08bc67202c2be59b79b63bdb3d67e0e0c.png" src="../_images/8841afb28cfaf96cc6e1d732567ef1f08bc67202c2be59b79b63bdb3d67e0e0c.png" />
 </div>
 </div>
 </section>
@@ -668,7 +687,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b8ed35b45ab75040daa67e8ac0d1345a7bc1079c65c3cfce39afbc5129b29f0c.png" src="../_images/b8ed35b45ab75040daa67e8ac0d1345a7bc1079c65c3cfce39afbc5129b29f0c.png" />
+<img alt="../_images/944901b1eb32fbebbf6cda30feb9625440f2d39d86d414c7a7f9ed0093116498.png" src="../_images/944901b1eb32fbebbf6cda30feb9625440f2d39d86d414c7a7f9ed0093116498.png" />
 </div>
 </div>
 </section>
@@ -692,8 +711,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13324db8c2483cceafa1ca8d726e10ae1c39bc2bee880836829b8a5e3011ce6f.png" src="../_images/13324db8c2483cceafa1ca8d726e10ae1c39bc2bee880836829b8a5e3011ce6f.png" />
-<img alt="../_images/c907f1a345661138ec7c0f660631744e4e9d29ccfbd1431375a9f706070b55ba.png" src="../_images/c907f1a345661138ec7c0f660631744e4e9d29ccfbd1431375a9f706070b55ba.png" />
+<img alt="../_images/934fc9c7181b5c5680473e33085f259ed0074096f8b994b62b55ea7d13e7477f.png" src="../_images/934fc9c7181b5c5680473e33085f259ed0074096f8b994b62b55ea7d13e7477f.png" />
+<img alt="../_images/613855e4a9cebc495872a4629341a5f0b18900444c127d0429aa8342cb75acb0.png" src="../_images/613855e4a9cebc495872a4629341a5f0b18900444c127d0429aa8342cb75acb0.png" />
 </div>
 </div>
 </section>
@@ -701,12 +720,12 @@
 <h2><span class="section-number">20.7. </span>„Anatomy of a figure“ - Wie ist eine Matplotlib Figure aufgebaut?<a class="headerlink" href="#anatomy-of-a-figure-wie-ist-eine-matplotlib-figure-aufgebaut" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
-<span class="kn">from</span> <span class="nn">matplotlib.patheffects</span> <span class="kn">import</span> <span class="n">withStroke</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">AutoMinorLocator</span><span class="p">,</span> <span class="n">MultipleLocator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patheffects</span><span class="w"> </span><span class="kn">import</span> <span class="n">withStroke</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoMinorLocator</span><span class="p">,</span> <span class="n">MultipleLocator</span>
 
 <span class="n">royal_blue</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="o">/</span><span class="mi">256</span><span class="p">,</span> <span class="mi">82</span><span class="o">/</span><span class="mi">256</span><span class="p">]</span>
 
@@ -752,7 +771,7 @@
 
 <span class="c1"># Annotate the figure</span>
 
-<span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">annotate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">code</span><span class="p">):</span>
     <span class="c1"># Circle marker</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">clip_on</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
                <span class="n">edgecolor</span><span class="o">=</span><span class="n">royal_blue</span> <span class="o">+</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
@@ -800,7 +819,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cf7d8e524c6b212be1a86a53ad7d2d5aa7c3720670e3b399e9b00fad3c6c6633.png" src="../_images/cf7d8e524c6b212be1a86a53ad7d2d5aa7c3720670e3b399e9b00fad3c6c6633.png" />
+<img alt="../_images/313fdd72016d1cf5872591e201162c69aa0c3704d1c951a407472a507989abd2.png" src="../_images/313fdd72016d1cf5872591e201162c69aa0c3704d1c951a407472a507989abd2.png" />
 </div>
 </div>
 <section id="linestyle">
@@ -826,7 +845,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c9c5680ee8043828d76030fd66c437cd7efe0927f0c39ba52d6944a0abb4d310.png" src="../_images/c9c5680ee8043828d76030fd66c437cd7efe0927f0c39ba52d6944a0abb4d310.png" />
+<img alt="../_images/6b7da4acbc8740f825f03fd337582942b8fb392a0f3442332f8aedc5a93e404a.png" src="../_images/6b7da4acbc8740f825f03fd337582942b8fb392a0f3442332f8aedc5a93e404a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -849,10 +868,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f98bdae6240&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb0f437a030&gt;
 </pre></div>
 </div>
-<img alt="../_images/69ae34a55d87ef6125e31d2e7ebbe12c83236a17b86a78dc7a9de6de05c4c94c.png" src="../_images/69ae34a55d87ef6125e31d2e7ebbe12c83236a17b86a78dc7a9de6de05c4c94c.png" />
+<img alt="../_images/f2bb03fc77a4299c16922c18a36584ade86115155a0390f4a968013db89ef960.png" src="../_images/f2bb03fc77a4299c16922c18a36584ade86115155a0390f4a968013db89ef960.png" />
 </div>
 </div>
 </section>
@@ -880,10 +899,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f98bda7f140&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb0f4339430&gt;
 </pre></div>
 </div>
-<img alt="../_images/3c26e4b2bc07592432279b25b72119c66ce3b5d16e4be3e7533ec0439cecc738.png" src="../_images/3c26e4b2bc07592432279b25b72119c66ce3b5d16e4be3e7533ec0439cecc738.png" />
+<img alt="../_images/25ad54f88259f67424b1b3982ca6cf83aad105a685b1205595c88530cb1b278e.png" src="../_images/25ad54f88259f67424b1b3982ca6cf83aad105a685b1205595c88530cb1b278e.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -906,10 +925,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f98bda20410&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb0f48300b0&gt;
 </pre></div>
 </div>
-<img alt="../_images/d2c7ea41cc6c11ce0ba788127de66287e0b91cc9ee8d849f89458084e7487501.png" src="../_images/d2c7ea41cc6c11ce0ba788127de66287e0b91cc9ee8d849f89458084e7487501.png" />
+<img alt="../_images/ca669c47dcd522f27c8b4ed3cca65a06c69da0557d4db6802e3baf698f0df252.png" src="../_images/ca669c47dcd522f27c8b4ed3cca65a06c69da0557d4db6802e3baf698f0df252.png" />
 </div>
 </div>
 </section>
@@ -933,7 +952,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7774c5a1cea0fe771df2f17d920c54aeac465350868e34cad0494ff21a737179.png" src="../_images/7774c5a1cea0fe771df2f17d920c54aeac465350868e34cad0494ff21a737179.png" />
+<img alt="../_images/11dc5a941d53bbc75ca39872eae73fab78d679bb9d0748489ecfc8ed262ec8e5.png" src="../_images/11dc5a941d53bbc75ca39872eae73fab78d679bb9d0748489ecfc8ed262ec8e5.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1009,7 +1028,7 @@
 <h2><span class="section-number">20.10. </span>Symbiose mit Pandas (und Seaborn)<a class="headerlink" href="#symbiose-mit-pandas-und-seaborn" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># More fake data...</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>
@@ -1237,7 +1256,7 @@ Eine Figure kann mehrere Axes (also Plots) enthalten.</p>
 <h4><span class="section-number">20.12.1.1. </span>1) „Pyplot style“<a class="headerlink" href="#pyplot-style" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;my figure title&quot;</span><span class="p">)</span>
@@ -1257,7 +1276,7 @@ Eine Figure kann mehrere Axes (also Plots) enthalten.</p>
 <h4><span class="section-number">20.12.1.2. </span>2) Object orientiert über Figure, Axes<a class="headerlink" href="#object-orientiert-uber-figure-axes" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">])</span>
@@ -1366,7 +1385,7 @@ Für komplexe Plots (mit vielen Subplots) ist aber in der Regel das Objekt-Orien
 <p>Dazu lassen wir den Loop über die verschiedenen <code class="docutils literal notranslate"><span class="pre">Axes</span></code> laufen wie in dem folgenden Beispiel:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">squiggle_xy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">squiggle_xy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">)):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">b</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">a</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>
 
 <span class="n">dim_x</span> <span class="o">=</span> <span class="mi">6</span>
@@ -1591,8 +1610,7 @@ Für komplexe Plots (mit vielen Subplots) ist aber in der Regel das Objekt-Orien
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1701,8 +1719,8 @@ Durch Florian Huber
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

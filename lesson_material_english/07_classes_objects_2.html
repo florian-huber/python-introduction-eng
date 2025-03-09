@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>15. Objektorientierte Programmierung in Python &#8212; Introduction to Programming with Python</title>
+    <title>15. Object-oriented programming in Python &#8212; Introduction to Programming with Python</title>
   
   
   
@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=91fba89f"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -65,10 +62,9 @@
     <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
     <link rel="search" title="Suche" href="../search.html" />
     <link rel="next" title="16. Numerical Data in Python with NumPy" href="08_numpy.html" />
-    <link rel="prev" title="14. Objektorientierte Programmierung - Einführung" href="06_classes_objects.html" />
+    <link rel="prev" title="14. Object-Oriented Programming - Introduction" href="06_classes_objects.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="../_static/cover_logo_mini.png" class="logo__image only-light" alt="Introduction to Programming with Python - Home"/>
-    <img src="../_static/cover_logo_mini.png" class="logo__image only-dark pst-js-only" alt="Introduction to Programming with Python - Home"/>
+    <script>document.write(`<img src="../_static/cover_logo_mini.png" class="logo__image only-dark" alt="Introduction to Programming with Python - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Suche</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -192,12 +203,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="05_error_handling.html">11. Error Handling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_one_step_back-best_practices.html">12. Clean Code and Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_open_files.html">13. Dateien lesen und schreiben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_open_files.html">13. Reading and Writing Files</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Of Classes and Objects</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="06_classes_objects.html">14. Objektorientierte Programmierung - Einführung</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Objektorientierte Programmierung in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_classes_objects.html">14. Object-Oriented Programming - Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Object-oriented programming in Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Numerical Data - Numpy</span></p>
 <ul class="nav bd-sidenav">
@@ -373,16 +384,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -396,7 +415,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Objektorientierte Programmierung in Python</h1>
+    <h1>Object-oriented programming in Python</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -406,17 +425,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasse-vs-objekt-instanz">15.1. Klasse vs. Objekt/Instanz</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-ist-self">15.1.1. Was ist <code class="docutils literal notranslate"><span class="pre">self</span></code>?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klassenmethoden-class-methods">15.1.2. Klassenmethoden (class methods)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-vs-object-instance">15.1. Class vs. object/instance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-self">15.1.1. What is <code class="docutils literal notranslate"><span class="pre">self</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-methods">15.1.2. Class methods</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vererbung-inheritance">15.2. Vererbung (inheritance)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">15.2. Inheritance</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#super">15.2.1. super()</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#umfangreichers-beispiel-ubung-spiel-pig">15.3. Umfangreichers Beispiel (Übung –&gt; Spiel Pig)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenkapselung">15.4. Datenkapselung</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensive-example-exercise-game-pig">15.3. Extensive example (Exercise –&gt; Game Pig)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-encapsulation">15.4. Data Encapsulation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#public-protected-private">15.4.1. Public -&gt; Protected -&gt; Private</a></li>
 </ul>
 </li>
@@ -432,250 +451,250 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="objektorientierte-programmierung-in-python">
-<h1><span class="section-number">15. </span>Objektorientierte Programmierung in Python<a class="headerlink" href="#objektorientierte-programmierung-in-python" title="Link to this heading">#</a></h1>
-<p>Wir haben bisher gesehen wie wir Klassen in Python definieren und wie wir damit Objekte erzeugen. Wir haben gesehen wie wir Methoden definieren und Attribute zuweisen und auch wie wir die <code class="docutils literal notranslate"><span class="pre">__init__()</span></code>-Methode einsetzten können.</p>
-<section id="klasse-vs-objekt-instanz">
-<h2><span class="section-number">15.1. </span>Klasse vs. Objekt/Instanz<a class="headerlink" href="#klasse-vs-objekt-instanz" title="Link to this heading">#</a></h2>
-<p>Zu Beginn gibt es bei der OOP (Objektorientierten Programmierung) oft einige Verwirrungen. Nicht selten geht es dabei auch um den fundamentalen Unterschied zwischen Klasse und dem erzeugten Objekt.</p>
-<p>In den meisten Fällen, und allen die wir bisher besprochen haben, können wir die Klasse als eine abstrakte Vorlage für die später damit erzeugten Objekte sehen. D.h. die Klasse definiert, welche Eigenschaften (Attribute) und Fähigkeiten (Methoden) Objekte haben sollen.</p>
-<p>Über <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">XYZ:</span></code> wird so eine abstrakte Klasse <em>definiert</em>. Der eigentliche Code darin wird aber erst ausführbar, wenn ein Objekt der Klasse erzeugt wird (<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">XZY()</span></code>). Attribute die erst im Konstruktor (<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>) gesetzt werden, werden dabei erst erzeugt wenn auch ein Objekt der Klasse erzeugt wird. Darum funktioniert auch der folgende Code nicht:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="object-oriented-programming-in-python">
+<h1><span class="section-number">15. </span>Object-oriented programming in Python<a class="headerlink" href="#object-oriented-programming-in-python" title="Link to this heading">#</a></h1>
+<p>We have seen how to define classes in Python and how to use them to create objects. We have seen how to define methods and assign attributes, and also how to use the <strong>init</strong>() method.</p>
+<section id="class-vs-object-instance">
+<h2><span class="section-number">15.1. </span>Class vs. object/instance<a class="headerlink" href="#class-vs-object-instance" title="Link to this heading">#</a></h2>
+<p>There is often some confusion at the beginning of OOP (object-oriented programming). Not infrequently, it is also about the fundamental difference between the class and the object created.</p>
+<p>In most cases, and in all the ones we have discussed so far, we can see the class as an abstract template for the objects created with it later. That is, the class defines which properties (attributes) and abilities (methods) objects should have.</p>
+<p>An abstract class is <em>defined</em> via <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">XYZ:</span></code>. The actual code in it, however, only becomes executable when an object of the class is created (<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">=</span> <span class="pre">XZY()</span></code>). Attributes that are only set in the constructor (<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>) are not created until an object of the class is created. That is why the following code does not work:</p>
 <!-- pytest-codeblocks:expect-error -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoNothing</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">chill</span> <span class="o">=</span> <span class="kc">True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DoNothing</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">chill</span> <span class="o">=</span> <span class="kc">True</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">DoNothing</span><span class="o">.</span><span class="n">chill</span><span class="p">)</span>  <span class="c1"># =&gt; AttributeError: type object &#39;DoNothing&#39; has no attribute &#39;chill&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">DoNothing</span><span class="o">.</span><span class="n">chill</span><span class="p">)</span> <span class="c1"># =&gt; AttributeError: type object &#39;DoNothing&#39; has no attribute &#39;chill&#39;</span>
 </pre></div>
 </div>
-<p>Das geht also nicht, sondern erst wenn ein Objekt erstellt wird:</p>
+<p>So this is not possible, but only when an object is created:</p>
 <!-- pytest-codeblocks:cont -->
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">DoNothing</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">chill</span><span class="p">)</span> <span class="c1"># =&gt; True</span>
 </pre></div>
 </div>
-<section id="was-ist-self">
-<h3><span class="section-number">15.1.1. </span>Was ist <code class="docutils literal notranslate"><span class="pre">self</span></code>?<a class="headerlink" href="#was-ist-self" title="Link to this heading">#</a></h3>
-<p>Das Argument <code class="docutils literal notranslate"><span class="pre">self</span></code> bezieht sich auf die jeweilige Instanz einer Klasse, d.h. das Objekt selbst. Code in dem <code class="docutils literal notranslate"><span class="pre">self</span></code> auftaucht, kann also immer nur von erzeugten Objekten aus sinnvoll ausgeführt werden.
-(Übrigens: Statt self könnte auch ein abweichender Name verwendet werden, aber da <code class="docutils literal notranslate"><span class="pre">self</span></code> überall der Standard ist werden wir davon keinen Gebrauch machen.)</p>
-<p>Was ist aber mit Code, z.B. zugewiesenen Attributen, die ohne <code class="docutils literal notranslate"><span class="pre">self</span></code> auskommen?</p>
-<p>Ein Beispiel wäre sowas:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
-    <span class="n">class_value</span> <span class="o">=</span> <span class="mi">111</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">instance_value</span> <span class="o">=</span> <span class="mi">2222</span>
+<section id="what-is-self">
+<h3><span class="section-number">15.1.1. </span>What is <code class="docutils literal notranslate"><span class="pre">self</span></code>?<a class="headerlink" href="#what-is-self" title="Link to this heading">#</a></h3>
+<p>The argument <code class="docutils literal notranslate"><span class="pre">self</span></code> refers to the respective instance of a class, i.e. the object itself. Code in which <code class="docutils literal notranslate"><span class="pre">self</span></code> appears can therefore only be executed meaningfully by created objects.
+(By the way: Instead of self, a different name could be used, but since <code class="docutils literal notranslate"><span class="pre">self</span></code> is the default everywhere, we won’t make use of it.)</p>
+<p>But what about code, e.g. assigned attributes, that can do without <code class="docutils literal notranslate"><span class="pre">self</span></code>?</p>
+<p>An example would be something like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="p">:</span>
+<span class="n">class_value</span> <span class="o">=</span> <span class="mi">111</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">instance_value</span> <span class="o">=</span> <span class="mi">2222</span>
 
-<span class="c1"># Erst die Klasse direkt nutzen</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="o">.</span><span class="n">class_value</span><span class="p">)</span>  <span class="c1"># --&gt; 111</span>
-<span class="c1"># print(MyClass.instance_value)  # --&gt; AttributeError</span>
+<span class="c1"># Use the class directly</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">MyClass</span><span class="o">.</span><span class="n">class_value</span><span class="p">)</span> <span class="c1"># --&gt; 111</span>
+<span class="c1"># print(MyClass.instance_value) # --&gt; AttributeError</span>
 
-<span class="c1"># Jetzt eine Instanz der Klasse erzeugen und nutzen</span>
+<span class="c1"># Now create and use an instance of the class</span>
 <span class="n">my_object</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_object</span><span class="o">.</span><span class="n">class_value</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_object</span><span class="o">.</span><span class="n">instance_value</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Wir sprechen hier auch von <strong>Klassenattributen</strong> (hier: <code class="docutils literal notranslate"><span class="pre">.class_value</span></code>) und <strong>Instanzattributen</strong> (hier: <code class="docutils literal notranslate"><span class="pre">.instance_value</span></code>). Über erzeugte Objekte sind bei Typen von Attributen verfügbar, in der Klasse selbst sind aber die Instanzattribute nicht vorhanden.</p>
-<p>Wie sieht es dann mit den Methoden aus?</p>
-<p>Auch da haben wir bisher typischerweise mit <code class="docutils literal notranslate"><span class="pre">self</span></code> gearbeitet. Und entsprechen sprechen wir hier auch von <strong>Instanzmethoden</strong> (<em>instance methods</em>). Diese sind ebenfalls nur über erzeugte Objekte zugänglich.</p>
-<p>Beispiel:</p>
+<p>We are also talking here about <strong>class attributes</strong> (here: <code class="docutils literal notranslate"><span class="pre">.class_value</span></code>) and <strong>instance attributes</strong> (here: <code class="docutils literal notranslate"><span class="pre">.instance_value</span></code>). Created objects provide access to types of attributes, but the instance attributes are not available in the class itself.</p>
+<p>What about methods then?</p>
+<p>Here, too, we have typically worked with <code class="docutils literal notranslate"><span class="pre">self</span></code> so far. And correspondingly, we also speak of *<em>instance methods</em> here. These are also only accessible via created objects.</p>
+<p>Example:</p>
 <!-- pytest-codeblocks:expect-error -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SuperPrint</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">upper_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SuperPrint</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">upper_print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 
-<span class="c1"># Instanzmethode kann nicht über Klasse aufgerufen werden:</span>
-<span class="n">SuperPrint</span><span class="o">.</span><span class="n">upper_print</span><span class="p">(</span><span class="s2">&quot;mein text soll größer werden&quot;</span><span class="p">)</span>  <span class="c1"># =&gt; TypeError</span>
+<span class="c1"># instance method cannot be called via class:</span>
+<span class="n">SuperPrint</span><span class="o">.</span><span class="n">upper_print</span><span class="p">(</span><span class="err">“</span><span class="n">my</span> <span class="n">text</span> <span class="n">should</span> <span class="n">be</span> <span class="n">larger</span><span class="err">”</span><span class="p">)</span> <span class="c1"># =&gt; TypeError</span>
 
-<span class="c1"># Und die Methode ist auch nicht (wie eine Funktion) global verfügbar:</span>
-<span class="n">upper_print</span><span class="p">(</span><span class="s2">&quot;mein text soll grösser werden&quot;</span><span class="p">)</span>  <span class="c1"># =&gt; NameError: name &#39;upper_print&#39; is not defined</span>
+<span class="c1"># And the method is also not (like a function) globally available:</span>
+<span class="n">upper_print</span><span class="p">(</span><span class="err">“</span><span class="n">my</span> <span class="n">text</span> <span class="n">should</span> <span class="n">be</span> <span class="n">larger</span><span class="err">”</span><span class="p">)</span> <span class="c1"># =&gt; NameError: name &#39;upper_print&#39; is not defined</span>
 </pre></div>
 </div>
-<p>Erst wenn ein Objekt der Klasse SuperPrint erzeugt wird, kann damit die Methode <code class="docutils literal notranslate"><span class="pre">upper_print()</span></code> ausgeführt werden. Die Methode gehört also zu allen Objekten der Klasse <code class="docutils literal notranslate"><span class="pre">SuperPrint</span></code> und ist ansonsten nicht verfügbar, weder über die Klasse selbst, noch global wie bei einer Funktion.</p>
+<p>Only when an object of the SuperPrint class is created can the upper_print() method be executed with it. The method thus belongs to all objects of the SuperPrint class and is otherwise not available, either through the class itself or globally as with a function.</p>
 <!-- pytest-codeblocks:cont -->
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">printer</span> <span class="o">=</span> <span class="n">SuperPrint</span><span class="p">()</span>
-<span class="n">printer</span><span class="o">.</span><span class="n">upper_print</span><span class="p">(</span><span class="s2">&quot;mein text soll grösser werden&quot;</span><span class="p">)</span>
+<span class="n">printer</span><span class="o">.</span><span class="n">upper_print</span><span class="p">(</span><span class="err">“</span><span class="n">my</span> <span class="n">text</span> <span class="n">should</span> <span class="n">be</span> <span class="n">printed</span> <span class="ow">in</span> <span class="n">upper</span> <span class="n">case</span><span class="err">”</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
-<section id="klassenmethoden-class-methods">
-<h3><span class="section-number">15.1.2. </span>Klassenmethoden (class methods)<a class="headerlink" href="#klassenmethoden-class-methods" title="Link to this heading">#</a></h3>
-<p>Wir haben gerade gesehen, dass die Methoden die wir bisher programmiert haben (mit <code class="docutils literal notranslate"><span class="pre">self</span></code>) sich nur über erzeugte Objekte ausführen lassen (<strong>Instanzmethode</strong>). Aber es gibt auch <strong>Klassenmethoden</strong> die über die Klasse aufrufbar sind.</p>
-<p>Klassenmethoden werden in Python üblicherweise explizit als solche ausgewiesen über einen sogenannten „Decorator“. Was das genau ist, werden wir an dieser Stelle aber noch nicht behandeln (kommt später).  Das SuperPrint Beispiele sähe damit wie folgt aus (<code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> ist dabei der erwähnte Decorator):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SuperPrint</span><span class="p">:</span>
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">upper_print</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<section id="class-methods">
+<h3><span class="section-number">15.1.2. </span>Class methods<a class="headerlink" href="#class-methods" title="Link to this heading">#</a></h3>
+<p>We have just seen that the methods we have programmed so far (with <code class="docutils literal notranslate"><span class="pre">self</span></code>) can only be executed via created objects (<strong>instance method</strong>). But there are also <strong>class methods</strong> that can be called via the class.</p>
+<p>In Python, class methods are usually explicitly identified as such using a so-called “decorator”. However, we will not cover exactly what that is at this point (it will be covered later). The SuperPrint example would then look like this (<code class="docutils literal notranslate"><span class="pre">&#64;classmethod</span></code> is the mentioned decorator):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SuperPrint</span><span class="p">:</span>
+<span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">upper_print</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
 
-<span class="n">SuperPrint</span><span class="o">.</span><span class="n">upper_print</span><span class="p">(</span><span class="s2">&quot;mein text soll größer werden&quot;</span><span class="p">)</span>
+<span class="n">SuperPrint</span><span class="o">.</span><span class="n">upper_print</span><span class="p">(</span><span class="err">“</span><span class="n">my</span> <span class="n">text</span> <span class="n">should</span> <span class="n">be</span> <span class="n">printed</span> <span class="ow">in</span> <span class="n">upper</span> <span class="n">case</span><span class="err">”</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Auch hier gibt es ein spezielles erstes Argument das wir nun aber nicht <code class="docutils literal notranslate"><span class="pre">self</span></code> sondern <code class="docutils literal notranslate"><span class="pre">cls</span></code> (für class) nennen.</p>
-<p>Jetzt die Frage: Wann nutzen wir Klassenmethoden?</p>
-<p>Wie schon erwähnt, werden wir überwiegend mit Instanzmethoden arbeiten. Aber es gibt auch Fälle in denen Klassenmethoden sinnvoll sind. Ein Beispiel könnte eine Erweiterung der <code class="docutils literal notranslate"><span class="pre">Point</span></code> Klasse sein, die wir schon einmal erstellt hatten. Stellen wir uns nun vor, wir wollen eine neue Methode hinzufügen die ein Point-Objekt mit zufälliger Position erzeugt, etwas <code class="docutils literal notranslate"><span class="pre">create_random_point()</span></code>. Wenn wir diese Methode aber wie bisher mit <code class="docutils literal notranslate"><span class="pre">self</span></code> definieren können wir sie ja nur über erzeugte Objekte aufrufen. Das würde dann bedeutet wir müssen ein Point-Objekt erzeugen um damit dann ein neues Point-Objekt erstellen zu können… nicht sehr intuitiv. An einer solchen Stelle ist eine Klassenmethode die bessere Wahl:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">import</span> <span class="nn">random</span>
+<p>Here, too, there is a special first argument, which we now call not <code class="docutils literal notranslate"><span class="pre">self</span></code> but <code class="docutils literal notranslate"><span class="pre">cls</span></code> (for class).</p>
+<p>Now the question: When do we use class methods?</p>
+<p>As already mentioned, we will mainly work with instance methods. But there are also cases in which class methods are useful. One example could be an extension of the Point class that we had already created. Now let’s imagine we want to add a new method that creates a Point object with a random position, something like create_random_point(). But if we define this method with <code class="docutils literal notranslate"><span class="pre">self</span></code> as before, we can only call it via created objects. This would then mean that we have to create a Point object in order to then create a new Point object… not very intuitive. At such a point, a class method is the better choice:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
 
 
-<span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">create_random_point</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
+<span class="nd">@classmethod</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_random_point</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+<span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
 
 
 <span class="n">random_point</span> <span class="o">=</span> <span class="n">Point</span><span class="o">.</span><span class="n">create_random_point</span><span class="p">()</span>
 <span class="n">random_point</span><span class="o">.</span><span class="n">position</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Da die Klassenmethode in diesem Fall eine Instanz erzeugt spricht man auch von einer <strong>factory method</strong>.</p>
+<p>Since the class method in this case creates an instance, it is also referred to as a <strong>factory method</strong>.</p>
 <hr class="docutils" />
-<p>Neben den bisher besprochene Verbindung von Methoden und Attributen, gibt es noch viele andere Möglichkeiten durch die Objektorientierte Programmierung. Eine besonders häufig genannte ist die sogenannte <strong>Vererbung</strong>.</p>
+<p>In addition to the combination of methods and attributes discussed so far, there are many other possibilities offered by object-oriented programming. One that is mentioned particularly often is the so-called <strong>inheritance</strong>.</p>
 </section>
 </section>
-<section id="vererbung-inheritance">
-<h2><span class="section-number">15.2. </span>Vererbung (inheritance)<a class="headerlink" href="#vererbung-inheritance" title="Link to this heading">#</a></h2>
-<p>Klassen können anderen Klassen ihre Eigenschaften vererben. Das ist in der Praxis tatsächlich an manchen Stellen sehr nützlich!</p>
-<p>Im Fahrrad-Beispiel aus dem vorherigen Kapitel wäre das in etwa eine Unterart von Fahrrad die aber die Kerneigenschaften von Fahrrad übernehmen (also „erben“) soll, z.B. ein eBike.
-<img alt="Vererbung am Beispiel der Klasse Fahrrad" src="../_images/fig_oop_inheritance.png" /></p>
-<p>Wir können uns das aber auch direkt an einem einfachen Code-Beispiel anschauen. Wir haben gerade Punkte definiert (<code class="docutils literal notranslate"><span class="pre">Point</span></code>-Klasse) und möchten jetzt auch andere geometrische Typen entwerfen. Dann müssen wir nicht unbedingt alles neu definieren, sondern es geht auch das Folgende:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Schon oben ausgeführt:</span>
-<span class="kn">import</span> <span class="nn">math</span>
+<section id="inheritance">
+<h2><span class="section-number">15.2. </span>Inheritance<a class="headerlink" href="#inheritance" title="Link to this heading">#</a></h2>
+<p>Classes can pass on their properties to other classes. In practice, this is actually very useful in some cases!</p>
+<p>In the bicycle example from the previous chapter, this would be a sub-type of bicycle that takes over the core properties of a bicycle (i.e. “inherits”), e.g. an eBike.
+<img alt="Inheritance using the example of the bicycle class" src="../_images/fig_oop_inheritance.png" /></p>
+<p>But we can also look at this directly in a simple code example. We have just defined points (<code class="docutils literal notranslate"><span class="pre">Point</span></code> class) and now we want to design other geometric types. We don’t necessarily have to redefine everything, we can also do the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Already executed above:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">distance_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
-        <span class="n">dist_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span>
-        <span class="n">dist_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist_x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dist_y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-    
-<span class="c1"># Neue Klasse definieren:    </span>
-<span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">distance_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point</span><span class="p">):</span>
+<span class="n">dist_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">point</span><span class="o">.</span><span class="n">x</span>
+<span class="n">dist_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">point</span><span class="o">.</span><span class="n">y</span>
+<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dist_x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">dist_y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Define a new class: </span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">center_distance</span><span class="p">())</span>  <span class="c1"># =&gt; 11.180339887498949</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">center_distance</span><span class="p">())</span> <span class="c1"># =&gt; 11.180339887498949</span>
 </pre></div>
 </div>
-<p>Ohne das wir eine Methode neu definiert haben, funktioniert schon der Aufruf <code class="docutils literal notranslate"><span class="pre">.center_distance()</span></code>!</p>
-<p>Das liegt daran, dass wir hier gesagt haben das <code class="docutils literal notranslate"><span class="pre">Circle</span></code> auf die Klasse <code class="docutils literal notranslate"><span class="pre">Point</span></code>zurückgreifen darf. Man spricht hier von „Vererbung“ und demensprechend auch davon, dass <code class="docutils literal notranslate"><span class="pre">Circle</span></code> das Kind (<em>child</em>) ist von <code class="docutils literal notranslate"><span class="pre">Point</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Point</span></code> wird die „Basisklasse“ oder auch Super-, Ober- oder Elternklasse genannt (<em>parent class</em>), während <code class="docutils literal notranslate"><span class="pre">Circle</span></code> in diesem Beispiel die „abgeleitete Klasse“ oder auch Sub-, Unter-, oder Kindklasse heißt (<em>child class</em>).</p>
-<p>Es lassen sich damit auch interessante Zugehörigkeits- oder Type-Abfragen machen. So ist <code class="docutils literal notranslate"><span class="pre">a</span></code> im oberen Beispiel ein Objekt der Klasse <code class="docutils literal notranslate"><span class="pre">Circle</span></code>, aber ist eben auch auf eine Art verbunden mit der <em>parent class</em>  <code class="docutils literal notranslate"><span class="pre">Point</span></code>. In Python können solche Zugehörigkeiten abgefragt werden mit <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code>:</p>
+<p>Without having redefined a method, the call <code class="docutils literal notranslate"><span class="pre">.center_distance()</span></code> already works!</p>
+<p>This is because we have said here that <code class="docutils literal notranslate"><span class="pre">Circle</span></code> may access the class <code class="docutils literal notranslate"><span class="pre">Point</span></code>. This is called “inheritance” and accordingly, <code class="docutils literal notranslate"><span class="pre">Circle</span></code> is the child of <code class="docutils literal notranslate"><span class="pre">Point</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Point</span></code> is called the “base class” or super class or parent class (<em>parent class</em>), while in this example, <code class="docutils literal notranslate"><span class="pre">Circle</span></code> is called the “derived class” or subclass or child class (<em>child class</em>).</p>
+<p>This can also be used to make interesting membership or type queries. In the above example, <code class="docutils literal notranslate"><span class="pre">a</span></code> is an object of the class <code class="docutils literal notranslate"><span class="pre">Circle</span></code>, but it is also connected to the <em>parent class</em> <code class="docutils literal notranslate"><span class="pre">Point</span></code>. In Python, such affiliations can be queried with <code class="docutils literal notranslate"><span class="pre">isinstance()</span></code>:</p>
 <!-- pytest-codeblocks:cont -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Point</span><span class="p">))</span>  <span class="c1"># =&gt; True</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Circle</span><span class="p">))</span>  <span class="c1"># =&gt; True</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Point</span><span class="p">))</span> <span class="c1"># =&gt; True</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">Circle</span><span class="p">))</span> <span class="c1"># =&gt; True</span>
 </pre></div>
 </div>
 <section id="super">
 <h3><span class="section-number">15.2.1. </span>super()<a class="headerlink" href="#super" title="Link to this heading">#</a></h3>
-<p>Im Beispiel oben haben wir in der abgeleiteten Klasse (<code class="docutils literal notranslate"><span class="pre">Circle</span></code>) die komplette init-Methode überschrieben durch eine neue. Das wirkt vielleicht -zu recht- etwas merkwürdig, denn die Methoden sind sich eigentlich sehr ähnlich und ein größerer Teil des Codes kommt somit mehrfach vor.</p>
-<p>Es gibt auch noch eine andere Möglichkeit den Konstruktor (<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>) anzupassen und gleichzeitig auf den Konstruktor der <em>parent class</em> zuzugreifen und zwar mit <code class="docutils literal notranslate"><span class="pre">super()</span></code>:</p>
+<p>In the example above, we have overwritten the complete init method in the derived class (<code class="docutils literal notranslate"><span class="pre">Circle</span></code>) with a new one. This may seem a bit strange - and rightly so - because the methods are actually very similar and a large part of the code thus occurs multiple times.</p>
+<p>There is another way to customize the constructor (<code class="docutils literal notranslate"><span class="pre">__init__()</span></code>) and at the same time access the constructor of the <em>parent class</em> using <code class="docutils literal notranslate"><span class="pre">super()</span></code>:</p>
 <!-- pytest-codeblocks:cont -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Circle</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># damit wird der Konstruktor der parent class ausgeführt</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Circle</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="c1"># this executes the constructor of the parent class</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">center_distance</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>V.a. wenn der Konstruktor einer Klasse viele Parameter setzt und/oder weitere Schritte enthält macht der Einsatz von <code class="docutils literal notranslate"><span class="pre">super()</span></code>an dieser Stelle den Code einfacher.</p>
+<p>Especially when a class constructor sets many parameters and/or contains further steps, using <code class="docutils literal notranslate"><span class="pre">super()</span></code> at this point makes the code simpler.</p>
 </section>
 </section>
-<section id="umfangreichers-beispiel-ubung-spiel-pig">
-<h2><span class="section-number">15.3. </span>Umfangreichers Beispiel (Übung –&gt; Spiel Pig)<a class="headerlink" href="#umfangreichers-beispiel-ubung-spiel-pig" title="Link to this heading">#</a></h2>
-<p>Ein weiterer wichtiger Punkt den wir in der Übung angefangen haben, war ein Gefühl dafür zu bekommen wann, warum, und wie man Klassen überhaupt einsetzt. Als Beispiel dafür haben wir angefangen ein erstes kleines Spiel zu programmieren: Pig (oder „Böse Eins“). Die Spielregeln sind einfach:</p>
-<p>Spielregeln:</p>
+<section id="extensive-example-exercise-game-pig">
+<h2><span class="section-number">15.3. </span>Extensive example (Exercise –&gt; Game Pig)<a class="headerlink" href="#extensive-example-exercise-game-pig" title="Link to this heading">#</a></h2>
+<p>Another important point that we started in the exercise was to get a feeling for when, why, and how to use classes at all. As an example, we started programming a first small game: Pig (or “Evil One”). The rules of the game are simple:</p>
+<p>Rules of the game:</p>
 <ul class="simple">
-<li><p>2 Spieler*Innen spielen gegeneinander und wechseln sich ab. Beide starten mit 0 Punkten.</p></li>
-<li><p>Spieler*In der/die an der Reihe ist würfelt mit 1 Würfel (Zufallszahl -&gt; 1-6). Die Ergebnisse werden zusammengezählt, bis Spieler*In beschließt zu stoppen, oder: bis eine Eins gewürfelt wird. Wurde gestoppt ohne das eine Eins kam, dann werden die Punkte alle dazugezählt. Wurde eine Eins gewürfelt,  gibt es keine Punkte dazu.</p></li>
-<li><p>Wer als erstes 100 Punkte erreicht, gewinnt.</p></li>
+<li><p>2 players play against each other and take turns. Both start with 0 points.</p></li>
+<li><p>The player rolls 1 dice (random number -&gt; 1-6). The results are added together until the player decides to stop, or until a one is rolled. If you stop without rolling a one, then all the points are added together. If a one is rolled, no points are added.
+The first person to reach 100 points wins.</p></li>
 </ul>
-<p>Um dieses Spiel objektorientiert zu programmieren, muss erst überlegt werden welche Klassen es denn geben soll/muss. Typischerweise orientiert man sich bei der Suche danach an den wichtigsten Gegenständen/Elementen/Akteuren. In diesem Beispiel würden z.B. folgende Klassen Sinn machen:</p>
+<p>To program this game in an object-oriented way, you first have to consider which classes should/must exist. Typically, you look for the most important objects/elements/actors. In this example, the following classes would make sense:</p>
 <ul class="simple">
-<li><p>Würfel –&gt; class Dice</p></li>
-<li><p>Spieler*In –&gt; class Player</p></li>
-<li><p>Spiel/Spielregeln/Spielablauf/Spielmechanik –&gt; class PigGame</p></li>
+<li><p>Dice –&gt; class Dice</p></li>
+<li><p>Player –&gt; class Player</p></li>
+<li><p>Game/Game Rules/Gameplay/Game Mechanics –&gt; class PigGame</p></li>
 </ul>
-<p>Als nächstes muss geschaut werden, welche Eigenschaften (Attribute) und Handlungen/Möglichkeiten (Methoden) die Klassen bräuchten. Am einfachsten dabei ist die Klasse <code class="docutils literal notranslate"><span class="pre">Dice</span></code>, den die muss v.a. würfeln können was ja nichts anderes ist als Zufallszahlen von 1 bis 6 zu liefern.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+<p>Next, we have to look at the properties (attributes) and actions/options (methods) that the classes would need. The simplest thing here is the class <code class="docutils literal notranslate"><span class="pre">Dice</span></code>, which must be able to roll the dice, which is nothing more than providing random numbers from 1 to 6.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
 
 
-<span class="k">class</span> <span class="nc">Dice</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sides</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sides</span> <span class="o">=</span> <span class="n">sides</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Dice</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sides</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sides</span> <span class="o">=</span> <span class="n">sides</span>
 
-    <span class="k">def</span> <span class="nf">roll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sides</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">roll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sides</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Wie oben bereits erwähnt, macht diese Klasse aber erstmal nichts. Dazu muss erst ein <code class="docutils literal notranslate"><span class="pre">Dice</span></code>-Objekt ereugt werden.</p>
+<p>As mentioned above, this class doesn’t do anything yet. To use it, a <code class="docutils literal notranslate"><span class="pre">Dice</span></code> object must first be created.</p>
 <!-- pytest-codeblocks:cont -->
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dice</span> <span class="o">=</span> <span class="n">Dice</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dice</span><span class="o">.</span><span class="n">roll</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>Die zweite Klasse ist dann <code class="docutils literal notranslate"><span class="pre">Player</span></code> und das wird schon deutlich schwieriger!</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Player</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<p>The second class is then <code class="docutils literal notranslate"><span class="pre">Player</span></code> and that is already much more difficult!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Player</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
-    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dice</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;s turn -----------&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current score: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">}</span><span class="s2"> ---------&quot;</span><span class="p">)</span>
-        <span class="n">additional_score</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">roll</span> <span class="o">=</span> <span class="n">dice</span><span class="o">.</span><span class="n">roll</span><span class="p">()</span>
-            <span class="n">additional_score</span> <span class="o">+=</span> <span class="n">roll</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> got a </span><span class="si">{</span><span class="n">roll</span><span class="si">}</span><span class="s2">! Total=</span><span class="si">{</span><span class="n">additional_score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-                <span class="k">break</span>
-            <span class="n">user_choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Continue (y/n)? &gt;&gt;&gt; &quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">user_choice</span> <span class="o">==</span> <span class="s2">&quot;n&quot;</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">+=</span> <span class="n">additional_score</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;+ </span><span class="si">{</span><span class="n">additional_score</span><span class="si">}</span><span class="s2"> --&gt; </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-                <span class="k">break</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dice</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="err">“</span>\<span class="n">n</span><span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">}</span><span class="s1">&#39;s turn -----------”)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="err">“</span><span class="n">Current</span> <span class="n">score</span><span class="p">:</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">}</span> <span class="o">---------</span><span class="err">”</span><span class="p">)</span>
+    <span class="n">additional_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">roll</span> <span class="o">=</span> <span class="n">dice</span><span class="o">.</span><span class="n">roll</span><span class="p">()</span>
+        <span class="n">additional_score</span> <span class="o">+=</span> <span class="n">roll</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="err">“</span><span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">}</span> <span class="n">got</span> <span class="n">a</span> <span class="p">{</span><span class="n">roll</span><span class="p">}</span><span class="err">!</span> <span class="n">Total</span><span class="o">=</span><span class="p">{</span><span class="n">additional_score</span><span class="p">}</span><span class="err">”</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">roll</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">user_choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="err">“</span><span class="n">Continue</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="err">?</span> <span class="o">&gt;&gt;&gt;</span> <span class="err">‘</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user_choice</span> <span class="o">==</span> <span class="err">’</span><span class="n">n</span><span class="err">”</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">+=</span> <span class="n">additional_score</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="err">“</span><span class="o">+</span> <span class="p">{</span><span class="n">additional_score</span><span class="p">}</span> <span class="o">--&gt;</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">}</span><span class="err">”</span><span class="p">)</span>
+            <span class="k">break</span>
 </pre></div>
 </div>
-<p>Jede(r) Spieler*In hat zwei Eigenschaften: einen Namen (<code class="docutils literal notranslate"><span class="pre">.name</span></code>) und einen Punktestand (<code class="docutils literal notranslate"><span class="pre">.score</span></code>). Dazu kommt eine Methode um einen Spielzug zu machen (<code class="docutils literal notranslate"><span class="pre">.make_move()</span></code>). Diese Methode haben wir in der Übung erstellt und getestet. Ein sehr wichtiges Element vom Objektorientiertem Ansatz kann man an dieser Stelle schon gut sehen: Objekte werden an andere Objekte weiter gegeben. Es muss also erstmal ein Würfel-Objekt erstellt werden damit ein <code class="docutils literal notranslate"><span class="pre">Player</span></code>-Objekt spielen kann!</p>
+<p>Each player has two properties: a name (<code class="docutils literal notranslate"><span class="pre">.name</span></code>) and a score (<code class="docutils literal notranslate"><span class="pre">.score</span></code>). In addition, there is a method for making a move (<code class="docutils literal notranslate"><span class="pre">.make_move()</span></code>). We created and tested this method in the exercise. A very important element of the object-oriented approach can already be seen at this point: objects are passed on to other objects. So first a dice object has to be created so that a <code class="docutils literal notranslate"><span class="pre">Player</span></code> object can play!</p>
 <!-- pytest-codeblocks:skip -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Helmut&quot;</span><span class="p">)</span>
-<span class="n">player2</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Sandra&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="err">“</span><span class="n">Helmut</span><span class="err">”</span><span class="p">)</span>
+<span class="n">player2</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="err">“</span><span class="n">Sandra</span><span class="err">”</span><span class="p">)</span>
 <span class="n">dice</span> <span class="o">=</span> <span class="n">Dice</span><span class="p">()</span>
 
 <span class="n">player1</span><span class="o">.</span><span class="n">make_move</span><span class="p">(</span><span class="n">dice</span><span class="p">)</span>
 <span class="n">player2</span><span class="o">.</span><span class="n">make_move</span><span class="p">(</span><span class="n">dice</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Also: Genauso wie ich in einem echten Würfelspiel den Würfel (ein Objekt) an eine(n) Spieler*In geben würde, wird auch hier das Objekt <code class="docutils literal notranslate"><span class="pre">Dice</span></code> an <code class="docutils literal notranslate"><span class="pre">Player</span></code> gegeben. Und zwar nicht die als feste Eigenschaft (also: Attribut), sondern nur als Argument in der Methode <code class="docutils literal notranslate"><span class="pre">.make_move()</span></code>. Vielleicht erscheint das jetzt erstmal etwas seltsam. Immerhin ist ein Würfelwurf auch nichts besonders kompliziertes und ich könnte ja auch einfach eine Funktion dafür schreiben oder sogar nur direkt <code class="docutils literal notranslate"><span class="pre">random.randint(1,</span> <span class="pre">6)</span></code> aufrufen.</p>
-<p>Der Hauptvorteil ist, dass klar strukturiert ist welche Eigenschaften wo festgelegt werden. Nämlich immer nur bei den dazugehörigen Objekten. Sprich: Wenn <code class="docutils literal notranslate"><span class="pre">player1</span></code> dran ist, geht der Würfel an die entprechende <code class="docutils literal notranslate"><span class="pre">make_move()</span></code>Methode, usw.</p>
-<p>Wenn das Spiel jetzt mit einem anderen Würfel stattfinden soll, muss nur der Würfel verändert werden, z.B. so:</p>
+<p>So: Just as I would give the dice (an object) to a player in a real dice game, the object <code class="docutils literal notranslate"><span class="pre">Dice</span></code> is also given to <code class="docutils literal notranslate"><span class="pre">Player</span></code> here. And not as a fixed property (i.e. as an attribute), but only as an argument in the method <code class="docutils literal notranslate"><span class="pre">.make_move()</span></code>. This may seem a bit strange at first. After all, a dice roll is not particularly complicated and I could just write a function for it or even just call random.randint(1, 6) directly.</p>
+<p>The main advantage is that it is clearly structured which properties are set where. Namely, only with the associated objects. In other words: When it’s <code class="docutils literal notranslate"><span class="pre">player1</span></code>’s turn, the dice goes to the corresponding <code class="docutils literal notranslate"><span class="pre">make_move()</span></code> method, etc.</p>
+<p>If you want to play the game with a different dice, you just have to change the dice, for example like this:</p>
 <!-- pytest-codeblocks:skip -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Helmut&quot;</span><span class="p">)</span>
-<span class="n">player2</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="s2">&quot;Sandra&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">player1</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="err">“</span><span class="n">Helmut</span><span class="err">”</span><span class="p">)</span>
+<span class="n">player2</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="err">“</span><span class="n">Sandra</span><span class="err">”</span><span class="p">)</span>
 <span class="n">dice</span> <span class="o">=</span> <span class="n">Dice</span><span class="p">(</span><span class="n">sides</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="n">player1</span><span class="o">.</span><span class="n">make_move</span><span class="p">(</span><span class="n">dice</span><span class="p">)</span>
@@ -683,72 +702,76 @@
 </pre></div>
 </div>
 <hr class="docutils" />
-<p>Jetzt kommen wir zu noch ein paar weiteren Eigenschaften und Möglichkeiten der Objektorientierten Programmierung.</p>
+<p>Now we come to a few more features and possibilities of object-oriented programming.</p>
 </section>
-<section id="datenkapselung">
-<h2><span class="section-number">15.4. </span>Datenkapselung<a class="headerlink" href="#datenkapselung" title="Link to this heading">#</a></h2>
-<p>Datenkapselung ist im Prinzip nichts anderes als der Schutz von Daten (Attributen) vor unmittelbarem Zugriff. Wir haben schon gesehen, dass Attribute auch einfach eingesehen und geändert werden können, z.B. <code class="docutils literal notranslate"><span class="pre">point1.x</span> <span class="pre">=</span> <span class="pre">5</span></code>. Aber <em>idealerweise</em> versuchen die meisten Programmieren*Innen ihre Klassen so zu designen, dass Attribute v.a. über sogennante „Getter“ und „Setter“-Methoden aufgerufen werden.</p>
+<section id="data-encapsulation">
+<h2><span class="section-number">15.4. </span>Data Encapsulation<a class="headerlink" href="#data-encapsulation" title="Link to this heading">#</a></h2>
+<p>Data encapsulation is basically nothing more than the protection of data (attributes) from direct access. We have already seen that attributes can easily be viewed and changed, e.g. <code class="docutils literal notranslate"><span class="pre">point1.x</span> <span class="pre">=</span> <span class="pre">5</span></code>. But <em>ideally</em> most programmers try to design their classes in such a way that attributes are accessed primarily via so-called “getter” and “setter” methods.</p>
 <section id="public-protected-private">
 <h3><span class="section-number">15.4.1. </span>Public -&gt; Protected -&gt; Private<a class="headerlink" href="#public-protected-private" title="Link to this heading">#</a></h3>
-<p>Eine wichtige Eigenschaft von Klassen, auch im Zusammenhang mit der Datenabstraktion, ist die Möglichkeit die Zugriffsrechte auf die Attribute festzulegen. Python ist hierbei deutlich weniger strikt als viele andere Programmiersprachen, d.h. wir erstellen jetzt gleich keine high-security Programme. Aber es gibt auch in Python die wichtige Unterscheidung zwischen frei zugänglichen (public), geschützten (protected) und unzugänglichen (private) Attributen.</p>
-<p>Python hat hier also drei Stufen:</p>
-<p>• name (<strong>Public</strong>):
-Attribut ohne führende Unterstriche; sind innerhalb einer Klasse und auch von außen les- und schreibbar.</p>
-<p>• _name (<strong>Protected</strong>):
-Man kann zwar von außen lesend und schreibend zugreifen, der/die Entwickler*In macht aber klar das man diese Attribute so nicht benutzen sollte; Protected-Attribute sind beim Importieren wichtig.</p>
+<p>An important property of classes, also in the context of data abstraction, is the ability to define access rights to the attributes. Python is much less strict here than many other programming languages, i.e. we are not creating any high-security programs right now. But even in Python there is an important distinction between freely accessible (public), protected and inaccessible (private) attributes.</p>
+<p>Python has three levels here:</p>
+<ul class="simple">
+<li><p>name (<strong>Public</strong>):
+Attribute without leading underscores; can be read and written within a class and also from outside.</p></li>
+<li><p>_name (<strong>Protected</strong>):
+Although they can be read and written from outside, the developer makes it clear that these attributes should not be used in this way; protected attributes are important for importing.</p></li>
+</ul>
 <p>• __name (<strong>Private</strong>):
-Sind von außen weder sichtbar noch benutzbar</p>
+Cannot be seen or used from outside</p>
 <!-- pytest-codeblocks:expect-error -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MagicSpell</span><span class="p">:</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Expecto Patronum&quot;</span>
-    <span class="n">_book</span> <span class="o">=</span> <span class="s2">&quot;Magic Spells IV&quot;</span>
-    <span class="n">__explanation</span> <span class="o">=</span> <span class="s2">&quot;Here is how it works...&quot;</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MagicSpell</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="err">“</span><span class="n">Expecto</span> <span class="n">Patronum</span><span class="err">”</span>
+    <span class="n">_book</span> <span class="o">=</span> <span class="err">‘</span><span class="n">Magic</span> <span class="n">Spells</span> <span class="n">IV</span><span class="err">”</span>
+    <span class="n">__explanation</span> <span class="o">=</span> <span class="err">’</span><span class="n">Here</span> <span class="ow">is</span> <span class="n">how</span> <span class="n">it</span> <span class="n">works</span><span class="o">...</span><span class="err">”</span>
 
 <span class="n">spell</span> <span class="o">=</span> <span class="n">MagicSpell</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># =&gt; Expecto Patronum</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">_book</span><span class="p">)</span>  <span class="c1"># =&gt; Magic Spells IV</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">__explanation</span><span class="p">)</span>  <span class="c1"># =&gt; AttributeError: &#39;Spell&#39; object has no attribute &#39;__explanation&#39;</span>
-
+<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># =&gt; Expecto Patronum</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">_book</span><span class="p">)</span> <span class="c1"># =&gt; Magic Spells IV</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">__explanation</span><span class="p">)</span> <span class="c1"># =&gt; AttributeError: ‘Spell’ object has no attribute ‘__explanation’</span>
 </pre></div>
 </div>
-<p>Hier ist also zu sehen, dass die <em>protected attributes</em>  durchaus noch ganz normal eingesehen werden können! Bei Python ist der eine Unterstrich vor einem Attributsname eher als ein Hinweis an Nutzer*Innen und v.a. Entwickler*Innen zu verstehen, diese Variablen nicht einfach zu verändern. Das entspricht in etwa einem „Zutritt auf eigene Gefahr“-Schild.</p>
-<p>Die Attribute mit Status <em>private</em> geben aber einen <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>, d.h. diese können tatsächlich nicht mehr wie zuvor aufgerufen und verändert werden.</p>
-<p>Das gleiche geht natürlich auch mit einem Konstruktor:</p>
+<p>So here you can see that the <em>protected attributes</em> can still be accessed as normal! In Python, the underscore in front of an attribute name is more of a hint to users and especially developers not to change these variables. This is similar to a “Enter at your own risk” sign.</p>
+<p>The attributes with the status <em>private</em> will throw an <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>, i.e. these can no longer be accessed and changed as before.</p>
+<p>The same is of course possible with a constructor:</p>
 <!-- pytest-codeblocks:expect-error -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MagicSpell</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">book</span><span class="p">,</span> <span class="n">explanation</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MagicSpell</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">book</span><span class="p">,</span> <span class="n">explanation</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_book</span> <span class="o">=</span> <span class="n">book</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__explanation</span> <span class="o">=</span> <span class="n">explanation</span>
 
-<span class="n">spell</span> <span class="o">=</span> <span class="n">MagicSpell</span><span class="p">(</span><span class="s2">&quot;Expecto Patronum&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;Magic Spells IV&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;Here is how it works...&quot;</span><span class="p">)</span>
+<span class="n">spell</span> <span class="o">=</span> <span class="n">MagicSpell</span><span class="p">(</span>
+    <span class="err">“</span><span class="n">Expecto</span> <span class="n">Patronum</span><span class="err">”</span><span class="p">,</span>
+    <span class="err">“</span><span class="n">Magic</span> <span class="n">Spells</span> <span class="n">IV</span><span class="err">“</span><span class="p">,</span>
+    <span class="err">“</span><span class="n">Here</span> <span class="ow">is</span> <span class="n">how</span> <span class="n">it</span> <span class="n">works</span><span class="o">...</span><span class="err">”</span>
+<span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>  <span class="c1"># =&gt; Expecto Patronum</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">_book</span><span class="p">)</span>  <span class="c1"># =&gt; Magic Spells IV</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">__explanation</span><span class="p">)</span>  <span class="c1"># =&gt; AttributeError</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1"># =&gt; Expecto Patronum</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">_book</span><span class="p">)</span> <span class="c1"># =&gt; Magic Spells IV</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">__explanation</span><span class="p">)</span> <span class="c1"># =&gt; AttributeError</span>
 </pre></div>
 </div>
-<p>Bevor jemand jetzt aber auf die Idee kommt, damit sensible Daten zu schützen: Einen richtig strengen Schutz der Attribute gibt es bei Python nicht! Der Zugang wird nur bewusst erschwert. Theoretisch können die verstecken Attribute aber noch immer eingesehen werden mit:</p>
+<p>But before anyone gets the idea of using this to protect sensitive data: Python does not have a really strict protection of attributes! Access is only deliberately made more difficult. In theory, however, the hidden attributes can still be viewed with:</p>
 <!-- pytest-codeblocks:cont -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">_MagicSpell__explanation</span><span class="p">)</span>  <span class="c1"># nur zur Info, bitte diesen Weg nicht in Programmen nutzen!</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">spell</span><span class="o">.</span><span class="n">_MagicSpell__explanation</span><span class="p">)</span> 
+<span class="c1"># just for your info, please don&#39;t use this in programs!</span>
+<span class="c1"># Or, even easier, just open it in Spyder&#39;s “Variable Explorer”...</span>
 </pre></div>
 </div>
-<p>Oder, noch einfacher, einfach mal im „Variable Explorer“ in Spyder öffnen…</p>
-<p>Als kurzes Beispiel einmal den Fall, dass wir nicht wollen das Nutzer*Innen .x oder .y eines <code class="docutils literal notranslate"><span class="pre">Point</span></code>-Objekts einfach ändern können:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<p>As a short example, let’s say we don’t want users to be able to simply change the.x or.y of a<code class="docutils literal notranslate"><span class="pre">Point</span></code> object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__y</span> <span class="o">=</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__y</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__y</span>
 
-    <span class="k">def</span> <span class="nf">set_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__y</span> <span class="o">=</span> <span class="n">y</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">__y</span> <span class="o">=</span> <span class="n">y</span>
 
 <span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">get_position</span><span class="p">())</span>
@@ -756,20 +779,20 @@ Sind von außen weder sichtbar noch benutzbar</p>
 <span class="n">a</span><span class="o">.</span><span class="n">set_position</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">get_position</span><span class="p">())</span>
 
-<span class="c1"># a.x  # =&gt; AttributeError</span>
+<span class="c1"># a.x # =&gt; AttributeError</span>
 </pre></div>
 </div>
-<p>Da man die Attribute mit Status nicht nur nicht einsehen kann, sondern diese auch nicht einmal als vorhanden angezeigt werden spricht man hier auch vom <strong>Geheimnisprinzip</strong> einem anderen Konzept im OOP.</p>
-<p>Ok. Schön. Aber wozu das Ganze?</p>
-<p>Die (oder zumindest eine) Idee dahinter ist, dass Entwickler*Innen die entwickelten Klassen für bestimmte Nutzungen vorgesehen haben und zum einen „falsche“ Nutzung vermeiden möchten, zum Anderen aber auch eine Nutzung nicht unnötig erschweren wollen indem zu viele Details über die genaue Implementierung sichtbar sind.</p>
-<p>Oder anders: Wenn wir eine Python Klasse nutzen, interessiert uns meistens vor allem <strong>wie</strong> sie genutzen werden kann und weniger wie der Code dahinter aussieht. Ein Beispiel: Wenn wir eine Liste erstellen, z.B. mit <code class="docutils literal notranslate"><span class="pre">my_list</span> <span class="pre">=</span> <span class="pre">[3,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">1,</span> <span class="pre">4]</span></code> und diese dann sortieren wollen, dann reicht es erstmal völlig wenn wir wissen, dass es dafür eine passende Methode namens <code class="docutils literal notranslate"><span class="pre">.sort()</span></code> gibt (und wie wir diese benutzen). Welche Unterfunktionen etc. dahinter stecken ist erstmal nicht unsere Hauptsorge.</p>
-<p>Naja, aber manchmal ist ein Blick unter die Motorhaube doch ganz nett…</p>
+<p>Since you can’t just see the attributes with status, but they are not even displayed as existing, this is also called the secret principle, another concept in OOP.</p>
+<p>Ok. Fair enough. But what’s the point of all this?</p>
+<p>The idea behind this (or at least one idea) is that developers have intended the developed classes for certain uses and, on the one hand, want to avoid “incorrect” use, but on the other hand, do not want to unnecessarily complicate use by revealing too many details about the exact implementation.</p>
+<p>Or to put it another way: when we use a Python class, we are usually more interested in <strong>how</strong> it can be used than in what the code behind it looks like. For example, if we create a list, e.g. with <code class="docutils literal notranslate"><span class="pre">my_list</span> <span class="pre">=</span> <span class="pre">[3,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">1,</span> <span class="pre">4]</span></code> and then want to sort it, it is enough to know that there is a method called <code class="docutils literal notranslate"><span class="pre">.sort()</span></code> for this (and how to use it). What sub-functions etc. are behind it is not our main concern for now.</p>
+<p>Well, sometimes a look under the hood is nice…</p>
 </section>
 </section>
 <section id="magic-methods">
 <h2><span class="section-number">15.5. </span>Magic methods<a class="headerlink" href="#magic-methods" title="Link to this heading">#</a></h2>
-<p>Magic methods oder auch <strong>Dunder</strong> (von <strong>d</strong>ouble <strong>under</strong>), heißen nicht nur <em>magic</em>, sie wirken am Anfang wohl auch ein wenig so. Denn zum einen haben hier alle (zumindest von mir) wahrscheinlich noch nie etwas davon gehört und zum Anderen können Experimente damit sehr seltsame Konsequenzen haben.</p>
-<p>Es kann z.B. passieren, dass bestimmte Variablen nicht machen was sie <em>sollen</em>, vielleicht so:</p>
+<p>Magic methods or <strong>dunder</strong> (from <strong>d</strong>ouble <strong>under</strong>) are not only called <em>magic</em>, they also seem a bit like that at the beginning. On the one hand, everyone (at least I) has probably never heard of them before and on the other hand, experiments with them can have very strange consequences.</p>
+<p>It may happen, for example, that certain variables do not do what they are <em>supposed</em> to do, maybe like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
 <span class="go">5</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">+</span> <span class="mi">7</span>
@@ -778,101 +801,101 @@ Sind von außen weder sichtbar noch benutzbar</p>
 <span class="go">4.1010101</span>
 </pre></div>
 </div>
-<p>Was passiert hier?</p>
-<p>Python kaputt?</p>
-<p>Irgendwelche Ideen?</p>
+<p>What’s happening here?</p>
+<p>Python broken?</p>
+<p>Any ideas?</p>
 <p>…</p>
 <p>…</p>
 <p>…</p>
-<p>OK, vielleicht erstmal etwas Anderes: Was sind Dunder/magic methods jetzt eigentlich?</p>
-<p>Das sind Methoden deren Namen mit zwei Unterstrichen umgeben sind. Sie sind nicht für direkte Aufrufe bestimmt sondern werden von bestimmten Aktionen ausgelöst, z.B. auch Operatoren. So ist z.B. <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> die Methode die bei Benutzung von <code class="docutils literal notranslate"><span class="pre">+</span></code> augerufen wird:</p>
+<p>OK, maybe something different first: What are dunder/magic methods anyway?</p>
+<p>These are methods whose names are surrounded by two underscores. They are not intended for direct invocation but are triggered by certain actions, including operators. For example, <code class="docutils literal notranslate"><span class="pre">__add__()</span></code> is the method that is called when using <code class="docutils literal notranslate"><span class="pre">+</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>  <span class="c1"># =&gt; 12</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span>  <span class="c1"># =&gt; 12</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="fm">__add__</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span> <span class="c1"># =&gt; 12</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span> <span class="c1"># =&gt; 12</span>
 </pre></div>
 </div>
-<p>Beide Möglichkeiten sind hierbei identisch, mit der Ausnahme dass das direkte Verwenden von <code class="docutils literal notranslate"><span class="pre">.__add__()</span></code> nicht so vorgesehen ist.</p>
-<p>Es gibt wirklich <strong>sehr viele</strong> solcher Methoden (siehe z.B. <a class="reference external" href="https://www.tutorialsteacher.com/python/magic-methods-in-python">tutorialstecher.com</a>)! Einige Beispiele die wir (ohne es zu wissen) schon selbst benutzt haben sind:</p>
+<p>Both options are identical here, except that using <code class="docutils literal notranslate"><span class="pre">.__add__()</span></code> directly is not intended.</p>
+<p>There are really <strong>a lot of</strong> such methods (see for example <a class="reference external" href="https://www.tutorialsteacher.com/python/magic-methods-in-python">tutorialstecher.com</a>)! Some examples that we have already used (without knowing it) are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__add__()</span></code> für <code class="docutils literal notranslate"><span class="pre">+</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__sub__()</span></code> für <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__mul__()</span></code> für <code class="docutils literal notranslate"><span class="pre">*</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__truediv__()</span></code> für <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> für <code class="docutils literal notranslate"><span class="pre">==</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__add__()</span></code> for <code class="docutils literal notranslate"><span class="pre">+</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__sub__()</span></code> for <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__mul__()</span></code> for <code class="docutils literal notranslate"><span class="pre">*</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__truediv__()</span></code> for <code class="docutils literal notranslate"><span class="pre">/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__eq__()</span></code> for <code class="docutils literal notranslate"><span class="pre">==</span></code></p></li>
 </ul>
-<p>Aber auch Methoden die bei der Typen-Umwandlung genutzt werden, z.B.:</p>
+<p>But also methods that are used in type conversion, e.g.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code> für <code class="docutils literal notranslate"><span class="pre">str()</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">__float__()</span></code> für <code class="docutils literal notranslate"><span class="pre">float()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__str__()</span></code> for <code class="docutils literal notranslate"><span class="pre">str()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__float__()</span></code> for <code class="docutils literal notranslate"><span class="pre">float()</span></code></p></li>
 </ul>
-<p>Jetzt vielleicht eine Idee, was in dem <em>seltsamen</em> Code-Beispiel oben passiert sein könnte?</p>
-<p>Hinweis: Kurz mit <code class="docutils literal notranslate"><span class="pre">type()</span></code> testen was <code class="docutils literal notranslate"><span class="pre">a</span></code> eigentlich ist!</p>
+<p>Now maybe you have an idea what might have happened in the <em>strange</em> code example above?</p>
+<p>Hint: briefly test with <code class="docutils literal notranslate"><span class="pre">type()</span></code> what <code class="docutils literal notranslate"><span class="pre">a</span></code> actually is!</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="go">&lt;class &#39;__main__.FunkyNumber&#39;&gt;</span>
 </pre></div>
 </div>
-<p><strong>Tadaa!</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">a</span></code> ist gar kein <code class="docutils literal notranslate"><span class="pre">int</span></code> wie vielleicht gedacht, sondern ein Objekt der Klasse <code class="docutils literal notranslate"><span class="pre">FunkyNumber</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FunkyNumber</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<p><strong>Ta-da!</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">a</span></code> is not an <code class="docutils literal notranslate"><span class="pre">int</span></code> at all, as might have been thought, but an object of the class <code class="docutils literal notranslate"><span class="pre">FunkyNumber</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">FunkyNumber</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
 
-    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.123456</span>
 
-    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">-</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.1010101</span>
-    
+
 <span class="n">a</span> <span class="o">=</span> <span class="n">FunkyNumber</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Super funky. Aber was kann das Ganze noch (außer Verwirrung stiften natürlich) ?</p>
-<p>Es gibt tatsächlich ziemlich viele sinnvolle Verwendungen für <em>magic methods</em> beim objektorientierten Programmieren in Python. Ein Beispiel können wir uns anschauen indem wir wieder zurück zu unserem Standardbeispiel mit der Klasse <code class="docutils literal notranslate"><span class="pre">Point</span></code> gehen. Den manche Dinge funktionieren dort eventuell nicht so wie wir es uns wünschen würden und <em>magic methods</em> können da helfen.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<p>Super funky. But what else can it do (besides cause confusion, of course)?</p>
+<p>There are actually quite a few useful uses for <em>magic methods</em> in object-oriented programming in Python. We can look at an example by going back to our standard example with the class <code class="docutils literal notranslate"><span class="pre">Point</span></code>. Some things may not work as we would like them to and <em>magic methods</em> can help.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-    
+<span class="k">def</span><span class="w"> </span><span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
 <span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># =&gt; False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># =&gt; False</span>
 </pre></div>
 </div>
-<p>Was wir hier sehen ist, dass zwei Punkte von Python nicht als gleich (<code class="docutils literal notranslate"><span class="pre">==</span></code>) angesehen werden obwohl sie exakt die gleichen Koordinaten haben. Der Grund ist der, das Python erstmal davon ausgeht, das zwei Objekte nur gleich sind wenn sie auch auf das selbe Objekt verweisen. Sprich:</p>
+<p>What we see here is that two points are not considered equal (<code class="docutils literal notranslate"><span class="pre">==</span></code>) by Python even though they have exactly the same coordinates. The reason for this is that Python initially assumes that two objects are only equal if they also refer to the same object. In other words:</p>
 <!-- pytest-codeblocks:cont -->
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># =&gt; True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># =&gt; True</span>
 </pre></div>
 </div>
-<p>Es würde aber (je nach Anwendung) auch Sinn machen, dass zwei Punkte als gleich zu verstehen sind falls ihre Koordinaten gleich sind. Mit <em>magic methods</em> können wir das erreichen.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<p>But it would also make sense (depending on the application) for two points to be considered equal if their coordinates are equal. We can achieve this with <em>magic methods</em>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
-<span class="k">class</span> <span class="nc">Point</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
-        
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Point</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
 
-    <span class="k">def</span> <span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
-    
+<span class="k">def</span><span class="w"> </span><span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+	<span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">center_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+
 <span class="n">a</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>  <span class="c1"># =&gt; True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span> <span class="c1"># =&gt; True</span>
 </pre></div>
 </div>
-<p>Übrigens: auch innerhalb der Standard-Datentypen in Python findet sich die ein oder andere „kreative“ Lösung. Ein gutes Beispiel dafür ist die Multiplikation bei Strings, also das<code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">&quot;-&quot;</span></code>  möglich ist und <code class="docutils literal notranslate"><span class="pre">&quot;-----&quot;</span></code> ergibt, ist ebenfalls etwas das mit <em>magic methods</em> eben einfach definiert werden kann.</p>
+<p>By the way: even within the standard data types in Python, there are some “creative” solutions. A good example of this is multiplication with strings, so that<code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">*</span> <span class="pre">“-”</span></code> is possible and yields <code class="docutils literal notranslate"><span class="pre">“-----”</span></code>, is also something that can simply be defined with <em>magic methods</em>.</p>
 </section>
 </section>
 
@@ -912,7 +935,7 @@ Sind von außen weder sichtbar noch benutzbar</p>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">zurück</p>
-        <p class="prev-next-title"><span class="section-number">14. </span>Objektorientierte Programmierung - Einführung</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Object-Oriented Programming - Introduction</p>
       </div>
     </a>
     <a class="right-next"
@@ -931,8 +954,7 @@ Sind von außen weder sichtbar noch benutzbar</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -941,17 +963,17 @@ Sind von außen weder sichtbar noch benutzbar</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasse-vs-objekt-instanz">15.1. Klasse vs. Objekt/Instanz</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#was-ist-self">15.1.1. Was ist <code class="docutils literal notranslate"><span class="pre">self</span></code>?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klassenmethoden-class-methods">15.1.2. Klassenmethoden (class methods)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-vs-object-instance">15.1. Class vs. object/instance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-self">15.1.1. What is <code class="docutils literal notranslate"><span class="pre">self</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#class-methods">15.1.2. Class methods</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vererbung-inheritance">15.2. Vererbung (inheritance)</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inheritance">15.2. Inheritance</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#super">15.2.1. super()</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#umfangreichers-beispiel-ubung-spiel-pig">15.3. Umfangreichers Beispiel (Übung –&gt; Spiel Pig)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datenkapselung">15.4. Datenkapselung</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensive-example-exercise-game-pig">15.3. Extensive example (Exercise –&gt; Game Pig)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-encapsulation">15.4. Data Encapsulation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#public-protected-private">15.4.1. Public -&gt; Protected -&gt; Private</a></li>
 </ul>
 </li>
@@ -1004,8 +1026,8 @@ Durch Florian Huber
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

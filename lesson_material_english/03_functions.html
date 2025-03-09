@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!-- 
-    this give us a css class that will be invisible only if js is disabled 
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=91fba89f"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
@@ -68,7 +65,6 @@
     <link rel="prev" title="5. Control Structures and Conditions" href="02_control_structures_conditions_loop.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="de"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -84,8 +80,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -93,6 +100,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -100,8 +108,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -117,8 +125,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -148,17 +155,21 @@
     
     
     <img src="../_static/cover_logo_mini.png" class="logo__image only-light" alt="Introduction to Programming with Python - Home"/>
-    <img src="../_static/cover_logo_mini.png" class="logo__image only-dark pst-js-only" alt="Introduction to Programming with Python - Home"/>
+    <script>document.write(`<img src="../_static/cover_logo_mini.png" class="logo__image only-dark" alt="Introduction to Programming with Python - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Suche</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Suche</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -192,12 +203,12 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="05_error_handling.html">11. Error Handling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="05_one_step_back-best_practices.html">12. Clean Code and Best Practices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_open_files.html">13. Dateien lesen und schreiben</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_open_files.html">13. Reading and Writing Files</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Of Classes and Objects</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="06_classes_objects.html">14. Objektorientierte Programmierung - Einführung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="07_classes_objects_2.html">15. Objektorientierte Programmierung in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06_classes_objects.html">14. Object-Oriented Programming - Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_classes_objects_2.html">15. Object-oriented programming in Python</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Working with Numerical Data - Numpy</span></p>
 <ul class="nav bd-sidenav">
@@ -373,16 +384,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Suche" aria-label="Suche" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -442,7 +461,7 @@
 <p><img alt="Functions help structure program workflows" src="../_images/fig_control_flow_functions.png" /></p>
 <section id="defining-functions">
 <h2><span class="section-number">6.1. </span>Defining Functions<a class="headerlink" href="#defining-functions" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">good_thing</span><span class="p">():</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">good_thing</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Written once...&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;... used 1,000 times!&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Saved three lines of code again.&quot;</span><span class="p">)</span>
@@ -455,13 +474,13 @@ Functions only execute when explicitly called:</p>
 </div>
 <p>This function does not return anything (only prints) and does not require arguments.</p>
 <p>The general structure of functions is as follows:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">,</span> <span class="n">etc</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">,</span> <span class="n">etc</span><span class="p">):</span>
     <span class="c1"># code</span>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
 <p>It’s even better to include a <strong>docstring</strong>, which serves as the basic documentation for the function. This can describe the function and its parameters, as well as provide examples or references.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">parameter1</span><span class="p">,</span> <span class="n">parameter2</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># code</span>
@@ -470,7 +489,7 @@ Functions only execute when explicitly called:</p>
 </div>
 <p>Functions can also have no parameters (e.g., <code class="docutils literal notranslate"><span class="pre">good_thing()</span></code> above).<br />
 Additionally, you can set <strong>default values</strong> for parameters, which are used if no new values are provided when the function is called.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">function_name</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mf">3.1415</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">function_name</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="o">=</span><span class="mf">3.1415</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of the function.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="o">...</span> <span class="n">code</span> <span class="o">...</span>
@@ -478,7 +497,7 @@ Additionally, you can set <strong>default values</strong> for parameters, which 
 </pre></div>
 </div>
 <p>Here’s another example of a simple function with two parameters:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">x_vs_y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">x_vs_y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare the numbers x and y.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;They are equal!&quot;</span><span class="p">)</span>
@@ -498,7 +517,7 @@ Additionally, you can set <strong>default values</strong> for parameters, which 
 <section id="default-values">
 <h3><span class="section-number">6.1.1. </span>Default Values<a class="headerlink" href="#default-values" title="Link to this heading">#</a></h3>
 <p>Here’s an example of a function where one of the two parameters has a default value:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total number of eggs in n_boxes boxes.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">n_boxes</span> <span class="o">*</span> <span class="n">eggs_per_box</span>
 
@@ -516,7 +535,7 @@ Additionally, you can set <strong>default values</strong> for parameters, which 
 <section id="optional-parameter-order-matters">
 <h3><span class="section-number">6.1.2. </span>Optional: Parameter Order Matters<a class="headerlink" href="#optional-parameter-order-matters" title="Link to this heading">#</a></h3>
 <p>With more parameters, the order becomes even more critical. Accidental mix-ups may result in functional but incorrect code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">boxes_to_eggs</span><span class="p">(</span><span class="n">n_boxes</span><span class="p">,</span> <span class="n">eggs_per_box</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">broken_eggs_per_box</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the total number of eggs in n_boxes boxes.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">n_boxes</span> <span class="o">*</span> <span class="p">(</span><span class="n">eggs_per_box</span> <span class="o">-</span> <span class="n">broken_eggs_per_box</span><span class="p">))</span>
 
@@ -550,7 +569,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <h3><span class="section-number">6.1.3. </span><code class="docutils literal notranslate"><span class="pre">Return</span></code>: Something Always Comes Back<a class="headerlink" href="#return-something-always-comes-back" title="Link to this heading">#</a></h3>
 <p>As we’ve seen, many functions contain a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. This does two things: it terminates the function’s execution and returns one or more values (e.g., <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">variable1,</span> <span class="pre">variable2</span></code>).</p>
 <p>However, functions don’t require a <code class="docutils literal notranslate"><span class="pre">return</span></code> statement. For example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">double_print</span><span class="p">(</span><span class="n">input_str</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">double_print</span><span class="p">(</span><span class="n">input_str</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">input_str</span><span class="p">)</span>
 
 <span class="n">double_print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>  <span class="c1"># --&gt; Hello World!Hello World!</span>
@@ -564,7 +583,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <section id="return-doesnt-have-to-be-at-the-end">
 <h4><span class="section-number">6.1.3.1. </span><code class="docutils literal notranslate"><span class="pre">Return</span></code> Doesn’t Have to Be at the End<a class="headerlink" href="#return-doesnt-have-to-be-at-the-end" title="Link to this heading">#</a></h4>
 <p>A function can have multiple <code class="docutils literal notranslate"><span class="pre">return</span></code> statements, and they don’t have to be at the end:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pick_smallest</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pick_smallest</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">b</span>
     <span class="k">if</span> <span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">:</span>
@@ -587,7 +606,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mi">7</span>
 
-<span class="k">def</span> <span class="nf">do_stuff</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">do_stuff</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 
 <span class="n">result</span> <span class="o">=</span> <span class="n">do_stuff</span><span class="p">()</span>
@@ -597,7 +616,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <p>Local and global variables behave differently:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
 
-<span class="k">def</span> <span class="nf">do_stuff</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">do_stuff</span><span class="p">():</span>
     <span class="n">a</span> <span class="o">=</span> <span class="mi">1000</span>
     <span class="k">return</span> <span class="n">a</span>
 
@@ -606,7 +625,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </pre></div>
 </div>
 <p>Global variables are not recommended for modification within functions, as it can lead to unclear and buggy code. Instead, explicitly pass variables as function parameters:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">do_stuff</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">do_stuff</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
     <span class="k">return</span> <span class="n">a</span>
 
@@ -618,7 +637,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 <section id="mutable-and-immutable-data-types">
 <h3><span class="section-number">6.1.5. </span>Mutable and Immutable Data Types<a class="headerlink" href="#mutable-and-immutable-data-types" title="Link to this heading">#</a></h3>
 <p>Mutable objects (e.g., lists, dictionaries) can be modified within functions:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_list</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">modify_list</span><span class="p">(</span><span class="n">my_list</span><span class="p">):</span>
     <span class="n">my_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
@@ -627,7 +646,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
 </pre></div>
 </div>
 <p>Immutable objects (e.g., integers, tuples) cannot:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_value</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">modify_value</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
@@ -696,8 +715,7 @@ d) <code class="docutils literal notranslate"><span class="pre">None</span></cod
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -765,8 +783,8 @@ Durch Florian Huber
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
