@@ -1,39 +1,39 @@
-# Objektorientierte Programmierung - Einführung
+# Object-Oriented Programming - Introduction
 
-## Einführung
-Bevor wir wirklich loslegen mit der objektorientierten Programmierung (*object-oriented programming*, oft auch einfach nur OOP), eine kurze Wiederholung.
+## Introduction
+Before we really get started with object-oriented programming (*OOP* for short), let's have a quick recap.
 
-In den vorherigen Kapiteln haben wir uns ein wenig angeschaut, wie man Programme sinnvoll strukturieren kann. Ein zentrales Element hierfür sind **Funktionen**. Damit können ganze Programmteile als eigenständige Sub-Programme abgekapselt werden. Nicht immer wird der Code dadurch direkt viel einfacher, aber es ermöglicht es dem Programme eine logische Struktur zu geben und unterschiedliche Aspekte getrennt voneinander zu bearbeiten oder auch zu verbessern und auszubauen.
+In the previous chapters, we explored ways to structure programs effectively. A key element in this is **functions**. Functions allow entire sections of a program to be encapsulated as independent sub-programs. This doesn’t always make the code significantly simpler, but it provides the program with a logical structure, allowing different aspects to be handled separately, improved, and extended.
 
-**Randnotitz:** Im Zusammenhang mit Funktionen wird manchmal auch von **functional programming** gesprochen ([Funktionale Programmierung](https://de.wikipedia.org/wiki/Funktionale_Programmierung)). Damit wird nicht einfach die Verwendung von Funktionen gemeint (die ist nämlich sowieso eher der Standard), sonder ein spezielles Code-design das einen starken Fokus auf Funktionen legt. Dazu kann z.B. auch gehören, dass dynamisch neue Funktionen generiert werden.
+**Side note:** In the context of functions, you may also hear the term **functional programming** ([Functional Programming](https://en.wikipedia.org/wiki/Functional_programming)). This doesn’t simply mean using functions (which is already standard practice) but rather a specific coding approach that places a strong emphasis on functions. This can include dynamically generating new functions, among other things.
 
-## Objektorientierte Programmierung
+## Object-Oriented Programming
 
-Objektorientierte Programmierung (oder "OOP") ist ein Programmierstil oder wird manchmal auch als ein „Programmierparadigma“ bezeichnet um anzugeben, dass es um mehr als kleine Detailfragen geht sondern um eine grundlegende Herangehensweise oder Betrachtungsweise.
+Object-oriented programming (or "OOP") is a programming style, sometimes even referred to as a "programming paradigm," to indicate that it is about more than just small details—it represents a fundamental approach or perspective.
 
-Die ursprüngliche Motivation der objektorientierten Programmierung liegt wohl darin begründet, dass das Vorgehen häufig als sehr intuitiv empfunden wird. Das heißt, sobald man sich an die grundlegenden Prinzipien etwas gewöhnt hat...
+The original motivation behind object-oriented programming likely stems from its intuitive nature. That is, once you become familiar with its core principles...
 
-In der objektorientierten Programmierung wird alles durch **Objekte** beschrieben. Objekte haben Eigenschaften (die **Attribute**) und Fähigkeiten oder Tätigkeiten, die **Methoden**. Wichtig ist, das in Objekten beides zusammenkommt, d.h. Objekte besitzen Attribute und Methoden. Nehmen wir ein einfaches Beispiel: Ein Fahrrad hat bestimmte Eigenschaften, z.B. die Radgröße, die Farbe, die Anzahl der Gänge etc. Das wären die Attribute. Ein Fahrrad hat aber auch Methoden und zwar das Fahren, oder z.B. Klingeln.
+In object-oriented programming, everything is described through **objects**. Objects have properties (the **attributes**) and capabilities or actions, known as **methods**. The important thing is that both attributes and methods come together in objects. For example, consider a bicycle: it has specific characteristics such as wheel size, color, and number of gears—these are the attributes. But a bicycle also has methods, such as riding or ringing the bell.
 
-![Beispiel einer Klasse Fahrrad](../images/fig_oop_bike_class.png)
+![Example of a Bicycle Class](../images/fig_oop_bike_class.png)
 
-Gleich zu Beginn eine wichtige Unterscheidung die am Anfang oft für Verwirrung sorgt: **Klasse vs. Objekt**.
-Eine **Klasse** definiert einen Typen, sie ist also eine Art Vorlage. Ein Objekt (oder auch: **Instanz**) ist dagegen nur ein Exemplar das auf einer bestimmten Klasse beruht. Im Beispiel hier wäre *Fahrrad* eine Klasse und jedes echte an uns vorbeifahrende Fahrrad wäre jeweils ein Objekt der Klasse Fahrrad. Keines davon **ist** eine Vorlage für Fahrrad, sondern sie entsprechen der Vorlage Fahrrad weil sie die entsprechenden Eigenschaften und Methoden haben.
+Right from the start, it's important to distinguish between two concepts that often cause confusion in the beginning: **Class vs. Object**.
+A **class** defines a type; it serves as a kind of blueprint. An object (or **instance**) is an individual example based on a particular class. In our example, *Bicycle* is a class, while every real bicycle we see passing by is an object of the Bicycle class. None of these objects **is** a blueprint for bicycles, but they conform to the blueprint because they have the corresponding attributes and methods.
 
-Das heißt auch: Es gibt nur **eine Klasse** Fahrrad, aber theoretisch **beliebig viele Objekte** der Klasse Fahrrad.
+This also means: There is only **one Bicycle class**, but theoretically **an unlimited number of Bicycle objects**.
 
-Verwirrend? Hoffentlich wird das gleich etwas deutlicher.
+Confusing? Hopefully, it will become clearer soon.
 
-Übrigens: Neben Funktionen als Möglichkeit zur Strukturierung eines Programmes, haben wir auch schon mit *Methoden* gearbeitet, ohne allerdings genau darauf zu achten was Methoden eigentlich sind. Methoden haben wir bisher einfach als Funktionen kennengelernt, die zu bestimmten Datentypen gehören. Nehmen wir als Beispiel die Listen.
+By the way, besides using functions to structure a program, we have already worked with *methods*—without paying much attention to what methods actually are. We have encountered methods as functions that belong to specific data types. Let’s take lists as an example:
 
 ```python
 numbers = [2, 5, 11, 3]
 print(type(numbers))  # => <class 'list'>
 ```
 
-Mit `type()` bekommen wir sogar den Hinweis, dass numbers zur Klasse `list` gehört. Wie alles andere in Python auch, ist numbers damit ein Objekt. 
+Using `type()`, we see that numbers belongs to the class `list`. Like everything else in Python, numbers is an object.
 
-Wir haben gesehen, dass Listen in Python eine ganze Reihe von Methoden mitbringen, z.B:
+We've seen that lists in Python come with a number of built-in methods, such as:
 
 ```python
 numbers = [2, 5, 11, 3]
@@ -41,35 +41,33 @@ numbers.sort()
 print(numbers)
 ```
 
-Hier ist `.sort()` die Methode. Wir müssen sie nirgendwo her importieren, sie ist einfach bei der Liste "mit dabei". 
+Here, `.sort()` is a method. We don’t have to import it—it comes built into lists.
 
-Und genauso haben wir gesehn, dass andere Datentypen mit denen wir schon gearbeitet haben, wie integer, float, string, dictionary, set ebenfalls solche Methoden haben. 
+Similarly, other data types we’ve worked with, such as integers, floats, strings, dictionaries, and sets, also have methods.
 
-### Eine Klasse definieren
+## Defining a Class
 
-Eine Klasse ist nun eine Möglichkeit unsere eigenen Datentypen zu definieren.
-Wichtig: Klassen sind absolut nichts, das speziell für Python ist. Die meisten modernen Programmiersprachen erlauben es Klassen zu definieren.
+A class allows us to define our own data types. Important: Classes are not specific to Python. Most modern programming languages allow you to define classes.
 
-Fangen wir einfach an und definieren einfach mal einen neuen Datentypen, bzw. eine neue Klasse, namens `Point()`:
+Let's start by defining a new data type, or rather, a new class called `Point()`:
 
 ```python
 class Point:
-    pass  # pass bedeuted nur, dass nicht passiert
+    pass  # pass just means "do nothing"
 
 a = Point()
 print(a)  # => <__main__.Point object at 0x000001F9DB02BDC0>
 ```
 
-Mit `class` können wir in Python eine neue Klasse definieren. Im Prinzip können diese genau wie Variablen benannt werden, um aber Variablen, Funktionen und Klassen zu unterscheiden gibt es die Konvention das Klassen im sogenannten *camel case* benannt werden, also jedes Wort mit Großbuchstabe beginnt: `MyClass` oder `DoesWhatYouWant` etc.
+We define a new class in Python using `class`. Class names follow similar naming conventions as variables, but to distinguish them from variables and functions, class names typically follow the CamelCase convention, where each word starts with a capital letter: `MyClass`, `DoesWhatYouWant`, etc.
 
-Ein Objekt (d.h. eine Instanz einer Klasse) kann danach wie bei Funktionen generiert werden mit, hier war es `a = Point()`. Damit ist `a` ein Objekt der Klasse Point. Auch das können wir übrigens mit `type()` abfragen.
+An object (i.e., an instance of a class) is created just like calling a function, e.g., `a = Point()`. Now, `a` is an object of the class `Point`. We can confirm this using `type()`.
 
-Eine Klasse enthält **Attribute** (attributes) und **Methoden** (methods).
-Attribute entsprechen Variablen und -wie oben schon erwähnt- Methoden entsprechen Funktionen.  Beides wird in Python über ein `.`aufgerufen. Wir beginnen mit den Attributen.
+A class contains attributes and methods. Attributes are similar to variables, and—as mentioned earlier—methods are similar to functions. Both are accessed using . notation. Let’s start with attributes.
 
-### Attribute & Methoden
+### Attributes & Methods
 
-Attribute können einfach hinzugefügt, bzw. verändert werden. Objekte sind veränderbar, d.h. wir können  auch die Attribute anpassen:
+Attributes can be added or modified freely. Objects are mutable, meaning we can adjust their attributes:
 
 <!-- pytest-codeblocks:cont -->
 
@@ -83,7 +81,7 @@ point1.x = 0
 print(point1.x, point1.y)  # => 0 3
 ```
 
-Und jetzt möchten wir eine erste Methode zu `Point`hinzufügen:
+Now, let's add our first method to `Point`:
 
 ```python
 class Point:
@@ -96,7 +94,7 @@ point1.y = 3
 point1.position()
 ```
 
-Aber jetzt passiert folgendes:
+However, if we try the following:
 
 <!-- pytest-codeblocks:expect-error -->
 
@@ -105,9 +103,9 @@ point2 = Point()
 point2.position()  # => AttributeError: 'Point' object has no attribute 'x'
 ```
 
-`point2` ist eine neue Instanz der Klasse Point. Da die Methode `position()`zur Klasse Point gehört, ist diese natürlich verfügbar, aber die Attribute x und y wurde noch nicht definiert. Darum gibt es hier diese Fehlermeldung.
+`point2` is a new instance of the `Point` class. The method `position()` exists, but the attributes `x` and `y` have not been defined yet, leading to an error.
 
-Eigentlich sollte jedes Point-Objekt auf jeden Fall eine x und y-Position haben! Das ist auch möglich, und zwar über eine "init-Methode", auch Konstruktor (*constructor*) genannt. Das ist eine Methode die sofort beim Erstellen eines Objektes aufgerufen werden. In Python nutzen wir dafür eine Methode die mit  `__init__` benannt wird:
+Ideally, every `Point` object should always have an x and y position. This is possible using an initializer method, also known as a constructor. In Python, we use the `__init__` method for this:
 
 ```python
 class Point:
@@ -122,28 +120,28 @@ point1 = Point(10, 3)
 point1.position()  # => 10 3
 ```
 
-OK. Kurzes mini-Quiz:
+OK. Short mini-quiz:
 
->  ### Quiz!
+> ### Quiz!
 >
-> In Python ist "my name is"... : (alle zutreffenden Antworten auswählen)
+> In Python, “my name is”... : (select all applicable answers)
 >
-> A) ... eine Instanz.
-> B) ... ein Klasse.
-> C) ... ein Objekt.
-> D) ... ein Funktion.
+> A) ... an instance.
+> B) ... a class.
+> C) ... an object.
+> D) ... a function.
 
-und
+and
 
-> Nächste Frage: "my name is" ist...
+> Next question: “my name is” is...
 >
-> A) ein Objekt der Klasse 'str' (string)
-> B) ein Objekt ohne Klasse
-> C) ein Objekt der Klasse 'type'
+> A) an object of the class 'str' (string)
+> B) an object without class
+> C) an object of the class 'type'
 
-Weiter geht's... 
+Let's continue... 
 
-Jetzt soll die Klasse Point noch eine weitere Methode bekommen und zwar um den Abstand vom Mittelpunkt (0, 0) zu messen.
+Now the class Point should get another method to measure the distance from the center point (0, 0).
 
 ```python
 import math
@@ -163,9 +161,9 @@ a = Point(4, 3)
 print(a.center_distance())  # => 5.0
 ```
 
-### Eine Klasse, unendlich viele Objekte
+### One class, an infinite number of objects
 
-Es können beliebig viele Objekte einer Klasse erzeugt werden. Die Klasse bleibt dabei immer dieselbe. Und alle Objekte der Klasse (also alle Objekte die mit Hilfe derselben Klasse erzeugt wurden) verfügen über die gleichen Methoden.
+Any number of objects of a class can be created. The class always remains the same. And all objects of the class (i.e. all objects created using the same class) have the same methods.
 
 <!-- pytest-codeblocks:cont -->
 
@@ -180,15 +178,14 @@ for point in point_collection:
     point.position()
 ```
 
-Die Liste `point_collection` enthält anschließend 10 `Point` Objekte, die zwar alle die gleichen Methoden haben und damit auch alle über die Attribute x und y verfügen, aber die alle ganz unterschiedliche Werte für x und y haben können.
+The list `point_collection` then contains 10 `Point` objects, which all have the same methods and therefore all have the attributes x and y, but which can all have completely different values for x and y.
 
 
+### Objects that contain other objects (“composition”)
 
-### Objekte die andere Objekte enthalten ("Komposition")
+As we have just seen, we can create any number of instances of a class (=objects). Different classes are often defined for different tasks or data types. However, these can interact with each other in a variety of ways.
 
-Wie gerade eben gesehen, können wir beliebig viele Instanzen einer Klasse erzeugen (=Objekte). Häufig werden verschiedene Klassen für verschiedene Aufgaben oder Datentypen definiert. Diese können aber in vielfältiger weise miteinander interagieren.
-
-Eine Möglichkeit besteht darin, dass eine Klasse auf weitere Klassen zugreift. Stellen wir uns z.B. vor wir wollen eine Klasse Dreieck (oder auf Englisch: Triangle) erstellen. Dann könnte diese Klasse als Ecken unsere oben definierte `Point` Klasse verwenden.
+One possibility is that a class accesses other classes. Let's imagine, for example, that we want to create a Triangle class. Then this class could use our 'Point' class defined above as corners.
 
 <!-- pytest-codeblocks:skip -->
 
@@ -204,10 +201,9 @@ tri_1.corners[2].position()  # --> 15.5 7
 ```
 
 
+### Methods that use objects
 
-### Methoden die Objekte nutzen
-
-Genau wie bei `__init__`, oder auch genau wie bei Funktionen, können Methoden beliebige Argumente nutzen (nicht nur `self`). Das können beliebige Datentypen sein wie List, Set, Dictionary etc. oder auch Objekte von uns selbst definierten Klassen. Es können sogar auch Objekte des gleichen Typs als Argumente verwendet werden. Zum Beispiel wenn wir den Abstand von einem `Point`-Objekt zu einem anderen `Point`-Objekt berechnen wollen:
+Just as with `__init__`, or just as with functions, methods can use any arguments (not just `self`). These can be any data types such as List, Set, Dictionary etc. or even objects of classes we have defined ourselves. Objects of the same type can even be used as arguments. For example, if we want to calculate the distance from one `Point` object to another `Point` object:
 
 ```python
 import math
@@ -233,7 +229,7 @@ b = Point(-7, 8)
 print(a.distance_to_point(b))  # => 12.083045973594572
 ```
 
-Nochmal ein anderes Beispiel in dem wir eine Klasse `Fruit` definieren. Danach erstellen wir damit verschiedene `Fruit`-Objekte.
+Another example in which we define a class `Fruit`. We then use it to create various `Fruit` objects.
 
 <!-- pytest-codeblocks:cont -->
 
@@ -260,9 +256,9 @@ banana.juice()
 
 Super. 
 
-Wir können jetzt eigene Klassen definieren. 
+We can now define our own classes. 
 
-So what!? Was bringt das denn jetzt überhaupt?
+So what? What's the point of that anyway?
 
-Eine ganze Reihe! Zum einen helfen Klassen um Programme sinnvoll zu strukturieren, denn mit Klassen können wir Objekte so entwerfen, dass sie genau die gewüschten Eigenschaften haben und mit allen nötigen Methoden ausgestattet sind. In unserem ersten Beispiel haben wir etwa dafür gesorgt, dass alle `Point` Objekte eine x-y position mitbringen. Und für alle können wir ohne jeglichen extra import die entsprechenden Methoden nutzen, hier war es `center_distance()`.
+Quite a lot! On the one hand, classes help to structure programs in a meaningful way, because with classes we can design objects in such a way that they have exactly the desired properties and are equipped with all the necessary methods. In our first example, for example, we have ensured that all 'point' objects have an x-y position. And we can use the corresponding methods for all of them without any extra import, here it was `center_distance()`.
 
