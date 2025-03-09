@@ -1,26 +1,26 @@
-# Objektorientierte Programmierung in Python
+# Object-oriented programming in Python
 
-Wir haben bisher gesehen wie wir Klassen in Python definieren und wie wir damit Objekte erzeugen. Wir haben gesehen wie wir Methoden definieren und Attribute zuweisen und auch wie wir die `__init__()`-Methode einsetzten können.
+We have seen how to define classes in Python and how to use them to create objects. We have seen how to define methods and assign attributes, and also how to use the __init__() method.
 
-## Klasse vs. Objekt/Instanz
+## Class vs. object/instance
 
-Zu Beginn gibt es bei der OOP (Objektorientierten Programmierung) oft einige Verwirrungen. Nicht selten geht es dabei auch um den fundamentalen Unterschied zwischen Klasse und dem erzeugten Objekt.
+There is often some confusion at the beginning of OOP (object-oriented programming). Not infrequently, it is also about the fundamental difference between the class and the object created.
 
-In den meisten Fällen, und allen die wir bisher besprochen haben, können wir die Klasse als eine abstrakte Vorlage für die später damit erzeugten Objekte sehen. D.h. die Klasse definiert, welche Eigenschaften (Attribute) und Fähigkeiten (Methoden) Objekte haben sollen.
+In most cases, and in all the ones we have discussed so far, we can see the class as an abstract template for the objects created with it later. That is, the class defines which properties (attributes) and abilities (methods) objects should have.
 
-Über `class XYZ:` wird so eine abstrakte Klasse *definiert*. Der eigentliche Code darin wird aber erst ausführbar, wenn ein Objekt der Klasse erzeugt wird (`a = XZY()`). Attribute die erst im Konstruktor (`__init__()`) gesetzt werden, werden dabei erst erzeugt wenn auch ein Objekt der Klasse erzeugt wird. Darum funktioniert auch der folgende Code nicht:
+An abstract class is *defined* via `class XYZ:`. The actual code in it, however, only becomes executable when an object of the class is created (`a = XZY()`). Attributes that are only set in the constructor (`__init__()`) are not created until an object of the class is created. That is why the following code does not work:
 
 <!-- pytest-codeblocks:expect-error -->
 
 ```python
 class DoNothing:
-    def __init__(self):
-        self.chill = True
+def __init__(self):
+self.chill = True
 
-print(DoNothing.chill)  # => AttributeError: type object 'DoNothing' has no attribute 'chill'
+print(DoNothing.chill) # => AttributeError: type object 'DoNothing' has no attribute 'chill'
 ```
 
-Das geht also nicht, sondern erst wenn ein Objekt erstellt wird:
+So this is not possible, but only when an object is created:
 <!-- pytest-codeblocks:cont -->
 
 ```python
@@ -28,82 +28,82 @@ a = DoNothing()
 print(a.chill) # => True
 ```
 
-### Was ist `self`?
+### What is `self`?
 
-Das Argument `self` bezieht sich auf die jeweilige Instanz einer Klasse, d.h. das Objekt selbst. Code in dem `self` auftaucht, kann also immer nur von erzeugten Objekten aus sinnvoll ausgeführt werden. 
-(Übrigens: Statt self könnte auch ein abweichender Name verwendet werden, aber da `self` überall der Standard ist werden wir davon keinen Gebrauch machen.)
+The argument `self` refers to the respective instance of a class, i.e. the object itself. Code in which `self` appears can therefore only be executed meaningfully by created objects. 
+(By the way: Instead of self, a different name could be used, but since `self` is the default everywhere, we won't make use of it.)
 
-Was ist aber mit Code, z.B. zugewiesenen Attributen, die ohne `self` auskommen?
+But what about code, e.g. assigned attributes, that can do without `self`?
 
-Ein Beispiel wäre sowas:
+An example would be something like this:
 
 ```python
 class MyClass:
-    class_value = 111
-    def __init__(self):
-        self.instance_value = 2222
+class_value = 111
+def __init__(self):
+self.instance_value = 2222
 
-# Erst die Klasse direkt nutzen
-print(MyClass.class_value)  # --> 111
-# print(MyClass.instance_value)  # --> AttributeError
+# Use the class directly
+print(MyClass.class_value) # --> 111
+# print(MyClass.instance_value) # --> AttributeError
 
-# Jetzt eine Instanz der Klasse erzeugen und nutzen
+# Now create and use an instance of the class
 my_object = MyClass()
 print(my_object.class_value)
 print(my_object.instance_value)
 ```
 
-Wir sprechen hier auch von **Klassenattributen** (hier: `.class_value`) und **Instanzattributen** (hier: `.instance_value`). Über erzeugte Objekte sind bei Typen von Attributen verfügbar, in der Klasse selbst sind aber die Instanzattribute nicht vorhanden.
+We are also talking here about **class attributes** (here: `.class_value`) and **instance attributes** (here: `.instance_value`). Created objects provide access to types of attributes, but the instance attributes are not available in the class itself.
 
-Wie sieht es dann mit den Methoden aus? 
+What about methods then? 
 
-Auch da haben wir bisher typischerweise mit `self` gearbeitet. Und entsprechen sprechen wir hier auch von **Instanzmethoden** (*instance methods*). Diese sind ebenfalls nur über erzeugte Objekte zugänglich.
+Here, too, we have typically worked with `self` so far. And correspondingly, we also speak of **instance methods* here. These are also only accessible via created objects.
 
-Beispiel:
+Example:
 
 <!-- pytest-codeblocks:expect-error -->
 
 ```python
 class SuperPrint:
-    def upper_print(self, text):
-        print(text.upper())
+def upper_print(self, text):
+print(text.upper())
 
-# Instanzmethode kann nicht über Klasse aufgerufen werden:
-SuperPrint.upper_print("mein text soll größer werden")  # => TypeError
+# instance method cannot be called via class:
+SuperPrint.upper_print(“my text should be larger”) # => TypeError
 
-# Und die Methode ist auch nicht (wie eine Funktion) global verfügbar:
-upper_print("mein text soll grösser werden")  # => NameError: name 'upper_print' is not defined
+# And the method is also not (like a function) globally available:
+upper_print(“my text should be larger”) # => NameError: name 'upper_print' is not defined
 ```
 
-Erst wenn ein Objekt der Klasse SuperPrint erzeugt wird, kann damit die Methode `upper_print()` ausgeführt werden. Die Methode gehört also zu allen Objekten der Klasse `SuperPrint` und ist ansonsten nicht verfügbar, weder über die Klasse selbst, noch global wie bei einer Funktion.
+Only when an object of the SuperPrint class is created can the upper_print() method be executed with it. The method thus belongs to all objects of the SuperPrint class and is otherwise not available, either through the class itself or globally as with a function.
 
 <!-- pytest-codeblocks:cont -->
 
 ```python
 printer = SuperPrint()
-printer.upper_print("mein text soll grösser werden")
+printer.upper_print(“my text should be printed in upper case”)
 ```
 
-### Klassenmethoden (class methods)
+### Class methods
 
-Wir haben gerade gesehen, dass die Methoden die wir bisher programmiert haben (mit `self`) sich nur über erzeugte Objekte ausführen lassen (**Instanzmethode**). Aber es gibt auch **Klassenmethoden** die über die Klasse aufrufbar sind.
+We have just seen that the methods we have programmed so far (with `self`) can only be executed via created objects (**instance method**). But there are also **class methods** that can be called via the class.
 
-Klassenmethoden werden in Python üblicherweise explizit als solche ausgewiesen über einen sogenannten "Decorator". Was das genau ist, werden wir an dieser Stelle aber noch nicht behandeln (kommt später).  Das SuperPrint Beispiele sähe damit wie folgt aus (`@classmethod` ist dabei der erwähnte Decorator):
+In Python, class methods are usually explicitly identified as such using a so-called “decorator”. However, we will not cover exactly what that is at this point (it will be covered later). The SuperPrint example would then look like this (`@classmethod` is the mentioned decorator):
 
 ```python
 class SuperPrint:
-    @classmethod
-    def upper_print(cls, text):
-        print(text.upper())
+@classmethod
+def upper_print(cls, text):
+print(text.upper())
 
-SuperPrint.upper_print("mein text soll größer werden")
+SuperPrint.upper_print(“my text should be printed in upper case”)
 ```
 
-Auch hier gibt es ein spezielles erstes Argument das wir nun aber nicht `self` sondern `cls` (für class) nennen.
+Here, too, there is a special first argument, which we now call not `self` but `cls` (for class).
 
-Jetzt die Frage: Wann nutzen wir Klassenmethoden?
+Now the question: When do we use class methods?
 
-Wie schon erwähnt, werden wir überwiegend mit Instanzmethoden arbeiten. Aber es gibt auch Fälle in denen Klassenmethoden sinnvoll sind. Ein Beispiel könnte eine Erweiterung der `Point` Klasse sein, die wir schon einmal erstellt hatten. Stellen wir uns nun vor, wir wollen eine neue Methode hinzufügen die ein Point-Objekt mit zufälliger Position erzeugt, etwas `create_random_point()`. Wenn wir diese Methode aber wie bisher mit `self` definieren können wir sie ja nur über erzeugte Objekte aufrufen. Das würde dann bedeutet wir müssen ein Point-Objekt erzeugen um damit dann ein neues Point-Objekt erstellen zu können... nicht sehr intuitiv. An einer solchen Stelle ist eine Klassenmethode die bessere Wahl:
+As already mentioned, we will mainly work with instance methods. But there are also cases in which class methods are useful. One example could be an extension of the Point class that we had already created. Now let's imagine we want to add a new method that creates a Point object with a random position, something like create_random_point(). But if we define this method with `self` as before, we can only call it via created objects. This would then mean that we have to create a Point object in order to then create a new Point object... not very intuitive. At such a point, a class method is the better choice:
 
 ```python
 import math
@@ -111,141 +111,140 @@ import random
 
 
 class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+def __init__(self, x, y):
+self.x = x
+self.y = y
 
-    def position(self):
-        print(self.x, self.y)
+def position(self):
+print(self.x, self.y)
 
-    def center_distance(self):
-        return math.sqrt(self.x ** 2 + self.y ** 2)
+def center_distance(self):
+return math.sqrt(self.x ** 2 + self.y ** 2)
 
-    @classmethod
-    def create_random_point(cls):
-        return Point(random.random(), random.random())
+@classmethod
+def create_random_point(cls):
+return Point(random.random(), random.random())
 
 
 random_point = Point.create_random_point()
 random_point.position()
 ```
 
-Da die Klassenmethode in diesem Fall eine Instanz erzeugt spricht man auch von einer **factory method**.
+Since the class method in this case creates an instance, it is also referred to as a **factory method**.
 
 
 
 ---
 
 
+In addition to the combination of methods and attributes discussed so far, there are many other possibilities offered by object-oriented programming. One that is mentioned particularly often is the so-called **inheritance**.
 
-Neben den bisher besprochene Verbindung von Methoden und Attributen, gibt es noch viele andere Möglichkeiten durch die Objektorientierte Programmierung. Eine besonders häufig genannte ist die sogenannte **Vererbung**.
+## Inheritance
 
-## Vererbung (inheritance)
+Classes can pass on their properties to other classes. In practice, this is actually very useful in some cases! 
 
-Klassen können anderen Klassen ihre Eigenschaften vererben. Das ist in der Praxis tatsächlich an manchen Stellen sehr nützlich! 
+In the bicycle example from the previous chapter, this would be a sub-type of bicycle that takes over the core properties of a bicycle (i.e. “inherits”), e.g. an eBike.
+![Inheritance using the example of the bicycle class](../images/fig_oop_inheritance.png)
 
-Im Fahrrad-Beispiel aus dem vorherigen Kapitel wäre das in etwa eine Unterart von Fahrrad die aber die Kerneigenschaften von Fahrrad übernehmen (also "erben") soll, z.B. ein eBike.
-![Vererbung am Beispiel der Klasse Fahrrad](../images/fig_oop_inheritance.png	)
-
-Wir können uns das aber auch direkt an einem einfachen Code-Beispiel anschauen. Wir haben gerade Punkte definiert (`Point`-Klasse) und möchten jetzt auch andere geometrische Typen entwerfen. Dann müssen wir nicht unbedingt alles neu definieren, sondern es geht auch das Folgende:
+But we can also look at this directly in a simple code example. We have just defined points (`Point` class) and now we want to design other geometric types. We don't necessarily have to redefine everything, we can also do the following:
 
 ```python
-# Schon oben ausgeführt:
+# Already executed above:
 import math
 
 class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+def __init__(self, x, y):
+self.x = x
+self.y = y
 
-    def position(self):
-        print(self.x, self.y)
+def position(self):
+print(self.x, self.y)
 
-    def center_distance(self):
-        return math.sqrt(self.x ** 2 + self.y ** 2)
-    
-    def distance_to_point(self, point):
-        dist_x = self.x - point.x
-        dist_y = self.y - point.y
-        return math.sqrt(dist_x ** 2 + dist_y ** 2)
-    
-# Neue Klasse definieren:    
+def center_distance(self):
+return math.sqrt(self.x ** 2 + self.y ** 2)
+
+def distance_to_point(self, point):
+dist_x = self.x - point.x
+dist_y = self.y - point.y
+return math.sqrt(dist_x ** 2 + dist_y ** 2)
+
+# Define a new class: 
 class Circle(Point):
-    def __init__(self, x, y, radius):
-        self.x = x
-        self.y = y
-        self.radius = radius
+def __init__(self, x, y, radius):
+self.x = x
+self.y = y
+self.radius = radius
 
 a = Circle(11, 2, 5)
-print(a.center_distance())  # => 11.180339887498949
+print(a.center_distance()) # => 11.180339887498949
 ```
 
-Ohne das wir eine Methode neu definiert haben, funktioniert schon der Aufruf `.center_distance()`!
+Without having redefined a method, the call `.center_distance()` already works!
 
-Das liegt daran, dass wir hier gesagt haben das `Circle` auf die Klasse `Point`zurückgreifen darf. Man spricht hier von "Vererbung" und demensprechend auch davon, dass `Circle` das Kind (*child*) ist von `Point`. 
+This is because we have said here that `Circle` may access the class `Point`. This is called “inheritance” and accordingly, `Circle` is the child of `Point`. 
 
-`Point` wird die "Basisklasse" oder auch Super-, Ober- oder Elternklasse genannt (*parent class*), während `Circle` in diesem Beispiel die "abgeleitete Klasse" oder auch Sub-, Unter-, oder Kindklasse heißt (*child class*).
+`Point` is called the “base class” or super class or parent class (*parent class*), while in this example, `Circle` is called the “derived class” or subclass or child class (*child class*).
 
-Es lassen sich damit auch interessante Zugehörigkeits- oder Type-Abfragen machen. So ist `a` im oberen Beispiel ein Objekt der Klasse `Circle`, aber ist eben auch auf eine Art verbunden mit der *parent class*  `Point`. In Python können solche Zugehörigkeiten abgefragt werden mit `isinstance()`:
+This can also be used to make interesting membership or type queries. In the above example, `a` is an object of the class `Circle`, but it is also connected to the *parent class* `Point`. In Python, such affiliations can be queried with `isinstance()`:
 
 <!-- pytest-codeblocks:cont -->
 
 ```python
-print(isinstance(a, Point))  # => True
-print(isinstance(a, Circle))  # => True
+print(isinstance(a, Point)) # => True
+print(isinstance(a, Circle)) # => True
 ```
 
 ### super()
 
-Im Beispiel oben haben wir in der abgeleiteten Klasse (`Circle`) die komplette init-Methode überschrieben durch eine neue. Das wirkt vielleicht -zu recht- etwas merkwürdig, denn die Methoden sind sich eigentlich sehr ähnlich und ein größerer Teil des Codes kommt somit mehrfach vor.
+In the example above, we have overwritten the complete init method in the derived class (`Circle`) with a new one. This may seem a bit strange - and rightly so - because the methods are actually very similar and a large part of the code thus occurs multiple times.
 
-Es gibt auch noch eine andere Möglichkeit den Konstruktor (`__init__()`) anzupassen und gleichzeitig auf den Konstruktor der *parent class* zuzugreifen und zwar mit `super()`:
+There is another way to customize the constructor (`__init__()`) and at the same time access the constructor of the *parent class* using `super()`:
 
 <!-- pytest-codeblocks:cont -->
 
 ```python
 class Circle(Point):
-    def __init__(self, x, y, radius):
-        super().__init__(x, y)  # damit wird der Konstruktor der parent class ausgeführt
-        self.radius = radius
+def __init__(self, x, y, radius):
+super().__init__(x, y) # this executes the constructor of the parent class
+self.radius = radius
 
 a = Circle(11, 2, 5)
 print(a.center_distance())
 ```
 
-V.a. wenn der Konstruktor einer Klasse viele Parameter setzt und/oder weitere Schritte enthält macht der Einsatz von `super()`an dieser Stelle den Code einfacher.
+Especially when a class constructor sets many parameters and/or contains further steps, using `super()` at this point makes the code simpler.
 
-## Umfangreichers Beispiel (Übung --> Spiel Pig)
+## Extensive example (Exercise --> Game Pig)
 
-Ein weiterer wichtiger Punkt den wir in der Übung angefangen haben, war ein Gefühl dafür zu bekommen wann, warum, und wie man Klassen überhaupt einsetzt. Als Beispiel dafür haben wir angefangen ein erstes kleines Spiel zu programmieren: Pig (oder "Böse Eins"). Die Spielregeln sind einfach:
+Another important point that we started in the exercise was to get a feeling for when, why, and how to use classes at all. As an example, we started programming a first small game: Pig (or “Evil One”). The rules of the game are simple:
 
-Spielregeln:
+Rules of the game:
 
-* 2 Spieler*Innen spielen gegeneinander und wechseln sich ab. Beide starten mit 0 Punkten.
-* Spieler\*In der/die an der Reihe ist würfelt mit 1 Würfel (Zufallszahl -> 1-6). Die Ergebnisse werden zusammengezählt, bis Spieler\*In beschließt zu stoppen, oder: bis eine Eins gewürfelt wird. Wurde gestoppt ohne das eine Eins kam, dann werden die Punkte alle dazugezählt. Wurde eine Eins gewürfelt,  gibt es keine Punkte dazu.
-* Wer als erstes 100 Punkte erreicht, gewinnt.
+* 2 players play against each other and take turns. Both start with 0 points.
+* The player rolls 1 dice (random number -> 1-6). The results are added together until the player decides to stop, or until a one is rolled. If you stop without rolling a one, then all the points are added together. If a one is rolled, no points are added.
+The first person to reach 100 points wins.
 
-Um dieses Spiel objektorientiert zu programmieren, muss erst überlegt werden welche Klassen es denn geben soll/muss. Typischerweise orientiert man sich bei der Suche danach an den wichtigsten Gegenständen/Elementen/Akteuren. In diesem Beispiel würden z.B. folgende Klassen Sinn machen:
+To program this game in an object-oriented way, you first have to consider which classes should/must exist. Typically, you look for the most important objects/elements/actors. In this example, the following classes would make sense:
 
-* Würfel --> class Dice
-* Spieler*In --> class Player
-* Spiel/Spielregeln/Spielablauf/Spielmechanik --> class PigGame
+* Dice --> class Dice
+* Player --> class Player
+* Game/Game Rules/Gameplay/Game Mechanics --> class PigGame
 
-Als nächstes muss geschaut werden, welche Eigenschaften (Attribute) und Handlungen/Möglichkeiten (Methoden) die Klassen bräuchten. Am einfachsten dabei ist die Klasse `Dice`, den die muss v.a. würfeln können was ja nichts anderes ist als Zufallszahlen von 1 bis 6 zu liefern.
+Next, we have to look at the properties (attributes) and actions/options (methods) that the classes would need. The simplest thing here is the class `Dice`, which must be able to roll the dice, which is nothing more than providing random numbers from 1 to 6.
 
 ```python
 from random import randint
 
 
 class Dice:
-    def __init__(self, sides=6):
-        self.sides = sides
+def __init__(self, sides=6):
+    self.sides = sides
 
-    def roll(self):
-        return randint(1, self.sides)
+def roll(self):
+    return randint(1, self.sides)
 ```
 
-Wie oben bereits erwähnt, macht diese Klasse aber erstmal nichts. Dazu muss erst ein `Dice`-Objekt ereugt werden.
+As mentioned above, this class doesn't do anything yet. To use it, a `Dice` object must first be created.
 
 <!-- pytest-codeblocks:cont -->
 
@@ -254,7 +253,7 @@ dice = Dice()
 print(dice.roll())
 ```
 
-Die zweite Klasse ist dann `Player` und das wird schon deutlich schwieriger!
+The second class is then `Player` and that is already much more difficult!
 
 ```python
 class Player:
@@ -262,47 +261,47 @@ class Player:
         self.score = 0
         self.name = name
 
-    def move(self, dice):
-        print(f"\n{self.name}'s turn -----------")
-        print(f"Current score: {self.score} ---------")
-        additional_score = 0
-        while True:
-            roll = dice.roll()
-            additional_score += roll
-            print(f"{self.name} got a {roll}! Total={additional_score}")
-            if roll == 1:
-                break
-            user_choice = input("Continue (y/n)? >>> ")
-            if user_choice == "n":
-                self.score += additional_score
-                print(f"+ {additional_score} --> {self.score}")
-                break
+def move(self, dice):
+    print(f“\n{self.name}'s turn -----------”)
+    print(f“Current score: {self.score} ---------”)
+    additional_score = 0
+    while True:
+        roll = dice.roll()
+        additional_score += roll
+        print(f“{self.name} got a {roll}! Total={additional_score}”)
+        if roll == 1:
+            break
+        user_choice = input(“Continue (y/n)? >>> ‘)
+        if user_choice == ’n”:
+            self.score += additional_score
+            print(f“+ {additional_score} --> {self.score}”)
+            break
 ```
 
-Jede(r) Spieler*In hat zwei Eigenschaften: einen Namen (`.name`) und einen Punktestand (`.score`). Dazu kommt eine Methode um einen Spielzug zu machen (`.make_move()`). Diese Methode haben wir in der Übung erstellt und getestet. Ein sehr wichtiges Element vom Objektorientiertem Ansatz kann man an dieser Stelle schon gut sehen: Objekte werden an andere Objekte weiter gegeben. Es muss also erstmal ein Würfel-Objekt erstellt werden damit ein `Player`-Objekt spielen kann!
+Each player has two properties: a name (`.name`) and a score (`.score`). In addition, there is a method for making a move (`.make_move()`). We created and tested this method in the exercise. A very important element of the object-oriented approach can already be seen at this point: objects are passed on to other objects. So first a dice object has to be created so that a `Player` object can play!
 
 <!-- pytest-codeblocks:skip -->
 
 ```python
-player1 = Player("Helmut")
-player2 = Player("Sandra")
+player1 = Player(“Helmut”)
+player2 = Player(“Sandra”)
 dice = Dice()
 
 player1.make_move(dice)
 player2.make_move(dice)
 ```
 
-Also: Genauso wie ich in einem echten Würfelspiel den Würfel (ein Objekt) an eine(n) Spieler*In geben würde, wird auch hier das Objekt `Dice` an `Player` gegeben. Und zwar nicht die als feste Eigenschaft (also: Attribut), sondern nur als Argument in der Methode `.make_move()`. Vielleicht erscheint das jetzt erstmal etwas seltsam. Immerhin ist ein Würfelwurf auch nichts besonders kompliziertes und ich könnte ja auch einfach eine Funktion dafür schreiben oder sogar nur direkt `random.randint(1, 6)` aufrufen. 
+So: Just as I would give the dice (an object) to a player in a real dice game, the object `Dice` is also given to `Player` here. And not as a fixed property (i.e. as an attribute), but only as an argument in the method `.make_move()`. This may seem a bit strange at first. After all, a dice roll is not particularly complicated and I could just write a function for it or even just call random.randint(1, 6) directly. 
 
-Der Hauptvorteil ist, dass klar strukturiert ist welche Eigenschaften wo festgelegt werden. Nämlich immer nur bei den dazugehörigen Objekten. Sprich: Wenn `player1` dran ist, geht der Würfel an die entprechende `make_move()`Methode, usw.
+The main advantage is that it is clearly structured which properties are set where. Namely, only with the associated objects. In other words: When it's `player1`'s turn, the dice goes to the corresponding `make_move()` method, etc.
 
-Wenn das Spiel jetzt mit einem anderen Würfel stattfinden soll, muss nur der Würfel verändert werden, z.B. so:
+If you want to play the game with a different dice, you just have to change the dice, for example like this:
 
 <!-- pytest-codeblocks:skip -->
 
 ```python
-player1 = Player("Helmut")
-player2 = Player("Sandra")
+player1 = Player(“Helmut”)
+player2 = Player(“Sandra”)
 dice = Dice(sides=4)
 
 player1.make_move(dice)
@@ -311,48 +310,47 @@ player2.make_move(dice)
 
 ---
 
-Jetzt kommen wir zu noch ein paar weiteren Eigenschaften und Möglichkeiten der Objektorientierten Programmierung.
+Now we come to a few more features and possibilities of object-oriented programming.
 
-## Datenkapselung
+## Data Encapsulation
 
-Datenkapselung ist im Prinzip nichts anderes als der Schutz von Daten (Attributen) vor unmittelbarem Zugriff. Wir haben schon gesehen, dass Attribute auch einfach eingesehen und geändert werden können, z.B. `point1.x = 5`. Aber *idealerweise* versuchen die meisten Programmieren*Innen ihre Klassen so zu designen, dass Attribute v.a. über sogennante "Getter" und "Setter"-Methoden aufgerufen werden. 
+Data encapsulation is basically nothing more than the protection of data (attributes) from direct access. We have already seen that attributes can easily be viewed and changed, e.g. `point1.x = 5`. But *ideally* most programmers try to design their classes in such a way that attributes are accessed primarily via so-called “getter” and “setter” methods. 
 
 ### Public -> Protected -> Private
 
-Eine wichtige Eigenschaft von Klassen, auch im Zusammenhang mit der Datenabstraktion, ist die Möglichkeit die Zugriffsrechte auf die Attribute festzulegen. Python ist hierbei deutlich weniger strikt als viele andere Programmiersprachen, d.h. wir erstellen jetzt gleich keine high-security Programme. Aber es gibt auch in Python die wichtige Unterscheidung zwischen frei zugänglichen (public), geschützten (protected) und unzugänglichen (private) Attributen.
+An important property of classes, also in the context of data abstraction, is the ability to define access rights to the attributes. Python is much less strict here than many other programming languages, i.e. we are not creating any high-security programs right now. But even in Python there is an important distinction between freely accessible (public), protected and inaccessible (private) attributes.
 
-Python hat hier also drei Stufen:
+Python has three levels here:
 
-• name (**Public**): 
- Attribut ohne führende Unterstriche; sind innerhalb einer Klasse und auch von außen les- und schreibbar.
+- name (**Public**): 
+Attribute without leading underscores; can be read and written within a class and also from outside.
 
-• _name (**Protected**): 
- Man kann zwar von außen lesend und schreibend zugreifen, der/die Entwickler*In macht aber klar das man diese Attribute so nicht benutzen sollte; Protected-Attribute sind beim Importieren wichtig.
+- _name (**Protected**): 
+Although they can be read and written from outside, the developer makes it clear that these attributes should not be used in this way; protected attributes are important for importing.
 
 • __name (**Private**): 
- Sind von außen weder sichtbar noch benutzbar 
+Cannot be seen or used from outside 
 
 <!-- pytest-codeblocks:expect-error -->
 
 ```python
 class MagicSpell:
-    name = "Expecto Patronum"
-    _book = "Magic Spells IV"
-    __explanation = "Here is how it works..."
+    name = “Expecto Patronum”
+    _book = ‘Magic Spells IV”
+    __explanation = ’Here is how it works...”
 
 spell = MagicSpell()
 
-print(spell.name)  # => Expecto Patronum
-print(spell._book)  # => Magic Spells IV
-print(spell.__explanation)  # => AttributeError: 'Spell' object has no attribute '__explanation'
-
+print(spell.name) # => Expecto Patronum
+print(spell._book) # => Magic Spells IV
+print(spell.__explanation) # => AttributeError: ‘Spell’ object has no attribute ‘__explanation’
 ```
 
-Hier ist also zu sehen, dass die *protected attributes*  durchaus noch ganz normal eingesehen werden können! Bei Python ist der eine Unterstrich vor einem Attributsname eher als ein Hinweis an Nutzer\*Innen und v.a. Entwickler\*Innen zu verstehen, diese Variablen nicht einfach zu verändern. Das entspricht in etwa einem "Zutritt auf eigene Gefahr"-Schild.
+So here you can see that the *protected attributes* can still be accessed as normal! In Python, the underscore in front of an attribute name is more of a hint to users and especially developers not to change these variables. This is similar to a “Enter at your own risk” sign.
 
-Die Attribute mit Status *private* geben aber einen `AttributeError`, d.h. diese können tatsächlich nicht mehr wie zuvor aufgerufen und verändert werden.
+The attributes with the status *private* will throw an `AttributeError`, i.e. these can no longer be accessed and changed as before.
 
-Das gleiche geht natürlich auch mit einem Konstruktor:
+The same is of course possible with a constructor:
 
 <!-- pytest-codeblocks:expect-error -->
 
@@ -363,28 +361,29 @@ class MagicSpell:
         self._book = book
         self.__explanation = explanation
 
-spell = MagicSpell("Expecto Patronum",
-                   "Magic Spells IV",
-                   "Here is how it works...")
+spell = MagicSpell(
+    “Expecto Patronum”,
+    “Magic Spells IV“,
+    “Here is how it works...”
+)
 
-print(spell.name)  # => Expecto Patronum
-print(spell._book)  # => Magic Spells IV
-print(spell.__explanation)  # => AttributeError
+print(spell.name) # => Expecto Patronum
+print(spell._book) # => Magic Spells IV
+print(spell.__explanation) # => AttributeError
 ```
 
 
-
-Bevor jemand jetzt aber auf die Idee kommt, damit sensible Daten zu schützen: Einen richtig strengen Schutz der Attribute gibt es bei Python nicht! Der Zugang wird nur bewusst erschwert. Theoretisch können die verstecken Attribute aber noch immer eingesehen werden mit:
+But before anyone gets the idea of using this to protect sensitive data: Python does not have a really strict protection of attributes! Access is only deliberately made more difficult. In theory, however, the hidden attributes can still be viewed with:
 
 <!-- pytest-codeblocks:cont -->
 
 ```python
-print(spell._MagicSpell__explanation)  # nur zur Info, bitte diesen Weg nicht in Programmen nutzen!
+print(spell._MagicSpell__explanation) 
+# just for your info, please don't use this in programs!
+# Or, even easier, just open it in Spyder's “Variable Explorer”...
 ```
+As a short example, let's say we don't want users to be able to simply change the.x or.y of a`Point` object:
 
-Oder, noch einfacher, einfach mal im "Variable Explorer" in Spyder öffnen...
-
-Als kurzes Beispiel einmal den Fall, dass wir nicht wollen das Nutzer\*Innen .x oder .y eines `Point`-Objekts einfach ändern können:
 
 ```python
 class Point:
@@ -392,12 +391,12 @@ class Point:
         self.__x = x
         self.__y = y
 
-    def get_position(self):
-        return self.__x, self.__y
+def get_position(self):
+    return self.__x, self.__y
 
-    def set_position(self, x, y):
-        self.__x = x
-        self.__y = y
+def set_position(self, x, y):
+    self.__x = x
+    self.__y = y
 
 a = Point(10, 3)
 print(a.get_position())
@@ -405,24 +404,24 @@ print(a.get_position())
 a.set_position(8, 4)
 print(a.get_position())
 
-# a.x  # => AttributeError
+# a.x # => AttributeError
 ```
 
-Da man die Attribute mit Status nicht nur nicht einsehen kann, sondern diese auch nicht einmal als vorhanden angezeigt werden spricht man hier auch vom **Geheimnisprinzip** einem anderen Konzept im OOP. 
+Since you can't just see the attributes with status, but they are not even displayed as existing, this is also called the secret principle, another concept in OOP. 
 
-Ok. Schön. Aber wozu das Ganze?
+Ok. Fair enough. But what's the point of all this?
 
-Die (oder zumindest eine) Idee dahinter ist, dass Entwickler*Innen die entwickelten Klassen für bestimmte Nutzungen vorgesehen haben und zum einen "falsche" Nutzung vermeiden möchten, zum Anderen aber auch eine Nutzung nicht unnötig erschweren wollen indem zu viele Details über die genaue Implementierung sichtbar sind.
+The idea behind this (or at least one idea) is that developers have intended the developed classes for certain uses and, on the one hand, want to avoid “incorrect” use, but on the other hand, do not want to unnecessarily complicate use by revealing too many details about the exact implementation.
 
-Oder anders: Wenn wir eine Python Klasse nutzen, interessiert uns meistens vor allem **wie** sie genutzen werden kann und weniger wie der Code dahinter aussieht. Ein Beispiel: Wenn wir eine Liste erstellen, z.B. mit `my_list = [3, 5, 7, 1, 4]` und diese dann sortieren wollen, dann reicht es erstmal völlig wenn wir wissen, dass es dafür eine passende Methode namens `.sort()` gibt (und wie wir diese benutzen). Welche Unterfunktionen etc. dahinter stecken ist erstmal nicht unsere Hauptsorge.
+Or to put it another way: when we use a Python class, we are usually more interested in **how** it can be used than in what the code behind it looks like. For example, if we create a list, e.g. with `my_list = [3, 5, 7, 1, 4]` and then want to sort it, it is enough to know that there is a method called `.sort()` for this (and how to use it). What sub-functions etc. are behind it is not our main concern for now.
 
-Naja, aber manchmal ist ein Blick unter die Motorhaube doch ganz nett...
+Well, sometimes a look under the hood is nice...
 
 ## Magic methods
 
-Magic methods oder auch **Dunder** (von **d**ouble **under**), heißen nicht nur *magic*, sie wirken am Anfang wohl auch ein wenig so. Denn zum einen haben hier alle (zumindest von mir) wahrscheinlich noch nie etwas davon gehört und zum Anderen können Experimente damit sehr seltsame Konsequenzen haben.
+Magic methods or **dunder** (from **d**ouble **under**) are not only called *magic*, they also seem a bit like that at the beginning. On the one hand, everyone (at least I) has probably never heard of them before and on the other hand, experiments with them can have very strange consequences.
 
-Es kann z.B. passieren, dass bestimmte Variablen nicht machen was sie *sollen*, vielleicht so:
+It may happen, for example, that certain variables do not do what they are *supposed* to do, maybe like this:
 
 ```
 >>> a
@@ -433,11 +432,11 @@ Es kann z.B. passieren, dass bestimmte Variablen nicht machen was sie *sollen*, 
 4.1010101
 ```
 
-Was passiert hier? 
+What's happening here? 
 
-Python kaputt?
+Python broken?
 
-Irgendwelche Ideen?
+Any ideas?
 
 ...
 
@@ -445,45 +444,45 @@ Irgendwelche Ideen?
 
 ... 
 
-OK, vielleicht erstmal etwas Anderes: Was sind Dunder/magic methods jetzt eigentlich?
+OK, maybe something different first: What are dunder/magic methods anyway?
 
-Das sind Methoden deren Namen mit zwei Unterstrichen umgeben sind. Sie sind nicht für direkte Aufrufe bestimmt sondern werden von bestimmten Aktionen ausgelöst, z.B. auch Operatoren. So ist z.B. `__add__()` die Methode die bei Benutzung von `+` augerufen wird:
+These are methods whose names are surrounded by two underscores. They are not intended for direct invocation but are triggered by certain actions, including operators. For example, `__add__()` is the method that is called when using `+`:
 
 ```python
 a = 5
-print(a.__add__(7))  # => 12
-print(a + 7)  # => 12
+print(a.__add__(7)) # => 12
+print(a + 7) # => 12
 ```
 
-Beide Möglichkeiten sind hierbei identisch, mit der Ausnahme dass das direkte Verwenden von `.__add__()` nicht so vorgesehen ist.
+Both options are identical here, except that using `.__add__()` directly is not intended.
 
-Es gibt wirklich **sehr viele** solcher Methoden (siehe z.B. [tutorialstecher.com](https://www.tutorialsteacher.com/python/magic-methods-in-python))! Einige Beispiele die wir (ohne es zu wissen) schon selbst benutzt haben sind:
+There are really **a lot of** such methods (see for example [tutorialstecher.com](https://www.tutorialsteacher.com/python/magic-methods-in-python))! Some examples that we have already used (without knowing it) are:
 
-+ `__add__()` für `+`
-+ `__sub__()` für `-`
-+ `__mul__()` für `*`
-+ `__truediv__()` für `/`
-+ `__eq__()` für `==`
++ `__add__()` for `+`
++ `__sub__()` for `-`
++ `__mul__()` for `*`
++ `__truediv__()` for `/`
++ `__eq__()` for `==`
 
-Aber auch Methoden die bei der Typen-Umwandlung genutzt werden, z.B.:
+But also methods that are used in type conversion, e.g.
 
-+ `__str__()` für `str()`
-+ `__float__()` für `float()`
++ `__str__()` for `str()`
++ `__float__()` for `float()`
 
 
 
-Jetzt vielleicht eine Idee, was in dem *seltsamen* Code-Beispiel oben passiert sein könnte?
+Now maybe you have an idea what might have happened in the *strange* code example above?
 
-Hinweis: Kurz mit `type()` testen was `a` eigentlich ist!
+Hint: briefly test with `type()` what `a` actually is!
 
 ```
 >>> type(a)
 <class '__main__.FunkyNumber'>
 ```
 
-**Tadaa!**
+**Ta-da!**
 
-`a` ist gar kein `int` wie vielleicht gedacht, sondern ein Objekt der Klasse `FunkyNumber`:
+`a` is not an `int` at all, as might have been thought, but an object of the class `FunkyNumber`:
 
 ```python
 class FunkyNumber(int):
@@ -495,16 +494,16 @@ class FunkyNumber(int):
 
     def __sub__(self, x):
         return self.value - x + 0.1010101
-    
+
 a = FunkyNumber(5)
 print(a + 7)
 print(a - 1)
 print(a * 7)
 ```
 
-Super funky. Aber was kann das Ganze noch (außer Verwirrung stiften natürlich) ?
+Super funky. But what else can it do (besides cause confusion, of course)?
 
-Es gibt tatsächlich ziemlich viele sinnvolle Verwendungen für *magic methods* beim objektorientierten Programmieren in Python. Ein Beispiel können wir uns anschauen indem wir wieder zurück zu unserem Standardbeispiel mit der Klasse `Point` gehen. Den manche Dinge funktionieren dort eventuell nicht so wie wir es uns wünschen würden und *magic methods* können da helfen.
+There are actually quite a few useful uses for *magic methods* in object-oriented programming in Python. We can look at an example by going back to our standard example with the class `Point`. Some things may not work as we would like them to and *magic methods* can help.
 
 ```python
 import math
@@ -514,44 +513,43 @@ class Point:
         self.x = x
         self.y = y
 
-    def center_distance(self):
-        return math.sqrt(self.x ** 2 + self.y ** 2)
-    
+def center_distance(self):
+    return math.sqrt(self.x ** 2 + self.y ** 2)
+
 a = Point(10, 3)
 b = Point(10, 3)
-print(a == b)  # => False
+print(a == b) # => False
 ```
 
-Was wir hier sehen ist, dass zwei Punkte von Python nicht als gleich (`==`) angesehen werden obwohl sie exakt die gleichen Koordinaten haben. Der Grund ist der, das Python erstmal davon ausgeht, das zwei Objekte nur gleich sind wenn sie auch auf das selbe Objekt verweisen. Sprich: 
+What we see here is that two points are not considered equal (`==`) by Python even though they have exactly the same coordinates. The reason for this is that Python initially assumes that two objects are only equal if they also refer to the same object. In other words: 
 
 <!-- pytest-codeblocks:cont -->
 
-```Python
+```python
 a = Point(10, 3)
 b = a
-print(a == b)  # => True
+print(a == b) # => True
 ```
 
-Es würde aber (je nach Anwendung) auch Sinn machen, dass zwei Punkte als gleich zu verstehen sind falls ihre Koordinaten gleich sind. Mit *magic methods* können wir das erreichen.
+But it would also make sense (depending on the application) for two points to be considered equal if their coordinates are equal. We can achieve this with *magic methods*.
 
 ```python
 import math
 
 class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-        
-    def __eq__(self, p):
-        return (self.x == p.x) and (self.y == p.y)
+def __init__(self, x, y):
+self.x = x
+self.y = y
 
-    def center_distance(self):
-        return math.sqrt(self.x ** 2 + self.y ** 2)
-    
+def __eq__(self, p):
+	return (self.x == p.x) and (self.y == p.y)
+
+def center_distance(self):
+	return math.sqrt(self.x ** 2 + self.y ** 2)
+
 a = Point(10, 3)
 b = Point(10, 3)
-print(a == b)  # => True
+print(a == b) # => True
 ```
 
-Übrigens: auch innerhalb der Standard-Datentypen in Python findet sich die ein oder andere "kreative" Lösung. Ein gutes Beispiel dafür ist die Multiplikation bei Strings, also das`5 * "-"`  möglich ist und `"-----"` ergibt, ist ebenfalls etwas das mit *magic methods* eben einfach definiert werden kann.
-
+By the way: even within the standard data types in Python, there are some “creative” solutions. A good example of this is multiplication with strings, so that`5 * “-”` is possible and yields `“-----”`, is also something that can simply be defined with *magic methods*.
